@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The Alpha website for the State of California.">
+    <meta name="author" content="Alpha.CA.gov - State of California">
+	  <meta name="google-site-verification" content="aBJHYsPN6AfEPViMwkLKVpjzhOE9wF_DMzaX39EwZRM" />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:image" content="img/thumbnail.png">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:width" content="630">
+    <meta property="og:title" content="Alpha.CA.gov - State of California">
+    <meta property="og:description" content="The Alpha website for the State of California.">
+    <meta property="og:url" content="https://alpha.ca.gov">
+    <title>Alpha.CA.gov - State of California</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/min-wage.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../libs/awesomplete.css" />
+    <script src="../libs/awesomplete.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <div class="official">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>Official California State Government Website</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand navbar-left" href="index.html">CA.gov <sup>(ALPHA)</sup></a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="jumbotron text-center">
+      <div class="container">
+        <h1>Minimum wage in California</h1>      
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          &nbsp;
+        </div>
+        <div class="col-md-8">
+
+            <h2>Find your minimum wage</h2>
+            <form>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Please enter your city.</label>
+                <br>
+                <input data-list="City of Berkeley, City of Cupertino, City of El Cerrito, Emeryville, Los Altos, Milpitas, Mountain View, Oakland, Palo Alto, San Diego, San Francisco, San Jose, San Mateo, Santa Clara, Sunnyvale" data-multiple  class="form-control" id="location-query" aria-describedby="emailHelp" />
+              </div>
+              <button type="submit" class="btn btn-primary js-wage-lookup">See your minimum wage</button>
+            </form>
+  
+            <p></p>
+            <div id="answer"></div>          
+          
+          <p style="padding-bottom:0;">*Special cases</p>
+          <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Learners
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseOne" class="collapse in" aria-labelledby="headingOne" data-parent="#accordionExample" aria-expanded="true" style="">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Employees with disabilities
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Outside salespeople
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Child, parent or spouse of the employer
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    Apprentices
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseFive" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                      Sheepherders
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseSix" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+              </div>
+            </div>
+          </div>
+                      
+        </div>
+        <div class="col-md-2">
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>
+              State of California Website
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alphabar">
+      <div class="container">
+        <p>This is an alpha project and a work in progress (<a href="https://medium.com/cadotgov">Details</a>)</p>
+      </div>
+    </div>
+
+    <script>
+      let wageJson = [
+        { "name": "City of Berkeley", "wage": "15.35" },
+        { "name": "City of Cupertino", "wage": "15.35" },
+        { "name": "City of El Cerrito", "wage": "15.37" },
+        { "name": "Emeryville", "wage": "16.42" },
+        { "name": "Los Altos", "wage": "15.40" },
+        { "name": "Milpitas", "wage": "15.00" },
+        { "name": "Mountain View", "wage": "16.05" },
+        { "name": "Oakland", "wage": "14.14" },
+        { "name": "Palo Alto", "wage": "15.40" },
+        { "name": "San Diego", "wage": "13.00" },
+        { "name": "San Francisco", "wage": "15.59" },
+        { "name": "San Jose", "wage": "15.25" },
+        { "name": "San Mateo", "wage": "15.38" },
+        { "name": "Santa Clara", "wage": "15.40" },
+        { "name": "Sunnyvale", "wage": "16.05" }
+      ]
+      new Awesomplete('input[data-multiple]', {
+        filter: function(text, input) {
+          return Awesomplete.FILTER_CONTAINS(text, input.match(/[^,]*$/)[0]);
+        },
+
+        item: function(text, input) {
+          return Awesomplete.ITEM(text, input.match(/[^,]*$/)[0]);
+        },
+
+        replace: function(text) {
+          var before = this.input.value.match(/^.+,\s*|/)[0];
+          let finalval = before + text;
+          this.input.value = finalval;
+          findWageMatch(finalval);
+        }
+      });
+      function findWageMatch(city) {
+        let match = false;
+        console.log(city);
+        wageJson.forEach( (item) => {
+          if(item.name == city) {
+            match = true;
+            document.getElementById('answer').innerHTML = singleTemplate(item.name, item.wage);
+          }
+        })
+
+        if(!match) {
+          document.getElementById('answer').innerHTML = doubleTemplate(city);
+        }
+      }
+      document.querySelector('.js-wage-lookup').addEventListener('click',(event) => {
+        event.preventDefault();
+        let location = document.getElementById('location-query').value;
+        findWageMatch(location);
+      })
+      function doubleTemplate(location) {
+        return `
+          <h3>The minimum wage in ${location}, CA is:</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Employers with 25 or fewer employees</th>
+                <th scope="col">Employers with 26 or more employees</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><h3>$12/hour</h3></td>
+                <td><h3>$13/hour</h3></td>
+              </tr>
+            </tbody>
+          </table>`
+      }
+      function singleTemplate(location, wage) {
+        return `
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">The minimum wage in ${location}, CA is:</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><h3>${wage}/hour</h3></td>
+              </tr>
+            </tbody>
+          </table>`;
+      }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-154336791-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-154336791-1');
+    </script>
+
+  </body>
+</html>
