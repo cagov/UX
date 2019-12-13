@@ -1,2 +1,2 @@
 ## UX Sites
-[Minimum Wage](https://cagov.github.io/UX/MW/)
+[Minimum Wage](https://cagov.github.io/UX/mw/)
