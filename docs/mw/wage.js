@@ -1,8 +1,4 @@
-const fs = require('fs');
-
-let geojson = JSON.parse(fs.readFileSync('./cities.json','utf8'));
-
-let list = [
+let wageJson = [
   { "name": "City of Berkeley", "wage": [ { "everybody": "15.35" } ] },
   { "name": "City of Cupertino", "wage": [ { "everybody": "15.35" } ] },
   { "name": "City of El Cerrito", "wage": [ { "everybody": "15.37" } ] },
@@ -35,34 +31,73 @@ let list = [
   { "name": "Santa Monica", "wage": [ { "25 or fewer": "14.25"}, {"26 or more": "15" } ] },
   { "name": "Santa Rosa", "wage": [ { "25 or fewer": "14" }, { "26 or more": "15" } ] },
   { "name": "Sonoma", "wage": [ { "25 or fewer": "12.50", "26 or more": "13.50" } ] },
-  { "name": "South San Francisco", "wage": [ { "everybody": "15.00" } ] } ]
+  { "name": "South San Francisco", "wage": [ { "everybody": "15.00" } ] } 
+]
+new Awesomplete('input[data-multiple]', {
+  filter: function(text, input) {
+    return Awesomplete.FILTER_CONTAINS(text, input.match(/[^,]*$/)[0]);
+  },
 
-let newGeoJson = {"type": "FeatureCollection", "features": []}
+  item: function(text, input) {
+    return Awesomplete.ITEM(text, input.match(/[^,]*$/)[0]);
+  },
 
-let allNames = [];
-
-geojson.features.forEach( (item) => {
-  allNames.push(item.properties.name);
-
-  list.forEach( (city) => {
-    if(item.properties.name == city.name+', CA') {
-      console.log(item.properties.name);
-
-      let wageVal = 0;
-      for(var key in city.wage[0]) {
-        wageVal = city.wage[0][key];
-      }
-      let num = (parseFloat(wageVal) - 10) * 20;
-      item.properties.wage = (num * num * num * num) / 10000;
-      item.properties.color = randomColor();
-      newGeoJson.features.push(item)
+  replace: function(text) {
+    var before = this.input.value.match(/^.+,\s*|/)[0];
+    let finalval = before + text;
+    this.input.value = finalval;
+    findWageMatch(finalval);
+  }
+});
+function findWageMatch(city) {
+  let match = false;
+  let wageData = [ { "25 or fewer": "12" }, { "26 or more": "13" } ]
+  wageJson.forEach( (item) => {
+    if(item.name == city) {
+      match = true;
+      wageData = item.wage;
     }
   })
-})
-
-fs.writeFileSync('./less-cities.json',JSON.stringify(newGeoJson,'utf8'))
-function randomColor() {
-  return '#'+Math.floor(Math.random()*16777215).toString(16);
+  document.getElementById('answer').innerHTML = doubleTemplate(city, wageData);
+  document.querySelector('.additional-wage-info').style.display = 'block';
 }
-
-// fs.writeFileSync('./just-cities.json',JSON.stringify(allNames,'utf8'))
+document.querySelector('.js-wage-lookup').addEventListener('click',(event) => {
+  event.preventDefault();
+  let location = document.getElementById('location-query').value;
+  findWageMatch(location);
+})
+function doubleTemplate(location, wageData) {
+  return `
+    <h4>The minimum wage in ${location}, CA is:</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          ${(function() {
+            let output = '';
+            if(wageData.length > 1) {
+              output = `
+                ${wageData.map( (wageitem) => {
+                  let label = '';
+                  for(var key in wageitem) {
+                    label = key;
+                  }
+                  return `<th scope="col">Employers with ${label} employees</th>`
+                }).join(' ')}`;
+            }
+            return output
+          })()}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          ${wageData.map( (wageitem) => {
+            let wageVal = '';
+            for(var key in wageitem) {
+              wageVal = wageitem[key];
+            }
+            return `<td><h3>$${wageVal}/hour</h3></td>`;
+          }).join(' ')}
+        </tr>
+      </tbody>
+    </table>`
+}

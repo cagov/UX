@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The official website for the State of California.">
+    <meta name="author" content="CA.gov - State of California">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="img/favicon/png" sizes="192x192"  href="img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="img/favicon/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="img/favicon/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
+    <link rel="icon" type="img/favicon/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Font Awesome -->
+
+    <script src="https://kit.fontawesome.com/4d1cd460a8.js" crossorigin="anonymous"></script>
+    <meta property="og:image" content="img/thumbnail.png">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:width" content="630">
+    <meta property="og:title" content="CA.gov - State of California">
+    <meta property="og:description" content="The official website for the State of California.">
+    <meta property="og:url" content="https://alpha.ca.gov">
+
+    <title>Minimum wage in the State of California - Alpha.CA.gov </title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet"></script>
+    <link href="../css/cwds.css" rel="stylesheet"></script>
+
+    <link rel="stylesheet" href="../libs/awesomplete.css" />
+    <script src="../libs/awesomplete.min.js"></script>
+    <style>
+    /* bootstrap style utility classes */
+    .d-none { display: none; }
+    .py-20 {
+      padding: 20px 0;
+    }
+    /* accordion component specific classes */
+    cwds-accordion .card-container {
+      height: 0px;
+      display: block;
+      transition: height .3s;
+    }
+    cwds-accordion .card-header {
+      cursor: pointer;
+    }
+    cwds-accordion .collapse {
+      display: block;
+      overflow: hidden;
+    }
+    </style>
+
+  </head>
+
+  <body>
+
+    <div class="official">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>Official California State Government Website</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand navbar-left" href="index.html">CA.gov <sup>(ALPHA)</sup></a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="jumbotron text-center">
+      <div class="container">
+        <h1>Minimum wage in California</h1>      
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          &nbsp;
+        </div>
+        <div class="col-md-8">
+
+          <h2>Find your minimum wage</h2>
+          <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Please enter your city:</label>
+              <br>
+              <input data-list="City of Berkeley, City of Cupertino, City of El Cerrito, Emeryville, Los Altos, Milpitas, Mountain View, Oakland, Palo Alto, San Diego, San Francisco, San Jose, San Mateo, Santa Clara, Sunnyvale, Alameda, Belmont, Daly City, Fremont, Los Angeles (City), Los Angeles County, Malibu, Menlo Park, Novato, Pasadena, Petaluma, Redwood City, Richmond, San Leandro, Santa Monica, Santa Rosa, Sonoma, South San Francisco" data-multiple  class="form-control" id="location-query" aria-describedby="emailHelp" />
+            </div>
+            <button type="submit" class="btn btn-primary js-wage-lookup">See your minimum wage</button>
+          </form>
+
+          <p></p>
+          <div id="answer"></div>
+        
+          <div class="additional-wage-info d-none">
+            <p>Find more details at the <a href="https://www.dir.ca.gov/dlse/faq_minimumwage.htm">Department of Industrial Relations</a>.</p>
+
+            <cwds-accordion>
+              <div class="card">
+                <div class="card-header py-20" id="headingOne">
+                  <button class="btn btn-link" type="button" aria-expanded="false">
+                    Learners
+                  </button>
+                </div>
+                <div class="card-container collapse" aria-labelledby="headingOne">
+                  <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  </div>
+                </div>
+              </div>
+            </cwds-accordion>
+            <cwds-accordion>
+              <div class="card">
+                <div class="card-header py-20" id="headingOne">
+                  <button class="btn btn-link" type="button" aria-expanded="false">
+                    Employees with disabilities
+                  </button>
+                </div>
+                <div class="card-container collapse" aria-labelledby="headingOne">
+                  <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  </div>
+                </div>
+              </div>
+            </cwds-accordion>
+            <cwds-accordion>
+              <div class="card">
+                <div class="card-header py-20" id="headingOne">
+                  <button class="btn btn-link" type="button" aria-expanded="false">
+                    Outside salespeople
+                  </button>
+                </div>
+                <div class="card-container collapse" aria-labelledby="headingOne">
+                  <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  </div>
+                </div>
+              </div>
+            </cwds-accordion>
+            <cwds-accordion>
+              <div class="card">
+                <div class="card-header py-20" id="headingOne">
+                  <button class="btn btn-link" type="button" aria-expanded="false">
+                    Child, parent or spouse of the employer
+                  </button>
+                </div>
+                <div class="card-container collapse" aria-labelledby="headingOne">
+                  <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  </div>
+                </div>
+              </div>
+            </cwds-accordion>
+            <cwds-accordion>
+              <div class="card">
+                <div class="card-header py-20" id="headingOne">
+                  <button class="btn btn-link" type="button" aria-expanded="false">
+                    Apprentices
+                  </button>
+                </div>
+                <div class="card-container collapse" aria-labelledby="headingOne">
+                  <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  </div>
+                </div>
+              </div>
+            </cwds-accordion>
+            <cwds-accordion>
+              <div class="card">
+                <div class="card-header py-20" id="headingOne">
+                  <button class="btn btn-link" type="button" aria-expanded="false">
+                    Sheepherders
+                  </button>
+                </div>
+                <div class="card-container collapse" aria-labelledby="headingOne">
+                  <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  </div>
+                </div>
+              </div>
+            </cwds-accordion>
+          </div>
+
+          <div class="col-md-2">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>
+              State of California Website
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alphabar">
+      <div class="container">
+        <p>This is an alpha project and a work in progress (<a href="https://medium.com/cadotgov">Details</a>)</p>
+      </div>
+    </div>
+
+    <script src="wage.js" defer asyns></script>
+    <script src="components/accordion.js" defer asyns></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-154336791-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-154336791-1');
+    </script>
+
+  </body>
+</html>
