@@ -74,8 +74,25 @@
           &nbsp;
         </div>
         <div class="col-md-8">
+		
+	  <h2>Find the minimum wage in your city</h2>
+		<p>Your minimum wage depends on the city where you work.</p>
+          <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Please enter your city or zip code:</label>
+              <br>
+              <input data-list="City of Berkeley, City of Cupertino, City of El Cerrito, Emeryville, Los Altos, Milpitas, Mountain View, Oakland, Palo Alto, San Diego, San Francisco, San Jose, San Mateo, Santa Clara, Sunnyvale, Alameda, Belmont, Daly City, Fremont, Los Angeles (City), Los Angeles County, Malibu, Menlo Park, Novato, Pasadena, Petaluma, Redwood City, Richmond, San Leandro, Santa Monica, Santa Rosa, Sonoma, South San Francisco" data-multiple  class="form-control" id="location-query" aria-describedby="emailHelp" />
+            </div>
+            <button type="submit" class="btn btn-primary js-wage-lookup">See your minimum wage</button>
+          </form>
 
-          <h2>Minimum wage in 2020</h2>
+          <p></p>
+          <div id="answer"></div>
+		
+
+
+          <h3>California minimum wage</h3>
+		<p>Some cities have the same minimum wage as the State.</p>
           <table class="table">
             <thead>
               <tr>
@@ -90,27 +107,33 @@
               </tr>
             </tbody>
           </table>
-
-
           
 		<p style="padding-bottom:0;">*See more details at the <a href="https://www.dir.ca.gov/dlse/faq_minimumwage.htm">Department of Industrial Relations</a>.</p>
-
-    
+		</ br>
+		
+          <h3>California minimum wage by city</h3>
+		</ br>
+	      <p><strong>January 1, 2020</strong></p>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">City</th>
+                <th scope="col">Rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Alameda</td>
+                <td>$13.25/hour</td>
+              </tr>
+	      <tr>
+                <td>Belmont</td>
+                <td>$15/hour</td>
+              </tr>
+            </tbody>
+          </table>
 
           <p></p>
-
-          <h3>Find the minimum wage in your city</h3>
-          <form>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Please enter your city:</label>
-              <br>
-              <input data-list="City of Berkeley, City of Cupertino, City of El Cerrito, Emeryville, Los Altos, Milpitas, Mountain View, Oakland, Palo Alto, San Diego, San Francisco, San Jose, San Mateo, Santa Clara, Sunnyvale, Alameda, Belmont, Daly City, Fremont, Los Angeles (City), Los Angeles County, Malibu, Menlo Park, Novato, Pasadena, Petaluma, Redwood City, Richmond, San Leandro, Santa Monica, Santa Rosa, Sonoma, South San Francisco" data-multiple  class="form-control" id="location-query" aria-describedby="emailHelp" />
-            </div>
-            <button type="submit" class="btn btn-primary js-wage-lookup">See your minimum wage</button>
-          </form>
-
-          <p></p>
-          <div id="answer"></div>
 
                       
         </div>
