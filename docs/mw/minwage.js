@@ -2,7 +2,7 @@ let wageJson = [];
 fetch('wage-data.json')
   .then((resp) => resp.json())
   .then(function(data) {
-    wageJson = data.MinimumWage[0]['2020-01-01'];
+    wageJson = data.MinimumWage[0]['2020-01-01T08:00:00'];
     let html = buildDisplay(data);
     document.querySelector('.display-wage-by-city').innerHTML = html;
   }
@@ -28,6 +28,7 @@ new Awesomplete('input[data-multiple]', {
 function findWageMatch(city) {
   let match = false;
   let wageData = [ { "25 or fewer": "12" }, { "26 or more": "13" } ]
+  console.log(wageJson)
   wageJson.forEach( (item) => {
     if(item.name == city) {
       match = true;
