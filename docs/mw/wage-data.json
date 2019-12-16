@@ -1,7 +1,7 @@
 {
   "MinimumWage": [
     { 
-      "2020-01-01": [
+      "2020-01-01T08:00:00": [
         { "name": "Alameda", "wage": [ { "everybody": "13.50"  }] },
         { "name": "Belmont", "wage": [ { "everybody": "15"  }] },
         { "name": "Berkeley", "wage": [ { "everybody": "15.59" } ] },
@@ -11,7 +11,7 @@
         { "name": "Emeryville", "wage": [ { "everybody": "16.30" } ] },
         { "name": "Fremont", "wage": [ { "25 or fewer": "12" }, { "26 or more": "13.50" } ] },
         { "name": "Los Altos", "wage": [ { "everybody": "15.40" } ] },
-        { "name": "City of Los Angeles", "wage": [ { "25 or fewer": "13.25", "26 or more": "14.25" } ] },
+        { "name": "City of Los Angeles", "wage": [ { "25 or fewer": "13.25" }, { "26 or more": "14.25" } ] },
         { "name": "Los Angeles County", "wage" : [ { "25 or fewer": "13.25" }, { "26 or more": "14.25" } ] },
         { "name": "Malibu", "wage": [ { "25 or fewer": "13.25" }, { "26 or more": "14.25" } ] },
         { "name": "Menlo Park", "wage": [ { "everybody": "15.00" } ] },
@@ -19,7 +19,7 @@
         { "name": "Mountain View", "wage": [ { "everybody": "16.05" } ] },
         { "name": "Oakland", "wage": [ { "everybody": "14.14" } ] },
         { "name": "Palo Alto", "wage": [ { "everybody": "15.40" } ] },
-        { "name": "Pasadena", "wage": [ { "25 or fewer": "13.25", "26 or more": "14.25" } ] },
+        { "name": "Pasadena", "wage": [ { "25 or fewer": "13.25" }, { "26 or more": "14.25" } ] },
         { "name": "Petaluma", "wage": [ { "25 or fewer": "14" }, { "26 or more": "15" } ] },
         { "name": "Redwood City", "wage": [ { "everybody": "15.38" } ] },
         { "name": "Richmond", "wage": [ { "everybody": "15.00" } ] },
@@ -36,18 +36,18 @@
       ]
     },    
     {
-      "2020-07-01": 
+      "2020-07-01T07:00:00": 
       [
         { "name": "Alameda", "wage": [ { "everybody": "15"  }] },
         { "name": "Berkeley", "wage": [ { "everybody": "The minimum wage was $15.59/hour, and the rate will increase based on the Consumer Price Index" } ] },
         { "name": "Emeryville", "wage": [ { "everybody": "16.42/hour (estimated). The rate will increase based on the Consumer Price Index." } ] },
         { "name": "Fremont", "wage": [ { "25 or fewer": "13.50" }, { "26 or more": "15" } ] },
-        { "name": "City of Los Angeles", "wage": [ { "25 or fewer": "14.25", "26 or more": "15" } ] },
+        { "name": "City of Los Angeles", "wage": [ { "25 or fewer": "14.25" }, { "26 or more": "15" } ] },
         { "name": "Los Angeles County", "wage" : [ { "25 or fewer": "14.25" }, { "26 or more": "15" } ] },
         { "name": "Malibu", "wage": [ { "25 or fewer": "14.25" }, { "26 or more": "15" } ] },
         { "name": "Milpitas", "wage": [ { "everybody": "The minimum wage was $15/hour, and the rate will increase based on the Consumer Price Index." } ] },
         { "name": "Novato", "wage": [ { "100+ employees": "15" }, {"26-99 employees": "14"}, {"1-25 employees": "13"} ] },
-        { "name": "Pasadena", "wage": [ { "25 or fewer": "14.25", "26 or more": "15" } ] },
+        { "name": "Pasadena", "wage": [ { "25 or fewer": "14.25" }, { "26 or more": "15" } ] },
         { "name": "San Francisco", "wage": [ { "everybody": "The minimum wage was $15.59/hour, and the rate will increase based on the Consumer Price Index." } ] },
         { "name": "San Leandro", "wage": [ { "everybody": "15.00" } ] },
         { "name": "Santa Monica", "wage": [ { "25 or fewer": "14.25"}, {"26 or more": "15" } ] },
