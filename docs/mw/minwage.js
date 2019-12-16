@@ -8,6 +8,8 @@ fetch('wage-data.json')
   }
 )
 
+// get the unique-zips.json too...
+
 fetch('just-cities.json')
   .then((resp) => resp.json())
   .then(function(data) {
@@ -33,9 +35,14 @@ fetch('just-cities.json')
 )
 
 function findWageMatch(city) {
+  // if they choose a zip do something different
+  // need to have the map of zips...
+  // and a zip selection is translated to an array of cities
+  // each value is passed into the result once
+  // and html is appended
+
   let match = false;
   let wageData = [ { "25 or fewer": "12" }, { "26 or more": "13" } ]
-  console.log(wageJson)
   wageJson.forEach( (item) => {
     if(item.name == city) {
       match = true;
@@ -113,7 +120,7 @@ function buildDisplay(wageJson) {
                 ${(function() {
                   let wageData = city.wage;
                   let output = '';
-                  if(!parseFloat(city.wage[0].everybody)) {
+                  if(city.wage[0].everybody && city.wage[0].everybody.match(/[a-zA-Z]+/g)) {
                     output = `<p>${city.wage[0].everybody}</p>`;
                   } else {
                     output = `<p>$${city.wage[0].everybody}/hour</p>`;
@@ -127,7 +134,7 @@ function buildDisplay(wageJson) {
                           value = wageitem[key];
                           label = key;
                         }
-                        if(!parseFloat(value)) {
+                        if((value).match(/[a-zA-Z]+/g)) {
                           return `<p>${value}</p>`
                         } else {
                           return `<p>$${value}/hour for employers with ${label} employees</p>`
