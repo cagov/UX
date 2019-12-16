@@ -30,7 +30,7 @@
         { "name": "San Mateo", "wage": [ { "everybody": "15.38" } ] },
         { "name": "Santa Clara", "wage": [ { "everybody": "15.40" } ] },
         { "name": "Santa Monica", "wage": [ { "25 or fewer": "13.25"}, {"26 or more": "14.25" } ] },
-        { "name": "Sonoma", "wage": [ { "25 or fewer": "12.50", "26 or more": "13.50" } ] },
+        { "name": "Sonoma", "wage": [ { "25 or fewer": "12.50" }, { "26 or more": "13.50" } ] },
         { "name": "South San Francisco", "wage": [ { "everybody": "15.00" } ] },
         { "name": "Sunnyvale", "wage": [ { "everybody": "16.05" } ] } 
       ]
