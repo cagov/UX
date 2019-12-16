@@ -40,7 +40,7 @@
       [
         { "name": "Alameda", "wage": [ { "everybody": "15"  }] },
         { "name": "Berkeley", "wage": [ { "everybody": "The rate will increase from $15.59/hour based on the Consumer Price Index." } ] },
-        { "name": "Emeryville", "wage": [ { "everybody": "16.42/hour (estimated). The rate will increase based on the Consumer Price Index." } ] },
+        { "name": "Emeryville", "wage": [ { "everybody": "$16.42/hour (estimated). The rate will increase based on the Consumer Price Index." } ] },
         { "name": "Fremont", "wage": [ { "25 or fewer": "13.50" }, { "26 or more": "15" } ] },
         { "name": "City of Los Angeles", "wage": [ { "25 or fewer": "14.25" }, { "26 or more": "15" } ] },
         { "name": "Los Angeles County", "wage" : [ { "25 or fewer": "14.25" }, { "26 or more": "15" } ] },
