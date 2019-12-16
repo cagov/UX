@@ -87,7 +87,7 @@ h2 {
 h3 {
   padding-bottom: 10px;
 }
-p, li {
+p, li, th, td {
   font-size: 18px;
 }
 p {
