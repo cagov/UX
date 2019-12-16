@@ -8,22 +8,29 @@ fetch('wage-data.json')
   }
 )
 
-new Awesomplete('input[data-multiple]', {
-  filter: function(text, input) {
-    return Awesomplete.FILTER_CONTAINS(text, input.match(/[^,]*$/)[0]);
-  },
-
-  item: function(text, input) {
-    return Awesomplete.ITEM(text, input.match(/[^,]*$/)[0]);
-  },
-
-  replace: function(text) {
-    var before = this.input.value.match(/^.+,\s*|/)[0];
-    let finalval = before + text;
-    this.input.value = finalval;
-    findWageMatch(finalval);
+fetch('just-cities.json')
+  .then((resp) => resp.json())
+  .then(function(data) {
+    // put these into the data-list
+    document.querySelector('.city-search').dataset.list = data;
+    new Awesomplete('input[data-multiple]', {
+      filter: function(text, input) {
+        return Awesomplete.FILTER_CONTAINS(text, input.match(/[^,]*$/)[0]);
+      },
+    
+      item: function(text, input) {
+        return Awesomplete.ITEM(text, input.match(/[^,]*$/)[0]);
+      },
+    
+      replace: function(text) {
+        var before = this.input.value.match(/^.+,\s*|/)[0];
+        let finalval = before + text;
+        this.input.value = finalval;
+        findWageMatch(finalval);
+      }
+    });
   }
-});
+)
 
 function findWageMatch(city) {
   let match = false;
