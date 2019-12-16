@@ -1,62 +1,71 @@
-let wageJson = [];
-fetch('wage-data.json')
-  .then((resp) => resp.json())
-  .then(function(data) {
-    wageJson = data.MinimumWage[0]['2020-01-01T08:00:00'];
-    let html = buildDisplay(data);
-    document.querySelector('.display-wage-by-city').innerHTML = html;
-  }
-)
+let urls = ['wage-data.json','just-cities.json', 'unique-zips.json']
+Promise.all(urls.map(u=>fetch(u))).then(responses =>
+  Promise.all(responses.map(res => res.json()))
+).then(jsons => {
+  // display HTML of add city wages
+  let wageJson = jsons[0].MinimumWage[0]['2020-01-01T08:00:00'];
+  let html = buildDisplay(jsons[0]);
+  document.querySelector('.display-wage-by-city').innerHTML = html;
 
-// get the unique-zips.json too...
+  // handle search autocomplete
+  let uniqueZipArray = [];
+  let zipMap = new Map();
+  
+  jsons[2].forEach( (item) => {
+    for(var key in item) {
+      uniqueZipArray.push(key)
+    }
+  })
+  document.querySelector('.city-search').dataset.list = [...jsons[1], ...uniqueZipArray];
+  new Awesomplete('input[data-multiple]', {
+    filter: function(text, input) {
+      return Awesomplete.FILTER_CONTAINS(text, input.match(/[^,]*$/)[0]);
+    },
+  
+    item: function(text, input) {
+      return Awesomplete.ITEM(text, input.match(/[^,]*$/)[0]);
+    },
+  
+    replace: function(text) {
+      var before = this.input.value.match(/^.+,\s*|/)[0];
+      let finalval = before + text;
+      this.input.value = finalval;
+      findWageMatch(finalval, wageJson);
+    }
+  });
 
-fetch('just-cities.json')
-  .then((resp) => resp.json())
-  .then(function(data) {
-    // put these into the data-list
-    document.querySelector('.city-search').dataset.list = data;
-    new Awesomplete('input[data-multiple]', {
-      filter: function(text, input) {
-        return Awesomplete.FILTER_CONTAINS(text, input.match(/[^,]*$/)[0]);
-      },
-    
-      item: function(text, input) {
-        return Awesomplete.ITEM(text, input.match(/[^,]*$/)[0]);
-      },
-    
-      replace: function(text) {
-        var before = this.input.value.match(/^.+,\s*|/)[0];
-        let finalval = before + text;
-        this.input.value = finalval;
-        findWageMatch(finalval);
+  document.querySelector('.js-wage-lookup').addEventListener('click',(event) => {
+    event.preventDefault();
+    let location = document.getElementById('location-query').value;
+    findWageMatch(location, wageJson);
+  })
+  
+})
+
+
+
+function findWageMatch(city, wageJson) {
+  // if there are any letters this is not a zip code
+  if(city.match(/[a-zA-Z]+/g)) {
+    let match = false;
+    let wageData = [ { "25 or fewer": "12" }, { "26 or more": "13" } ]
+    wageJson.forEach( (item) => {
+      if(item.name == city) {
+        match = true;
+        wageData = item.wage;
       }
-    });
-  }
-)
+    })
+    document.getElementById('answer').innerHTML = doubleTemplate(city, wageData);  
+  } else {
 
-function findWageMatch(city) {
-  // if they choose a zip do something different
+  }
+
   // need to have the map of zips...
   // and a zip selection is translated to an array of cities
   // each value is passed into the result once
   // and html is appended
 
-  let match = false;
-  let wageData = [ { "25 or fewer": "12" }, { "26 or more": "13" } ]
-  wageJson.forEach( (item) => {
-    if(item.name == city) {
-      match = true;
-      wageData = item.wage;
-    }
-  })
-  document.getElementById('answer').innerHTML = doubleTemplate(city, wageData);
 }
-
-document.querySelector('.js-wage-lookup').addEventListener('click',(event) => {
-  event.preventDefault();
-  let location = document.getElementById('location-query').value;
-  findWageMatch(location);
-})
 
 function doubleTemplate(location, wageData) {
   return `
