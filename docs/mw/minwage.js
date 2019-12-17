@@ -10,10 +10,11 @@ Promise.all(urls.map(u=>fetch(u))).then(responses =>
   // handle search autocomplete
   let uniqueZipArray = [];
   let zipMap = new Map();
-  
+
   jsons[2].forEach( (item) => {
     for(var key in item) {
       uniqueZipArray.push(key)
+      zipMap.set(key, item[key])
     }
   })
   document.querySelector('.city-search').dataset.list = [...jsons[1], ...uniqueZipArray];
@@ -30,41 +31,52 @@ Promise.all(urls.map(u=>fetch(u))).then(responses =>
       var before = this.input.value.match(/^.+,\s*|/)[0];
       let finalval = before + text;
       this.input.value = finalval;
-      findWageMatch(finalval, wageJson);
+      findWageMatch(finalval, wageJson, zipMap);
     }
   });
 
   document.querySelector('.js-wage-lookup').addEventListener('click',(event) => {
     event.preventDefault();
     let location = document.getElementById('location-query').value;
-    findWageMatch(location, wageJson);
+    findWageMatch(location, wageJson, zipMap);
   })
   
 })
 
-
-
-function findWageMatch(city, wageJson) {
+function findWageMatch(city, wageJson, zipMap) {
   // if there are any letters this is not a zip code
+  let wageData = [ { "25 or fewer": "12" }, { "26 or more": "13" } ]
   if(city.match(/[a-zA-Z]+/g)) {
-    let match = false;
-    let wageData = [ { "25 or fewer": "12" }, { "26 or more": "13" } ]
     wageJson.forEach( (item) => {
       if(item.name == city) {
-        match = true;
         wageData = item.wage;
       }
     })
     document.getElementById('answer').innerHTML = doubleTemplate(city, wageData);  
   } else {
-
+    // no letters, try to find a match in zipMap
+    let foundZip = zipMap.get(city);
+    if(foundZip) {
+      let html = '';
+      foundZip.forEach( (aCity) => {
+        console.log('looking up '+aCity);
+        wageData = [ { "25 or fewer": "12" }, { "26 or more": "13" } ];
+        let match = false;
+        wageJson.forEach( (item) => {
+          if(item.name == aCity) {
+            wageData = item.wage;
+            match = true;
+            // creating multiple rows of html results if zip code crosses multiple cities
+            html += doubleTemplate(aCity, wageData);
+          }
+        })
+        if(!match) {
+          html += doubleTemplate(aCity, wageData);
+        }
+      })
+      document.getElementById('answer').innerHTML = html;
+    }
   }
-
-  // need to have the map of zips...
-  // and a zip selection is translated to an array of cities
-  // each value is passed into the result once
-  // and html is appended
-
 }
 
 function doubleTemplate(location, wageData) {
