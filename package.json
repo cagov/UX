@@ -1,0 +1,26 @@
+{
+  "name": "UX",
+  "version": "1.0.0",
+  "description": "To track of our user needs and stories.",
+  "main": "local-server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "server": "node local-server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cagov/UX.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cagov/UX/issues"
+  },
+  "devDependencies": {
+    "express": "^4.17.1"
+  },
+  "homepage": "https://github.com/cagov/UX#readme"
+}
