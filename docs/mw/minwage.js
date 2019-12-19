@@ -126,49 +126,63 @@ function buildDisplay(wageJson) {
       }
       var options = { year: 'numeric', month: 'long', day: 'numeric' };
       return `
-          <p>${new Date(label).toLocaleDateString('en-US', options)}</p>
-          <table class="table">
-          <thead>
-              <th scope="col">Place</th>
-              <th scope="col">Rate</th>
-            </tr>
-          </thead>
-          <tbody>
-          ${cityWages.map(function(city) {
-            return ` <tr>
-              <td>${city.name}</td>
-              <td>
-                ${(function() {
-                  let wageData = city.wage;
-                  let output = '';
-                  if(city.wage[0].everybody && city.wage[0].everybody.match(/[a-zA-Z]+/g)) {
-                    output = `<p>${city.wage[0].everybody}</p>`;
-                  } else {
-                    output = `<p>$${city.wage[0].everybody}/hour</p>`;
-                  }
-                  if(wageData.length > 1) {
-                    output = `
-                      ${wageData.map( (wageitem) => {
-                        let label = '';
-                        let value = '0'
-                        for(var key in wageitem) {
-                          value = wageitem[key];
-                          label = key;
-                        }
-                        if((value).match(/[a-zA-Z]+/g)) {
-                          return `<p>${value}</p>`
+
+
+        <cwds-accordion>
+          <div class="card">
+            <div class="card-header py-20" id="heading${label}">
+              <button class="btn" type="button" aria-expanded="false">
+                ${new Date(label).toLocaleDateString('en-US', options)}
+              </button>
+            </div>
+            <div class="card-container collapsed" aria-labelledby="heading${label}">
+              <div class="card-body">
+                <table class="table">
+                <thead>
+                    <th scope="col">Place</th>
+                    <th scope="col">Rate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                ${cityWages.map(function(city) {
+                  return ` <tr>
+                    <td>${city.name}</td>
+                    <td>
+                      ${(function() {
+                        let wageData = city.wage;
+                        let output = '';
+                        if(city.wage[0].everybody && city.wage[0].everybody.match(/[a-zA-Z]+/g)) {
+                          output = `<p>${city.wage[0].everybody}</p>`;
                         } else {
-                          return `<p>$${value}/hour for employers with ${label} employees</p>`
+                          output = `<p>$${city.wage[0].everybody}/hour</p>`;
                         }
-                      }).join(' ')}`;
-                  }
-                  return output
-                })()}
-              </td>
-            </tr>`;
-          }).join(' ')}
-          </tbody>
-        </table>`
+                        if(wageData.length > 1) {
+                          output = `
+                            ${wageData.map( (wageitem) => {
+                              let label = '';
+                              let value = '0'
+                              for(var key in wageitem) {
+                                value = wageitem[key];
+                                label = key;
+                              }
+                              if((value).match(/[a-zA-Z]+/g)) {
+                                return `<p>${value}</p>`
+                              } else {
+                                return `<p>$${value}/hour for employers with ${label} employees</p>`
+                              }
+                            }).join(' ')}`;
+                        }
+                        return output
+                      })()}
+                    </td>
+                  </tr>`;
+                }).join(' ')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </cwds-accordion>`
     }).join(' ')}
   `
 }
