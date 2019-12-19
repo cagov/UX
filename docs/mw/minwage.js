@@ -124,15 +124,13 @@ function buildDisplay(wageJson) {
         label = key;
         cityWages = date[key];
       }
-      var options = { year: 'numeric', month: 'long', day: 'numeric' };
+      var options = { year: 'numeric', month: 'short', day: 'numeric' };
       return `
-
-
         <cwds-accordion>
           <div class="card">
             <div class="card-header py-20" id="heading${label}">
               <button class="btn" type="button" aria-expanded="false">
-                ${new Date(label).toLocaleDateString('en-US', options)}
+                Minimum wage increases on ${new Date(label).toLocaleDateString('en-US', options)}
               </button>
             </div>
             <div class="card-container collapsed" aria-labelledby="heading${label}">
