@@ -7,5 +7,9 @@ assignees: humancenteredhuman
 
 ---
 
-- [ ] list
-- [ ] list
+- [ ] meta description
+- [ ] page title
+- [ ] Google doc (url)
+- [ ] Listen to it through a screen reader
+- [ ] Check for header structure
+- [ ] URL structure
