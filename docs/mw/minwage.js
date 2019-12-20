@@ -24,6 +24,7 @@ Promise.all(urls.map(u=>fetch(u))).then(responses =>
     },
   
     item: function(text, input) {
+      document.querySelector('.wage-city-search .invalid-feedback').style.display = 'none';
       return Awesomplete.ITEM(text, input.match(/[^,]*$/)[0]);
     },
   
@@ -35,6 +36,9 @@ Promise.all(urls.map(u=>fetch(u))).then(responses =>
     }
   });
 
+  document.querySelector('.wage-city-search').addEventListener('submit',function(event) {
+    event.preventDefault();
+  })
   document.querySelector('.js-wage-lookup').addEventListener('click',(event) => {
     event.preventDefault();
     let location = document.getElementById('location-query').value;
@@ -47,19 +51,24 @@ function findWageMatch(city, wageJson, zipMap) {
   // if there are any letters this is not a zip code
   let wageData = [ { "25 or fewer": "12" }, { "26 or more": "13" } ]
   if(city.match(/[a-zA-Z]+/g)) {
+    let foundMatch = false;
     wageJson.forEach( (item) => {
       if(item.name == city) {
         wageData = item.wage;
+        foundMatch = true;
       }
     })
-    document.getElementById('answer').innerHTML = doubleTemplate(city, wageData);  
+    if(foundMatch) {
+      document.getElementById('answer').innerHTML = doubleTemplate(city, wageData);  
+    } else {
+      document.querySelector('.wage-city-search .invalid-feedback').style.display = 'block';
+    }
   } else {
     // no letters, try to find a match in zipMap
     let foundZip = zipMap.get(city);
     if(foundZip) {
       let html = '';
       foundZip.forEach( (aCity) => {
-        console.log('looking up '+aCity);
         wageData = [ { "25 or fewer": "12" }, { "26 or more": "13" } ];
         let match = false;
         wageJson.forEach( (item) => {
@@ -71,10 +80,12 @@ function findWageMatch(city, wageJson, zipMap) {
           }
         })
         if(!match) {
-          html += doubleTemplate(aCity, wageData);
+          document.querySelector('.wage-city-search .invalid-feedback').style.display = 'block';
         }
       })
       document.getElementById('answer').innerHTML = html;
+    } else {
+      document.querySelector('.wage-city-search .invalid-feedback').style.display = 'block';
     }
   }
 }
