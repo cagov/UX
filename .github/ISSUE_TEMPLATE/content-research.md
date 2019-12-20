@@ -7,5 +7,5 @@ assignees: abquirarte, humancenteredhuman
 
 ---
 
--[ ] Create a spreadsheet. 
--[ ] Reach out to a subject matter expert? (@ )
+- [ ] Create a spreadsheet. 
+- [ ] Reach out to a subject matter expert? (@ )
