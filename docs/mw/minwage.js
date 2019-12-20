@@ -17,6 +17,13 @@ Promise.all(urls.map(u=>fetch(u))).then(responses =>
       zipMap.set(key, item[key])
     }
   })
+
+  
+  let cityNames = new Map();
+  jsons[1].forEach( (item) => {
+    cityNames.set(item.replace(', CA', '').toLowerCase(), item)
+  })
+
   document.querySelector('.city-search').dataset.list = [...jsons[1], ...uniqueZipArray];
   new Awesomplete('input[data-multiple]', {
     filter: function(text, input) {
@@ -32,34 +39,32 @@ Promise.all(urls.map(u=>fetch(u))).then(responses =>
       var before = this.input.value.match(/^.+,\s*|/)[0];
       let finalval = before + text;
       this.input.value = finalval;
-      findWageMatch(finalval, wageJson, zipMap);
+      findWageMatch(finalval, wageJson, zipMap, cityNames);
     }
   });
 
-  document.querySelector('.wage-city-search').addEventListener('submit',function(event) {
-    event.preventDefault();
-  })
   document.querySelector('.js-wage-lookup').addEventListener('click',(event) => {
     event.preventDefault();
     let location = document.getElementById('location-query').value;
-    findWageMatch(location, wageJson, zipMap);
+    findWageMatch(location, wageJson, zipMap, cityNames);
   })
   
 })
 
-function findWageMatch(city, wageJson, zipMap) {
+function findWageMatch(city, wageJson, zipMap, cityNames) {
   // if there are any letters this is not a zip code
   let wageData = [ { "25 or fewer": "12" }, { "26 or more": "13" } ]
   if(city.match(/[a-zA-Z]+/g)) {
-    let foundMatch = false;
     wageJson.forEach( (item) => {
       if(item.name == city) {
         wageData = item.wage;
-        foundMatch = true;
       }
     })
-    if(foundMatch) {
-      document.getElementById('answer').innerHTML = doubleTemplate(city, wageData);  
+
+    // try match in cityNames
+    let foundCity = cityNames.get(city.toLowerCase());
+    if(foundCity) {
+      document.getElementById('answer').innerHTML = doubleTemplate(foundCity.replace(', CA', ''), wageData);  
     } else {
       document.querySelector('.wage-city-search .invalid-feedback').style.display = 'block';
     }
@@ -80,7 +85,7 @@ function findWageMatch(city, wageJson, zipMap) {
           }
         })
         if(!match) {
-          document.querySelector('.wage-city-search .invalid-feedback').style.display = 'block';
+          html += doubleTemplate(aCity, wageData);
         }
       })
       document.getElementById('answer').innerHTML = html;
