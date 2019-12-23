@@ -140,7 +140,7 @@ function buildDisplay(wageJson) {
         label = key;
         cityWages = date[key];
       }
-      var options = { year: 'numeric', month: 'short', day: 'numeric' };
+      var options = { year: 'numeric', month: 'long', day: 'numeric' };
       return `
         <cwds-accordion>
           <div class="card mb-3" >
