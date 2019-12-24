@@ -69,6 +69,26 @@
     .display-6.alert {
       padding: .2rem 1.25rem;
     }
+
+    /* accordion component specific classes */
+    cwds-accordion .card-container {
+      height: 0px;
+      display: block;
+      transition: height .3s;
+    }
+
+    cwds-accordion .card-header {
+      cursor: pointer;
+    }
+
+    cwds-accordion .collapsed {
+      display: block;
+      overflow: hidden;
+    }
+
+    .mb-20 {
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 
@@ -123,239 +143,253 @@
 
         <h2>Upcoming holidays</h2>
         <p>State of California employees have paid holidays on the following dates.</p>
-        <h3>2020</h3>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col" class="lead">Date</th>
-              <th scope="col" class="lead">Day of the week</th>
-              <th scope="col" class="lead">Holiday</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>January 1</td>
-              <td>Wednesday</td>
-              <td>New Year's Day</td>
-            </tr>
-            <tr>
-              <td>January 20</td>
-              <td>Monday</td>
-              <td>Martin Luther King Jr. Day</td>
-            </tr>
-            <tr>
-              <td>February 17</td>
-              <td>Monday</td>
-              <td>Presidents' Day</td>
-            </tr>
-            <tr>
-              <td>March 31</td>
-              <td>Tuesday</td>
-              <td>Cesar Chavez Day</td>
-            </tr>
-            <tr>
-              <td>May 25</td>
-              <td>Monday</td>
-              <td>Memorial Day</td>
-            </tr>
-            <tr>
-              <td>July 4 (<a href="#credits">holiday credit</a>)</td>
-              <td>Saturday</td>
-              <td>Independence Day</td>
-            </tr>
-            <tr>
-              <td>September 7</td>
-              <td>Monday</td>
-              <td>Labor Day</td>
-            </tr>
-            <tr>
-              <td>November 11</td>
-              <td>Wednesday</td>
-              <td>Veterans Day</td>
-            </tr>
-            <tr>
-              <td>November 26</td>
-              <td>Thursday</td>
-              <td>Thanksgiving Day</td>
-            </tr>
-            <tr>
-              <td>November 27</td>
-              <td>Friday</td>
-              <td>Day after Thanksgiving</td>
-            </tr>
-            <tr>
-              <td>December 25</td>
-              <td>Friday</td>
-              <td>Christmas Day</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
 
-      <div class="container">
-        <h3>Additional holidays</h3>
+        <div class="container mb-20">
 
-        <div class="alert alert-secondary" role="alert">
-
-          <p class="lead">Most employees get</p>
-          <p class="display-5 alert">1 personal holiday</p>
-          <p class="lead">and</p>
-          <p class="display-5 alert">1 holiday credit (8 hours)</p>
-          <p class="lead">July 1, 2020, to June 30, 2021</p>
-        </div>
-      </div>
-
-      <div class="container">
-        <cwds-accordion>
-          <div class="card">
-            <div class="card-header py-20" id="headingOne">
-              <button class="btn btn-link" type="button" aria-expanded="false">
-                <h3>2021</h3>
-              </button>
-            </div>
-            <div class="card-container collapsed" aria-labelledby="headingOne">
-              <div class="card-body">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col" class="lead">Date</th>
-                      <th scope="col" class="lead">Day of the week</th>
-                      <th scope="col" class="lead">Holiday</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>January 1</td>
-                      <td>Friday</td>
-                      <td>New Year's Day</td>
-                    </tr>
-                    <tr>
-                      <td>January 18</td>
-                      <td>Monday</td>
-                      <td>Martin Luther King Jr. Day</td>
-                    </tr>
-                    <tr>
-                      <td>February 15</td>
-                      <td>Monday</td>
-                      <td>Presidents' Day</td>
-                    </tr>
-                    <tr>
-                      <td>March 31</td>
-                      <td>Wednesday</td>
-                      <td>Cesar Chavez Day</td>
-                    </tr>
-                    <tr>
-                      <td>May 31</td>
-                      <td>Monday</td>
-                      <td>Memorial Day</td>
-                    </tr>
-                    <tr>
-                      <td>July 4 (<a href="#credits">holiday credit</a>)</td>
-                      <td>Sunday</td>
-                      <td>Independence Day</td>
-                    </tr>
-                    <tr>
-                      <td>September 6</td>
-                      <td>Monday</td>
-                      <td>Labor Day</td>
-                    </tr>
-                    <tr>
-                      <td>November 11</td>
-                      <td>Thursday</td>
-                      <td>Veterans Day</td>
-                    </tr>
-                    <tr>
-                      <td>November 25</td>
-                      <td>Thursday</td>
-                      <td>Thanksgiving Day</td>
-                    </tr>
-                    <tr>
-                      <td>November 26</td>
-                      <td>Friday</td>
-                      <td>Day after Thanksgiving</td>
-                    </tr>
-                    <tr>
-                      <td>December 25 (<a href="#credits">holiday credit</a>)</td>
-                      <td>Saturday</td>
-                      <td>Christmas Day</td>
-                    </tr>
-                  </tbody>
-                </table>
+          <cwds-accordion>
+            <div class="card">
+              <div class="card-header py-20" id="headingOne">
+                <button class="btn btn-link" type="button" aria-expanded="false">
+                  <h3>2020</h3>
+                </button>
               </div>
+              <div class="card-container collapsed" aria-labelledby="headingOne">
+                <div class="card-body">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="lead">Date</th>
+                        <th scope="col" class="lead">Day of the week</th>
+                        <th scope="col" class="lead">Holiday</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>January 1</td>
+                        <td>Wednesday</td>
+                        <td>New Year's Day</td>
+                      </tr>
+                      <tr>
+                        <td>January 20</td>
+                        <td>Monday</td>
+                        <td>Martin Luther King Jr. Day</td>
+                      </tr>
+                      <tr>
+                        <td>February 17</td>
+                        <td>Monday</td>
+                        <td>Presidents' Day</td>
+                      </tr>
+                      <tr>
+                        <td>March 31</td>
+                        <td>Tuesday</td>
+                        <td>Cesar Chavez Day</td>
+                      </tr>
+                      <tr>
+                        <td>May 25</td>
+                        <td>Monday</td>
+                        <td>Memorial Day</td>
+                      </tr>
+                      <tr>
+                        <td>July 4 (<a href="#credits">holiday credit</a>)</td>
+                        <td>Saturday</td>
+                        <td>Independence Day</td>
+                      </tr>
+                      <tr>
+                        <td>September 7</td>
+                        <td>Monday</td>
+                        <td>Labor Day</td>
+                      </tr>
+                      <tr>
+                        <td>November 11</td>
+                        <td>Wednesday</td>
+                        <td>Veterans Day</td>
+                      </tr>
+                      <tr>
+                        <td>November 26</td>
+                        <td>Thursday</td>
+                        <td>Thanksgiving Day</td>
+                      </tr>
+                      <tr>
+                        <td>November 27</td>
+                        <td>Friday</td>
+                        <td>Day after Thanksgiving</td>
+                      </tr>
+                      <tr>
+                        <td>December 25</td>
+                        <td>Friday</td>
+                        <td>Christmas Day</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="container">
+                  <h3>Additional holidays</h3>
 
-              <div class="container">
-                <h3>Additional holidays</h3>
+                  <div class="alert alert-secondary" role="alert">
 
-                <div class="alert alert-secondary" role="alert">
+                    <p class="lead">Most employees get</p>
+                    <p class="display-5 alert">1 personal holiday</p>
+                    <p class="lead">and</p>
+                    <p class="display-5 alert">1 holiday credit (8 hours)</p>
+                    <p class="lead">July 1, 2020, to June 30, 2021</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </cwds-accordion>
+        </div>
 
-                  <p class="lead">Most employees get</p>
-                  <p class="display-5 alert">1 personal holiday</p>
-                  <p class="lead">and</p>
-                  <p class="display-5 alert">1 holiday credit (8 hours)</p>
-                  <p class="lead">July 1, 2021, to June 30, 2022</p>
+        <div class="container mb-20">
+          <cwds-accordion>
+            <div class="card">
+              <div class="card-header py-20" id="headingOne">
+                <button class="btn btn-link" type="button" aria-expanded="false">
+                  <h3>2021</h3>
+                </button>
+              </div>
+              <div class="card-container collapsed" aria-labelledby="headingOne">
+                <div class="card-body">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="lead">Date</th>
+                        <th scope="col" class="lead">Day of the week</th>
+                        <th scope="col" class="lead">Holiday</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>January 1</td>
+                        <td>Friday</td>
+                        <td>New Year's Day</td>
+                      </tr>
+                      <tr>
+                        <td>January 18</td>
+                        <td>Monday</td>
+                        <td>Martin Luther King Jr. Day</td>
+                      </tr>
+                      <tr>
+                        <td>February 15</td>
+                        <td>Monday</td>
+                        <td>Presidents' Day</td>
+                      </tr>
+                      <tr>
+                        <td>March 31</td>
+                        <td>Wednesday</td>
+                        <td>Cesar Chavez Day</td>
+                      </tr>
+                      <tr>
+                        <td>May 31</td>
+                        <td>Monday</td>
+                        <td>Memorial Day</td>
+                      </tr>
+                      <tr>
+                        <td>July 4 (<a href="#credits">holiday credit</a>)</td>
+                        <td>Sunday</td>
+                        <td>Independence Day</td>
+                      </tr>
+                      <tr>
+                        <td>September 6</td>
+                        <td>Monday</td>
+                        <td>Labor Day</td>
+                      </tr>
+                      <tr>
+                        <td>November 11</td>
+                        <td>Thursday</td>
+                        <td>Veterans Day</td>
+                      </tr>
+                      <tr>
+                        <td>November 25</td>
+                        <td>Thursday</td>
+                        <td>Thanksgiving Day</td>
+                      </tr>
+                      <tr>
+                        <td>November 26</td>
+                        <td>Friday</td>
+                        <td>Day after Thanksgiving</td>
+                      </tr>
+                      <tr>
+                        <td>December 25 (<a href="#credits">holiday credit</a>)</td>
+                        <td>Saturday</td>
+                        <td>Christmas Day</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
 
+                <div class="container">
+                  <h3>Additional holidays</h3>
+
+                  <div class="alert alert-secondary" role="alert">
+
+                    <p class="lead">Most employees get</p>
+                    <p class="display-5 alert">1 personal holiday</p>
+                    <p class="lead">and</p>
+                    <p class="display-5 alert">1 holiday credit (8 hours)</p>
+                    <p class="lead">July 1, 2021, to June 30, 2022</p>
+                  </div>
+
+                </div>
               </div>
             </div>
-          </div>
-        </cwds-accordion>
-      </div>
+          </cwds-accordion>
+        </div>
 
-      <div class="container">
+        <div class="container">
 
-        <a name="credits">
-          <h3>How holiday credits work</h3>
-          <ul>
-            <li>Employees can spend their personal and holiday credits on the days they choose between July 1 and June
-              30.</li>
-            <li>Every year, most employees get one personal holiday.</li>
-            <li>When a holiday is on a Saturday, most employees get one holiday credit (eight hours of leave).</li>
-            <li>When a holiday is on a Sunday, most employees have the day off the following Monday.</li>
-          </ul>
-        </a>
-      </div>
-    </div>
-  </div>
-
-
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <p><em>See more details about <a href="https://www.calhr.ca.gov/employees/pages/state-holidays.aspx">State
-              holidays</a></em>.</p>
+          <a name="credits">
+            <h3>How holiday credits work</h3>
+            <ul>
+              <li>Employees can spend their personal and holiday credits on the days they choose between July 1 and June
+                30.</li>
+              <li>Every year, most employees get one personal holiday.</li>
+              <li>When a holiday is on a Saturday, most employees get one holiday credit (eight hours of leave).</li>
+              <li>When a holiday is on a Sunday, most employees have the day off the following Monday.</li>
+            </ul>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <hr>
-      </div>
-    </div>
-  </div>
 
 
-  <div class="footer">
+
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <p>
-            2019 State of California
-          </p>
+          <p><em>See more details about <a href="https://www.calhr.ca.gov/employees/pages/state-holidays.aspx">State
+                holidays</a></em>.</p>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="alphabar">
     <div class="container">
-      <p>This is an alpha project and a work in progress (<a href="https://medium.com/cadotgov">Details</a>)</p>
+      <div class="row">
+        <div class="col-md-12">
+          <hr>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <script src="https://cwds.dev/docs/cali/js/accordion/index.js" defer async></script>
+
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>
+              2019 State of California
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alphabar">
+      <div class="container">
+        <p>This is an alpha project and a work in progress (<a href="https://medium.com/cadotgov">Details</a>)</p>
+      </div>
+    </div>
+
+    <script src="https://cwds.dev/docs/cali/js/accordion/index.js" defer async></script>
 
 </body>
 
