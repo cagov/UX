@@ -101,7 +101,8 @@ function setupMapInteractions() {
 
       new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(`${food.address}<br>
+        .setHTML(`${food.title}<br>
+          ${food.address}<br>
             ${food.address2}<br>
           <a href="${food.website}" target="_blank">Visit ${food.title}'s website</a><br>
           ${food.phone}<br>
