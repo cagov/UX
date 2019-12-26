@@ -31,8 +31,6 @@ function getGeo() {
 getGeo();
 
 function reorient(position) {
-  console.log('position is:')
-  console.log(position)
   map.flyTo({
     center: position,
     essential: false // this animation is not considered essential with respect to prefers-reduced-motion
@@ -90,8 +88,9 @@ function setupMapInteractions() {
     // When a click event occurs on a feature in the foods layer, open a popup at the
     // location of the feature, with description HTML from its properties.
     map.on('click', 'foods', function (e) {
-      var coordinates = e.features[0].geometry.coordinates.slice();
-      var title = e.features[0].properties.title;
+      let coordinates = e.features[0].geometry.coordinates.slice();
+      let item = e.features[0];
+      let food = item.properties;
 
       // Ensure that if the map is zoomed out such that multiple
       // copies of the feature are visible, the popup appears
@@ -102,7 +101,11 @@ function setupMapInteractions() {
 
       new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(title)
+        .setHTML(`<p class="card-text">${food.address}<br>
+            ${food.address2}</p>
+          <a href="${food.website}" target="_blank">Visit ${food.title}'s website</a><br>
+          <p>${food.phone}</p>
+          <a href="geo:${item.geometry.coordinates[1]},${item.geometry.coordinates[0]}" onclick="mapsSelector(${item.geometry.coordinates[1]},${item.geometry.coordinates[0]})" target="_blank"class="btn btn-primary">Get directions</a>`)
         .addTo(map);
     });
 
@@ -147,7 +150,7 @@ function displaySortedResults(coords, data) {
             ${food.address2}</p>
           <a href="${food.website}" target="_blank">Visit ${food.title}'s website</a><br>
           <p>${food.phone}</p>
-          <a href="#" class="btn btn-primary">Get directions</a>
+          <a href="geo:${item.geometry.coordinates[1]},${item.geometry.coordinates[0]}" onclick="mapsSelector(${item.geometry.coordinates[1]},${item.geometry.coordinates[0]})" target="_blank"class="btn btn-primary">Get directions</a>
 
           <!--<p>Hours: 
           Monday to Friday
@@ -160,6 +163,14 @@ function displaySortedResults(coords, data) {
   }
 }
 
+function mapsSelector(lat,lon) {
+  event.preventDefault();
+  if ((navigator.platform.indexOf("iPhone") != -1) || (navigator.platform.indexOf("iPad") != -1) || (navigator.platform.indexOf("iPod") != -1)) {
+      window.open(`maps://maps.apple.com/maps?daddr=${lat},${lon}`);
+  } else {
+    window.open(`https://maps.google.com/maps?daddr=${lat},${lon}`);
+  }
+}
 
 let urls = ['../mw/just-cities.json', '../mw/unique-zips.json']
 Promise.all(urls.map(u=>fetch(u))).then(responses =>
