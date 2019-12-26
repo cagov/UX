@@ -14,6 +14,7 @@ function getGeo() {
   var geoSuccess = function (position) {
     // Do magic with location
     startPos = position;
+    document.querySelector('.js-location-display').innerHTML = "Food banks near you";
     reorient([position.coords.longitude, position.coords.latitude])
   };
   var geoError = function (error) {
@@ -30,8 +31,6 @@ function getGeo() {
 getGeo();
 
 function reorient(position) {
-  console.log('position is:')
-  console.log(position)
   map.flyTo({
     center: position,
     essential: false // this animation is not considered essential with respect to prefers-reduced-motion
@@ -89,8 +88,9 @@ function setupMapInteractions() {
     // When a click event occurs on a feature in the foods layer, open a popup at the
     // location of the feature, with description HTML from its properties.
     map.on('click', 'foods', function (e) {
-      var coordinates = e.features[0].geometry.coordinates.slice();
-      var title = e.features[0].properties.title;
+      let coordinates = e.features[0].geometry.coordinates.slice();
+      let item = e.features[0];
+      let food = item.properties;
 
       // Ensure that if the map is zoomed out such that multiple
       // copies of the feature are visible, the popup appears
@@ -101,7 +101,11 @@ function setupMapInteractions() {
 
       new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(title)
+        .setHTML(`<p class="card-text">${food.address}<br>
+            ${food.address2}</p>
+          <a href="${food.website}" target="_blank">Visit ${food.title}'s website</a><br>
+          <p>${food.phone}</p>
+          <a href="geo:${item.geometry.coordinates[1]},${item.geometry.coordinates[0]}" onclick="mapsSelector(${item.geometry.coordinates[1]},${item.geometry.coordinates[0]})" target="_blank"class="btn btn-primary">Get directions</a>`)
         .addTo(map);
     });
 
@@ -135,28 +139,38 @@ function displaySortedResults(coords, data) {
         outputLocs.push(food);
       }
     }
-    let html = `<ul>
+    let html = `<ul class="pl-0">
       ${outputLocs.map((item) => {
       let food = item.properties
-      return `<li>
-          <p><strong>${food.distance} miles away:</strong></p>
-
-          <p>${food.title}<br>
-            ${food.address}<br>
-            ${food.address2}<br>
-            <a href="${food.website}">${food.website}</a><br>
-            ${food.phone}</p>
+      return `<li class="card mb-20">
+        <div class="card-body">
+          <h4>${food.distance.toFixed(2)} miles away</h4>
+          <h5 class="card-title">${food.title}</h5>
+          <p class="card-text">${food.address}<br>
+            ${food.address2}</p>
+          <a href="${food.website}" target="_blank">Visit ${food.title}'s website</a><br>
+          <p>${food.phone}</p>
+          <a href="geo:${item.geometry.coordinates[1]},${item.geometry.coordinates[0]}" onclick="mapsSelector(${item.geometry.coordinates[1]},${item.geometry.coordinates[0]})" target="_blank"class="btn btn-primary">Get directions</a>
 
           <!--<p>Hours: 
           Monday to Friday
           8 a.m.–5 p.m.</p>-->
-        </li>`;
+        </div>
+      </li>`;
     }).join(' ')}
     </ul>`;
     document.querySelector('.js-nearest-results').innerHTML = html;
   }
 }
 
+function mapsSelector(lat,lon) {
+  event.preventDefault();
+  if ((navigator.platform.indexOf("iPhone") != -1) || (navigator.platform.indexOf("iPad") != -1) || (navigator.platform.indexOf("iPod") != -1)) {
+      window.open(`maps://maps.apple.com/maps?daddr=${lat},${lon}`);
+  } else {
+    window.open(`https://maps.google.com/maps?daddr=${lat},${lon}`);
+  }
+}
 
 let urls = ['../mw/just-cities.json', '../mw/unique-zips.json']
 Promise.all(urls.map(u=>fetch(u))).then(responses =>
@@ -198,7 +212,7 @@ Promise.all(urls.map(u=>fetch(u))).then(responses =>
       fetch(url)
       .then((resp) => resp.json())
       .then(function (data) {
-        console.log(data.features[0].geometry);
+        document.querySelector('.js-location-display').innerHTML = "Food banks near "+finalval;
         reorient(data.features[0].center);
       })
     }
