@@ -1,0 +1,141 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.470320,
+          38.552480
+        ]
+      },
+      "properties": {
+        "title": "Sacramento County",
+        "website": "http://www.foodlink.org/",
+        "address": "3333 3rd Ave.",
+        "address2": "Sacramento",
+        "phone": "(916) 456-1980"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.367640,
+          38.537810
+        ]
+      },
+      "properties": {
+        "title": "Elevation Holy Cross",
+        "website": "http://www.holycrosssacramento.com",
+        "address": "9000 Jackson Rd",
+        "address2": "Sacramento, CA - 95826",
+        "phone": "(916) 364-8068"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.473390,
+          38.564890
+        ]
+      },
+      "properties": {
+        "title": "River City Food Bank",
+        "website": "http://www.rivercityfoodbank.org",
+        "address": "1800 28th Street",
+        "address2": "Sacramento, CA - 95816",
+        "phone": "(916) 446-2627"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.547690,
+          38.578580
+        ]
+      },
+      "properties": {
+        "title": "Proverbs House International",
+        "website": "http://www.proverbshouse.org",
+        "address": "813 Harbor Blvd",
+        "address2": "West Sacramento, CA - 95691",
+        "phone": "(916) 589-0475"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.354320,
+          38.546730
+        ]
+      },
+      "properties": {
+        "title": "Atonement Lutheran Church Food Pantry",
+        "website": "http://atonementlutheranchurch.org/",
+        "address": "9242 Kiefer Blvd",
+        "address2": "Rosemont, CA - 95826",
+        "phone": "(916) 362-3738"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.332820,
+          38.619900
+        ]
+      },
+      "properties": {
+        "title": "Carmichael Food Closet",
+        "website": "http://www.carmichaelpres.org",
+        "address": "5645 Marconi Ave",
+        "address2": "Carmichael, CA - 95608",
+        "phone": "(916) 483-9232"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.357540,
+          38.400700
+        ]
+      },
+      "properties": {
+        "title": "Elk Grove Food Bank",
+        "website": "http://www.elkgrovefoodbank.org",
+        "address": "9820 Dino Drive, Suite #140",
+        "address2": "Elk Grove, CA - 95624",
+        "phone": "(916) 685-8453"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.293530,
+          38.672750
+        ]
+      },
+      "properties": {
+        "title": "Sunrise Christian Food Ministries",
+        "website": "http://sunrisechristianfoodministry.org",
+        "address": "5901 San Juan Ave",
+        "address2": "Citrus Heights, CA - 95610",
+        "phone": "(916) 965-5431"
+      }
+    }
+  ]
+}
