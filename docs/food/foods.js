@@ -14,6 +14,7 @@ function getGeo() {
   var geoSuccess = function (position) {
     // Do magic with location
     startPos = position;
+    document.querySelector('.js-location-display').innerHTML = "Food banks near you";
     reorient([position.coords.longitude, position.coords.latitude])
   };
   var geoError = function (error) {
@@ -135,22 +136,24 @@ function displaySortedResults(coords, data) {
         outputLocs.push(food);
       }
     }
-    let html = `<ul>
+    let html = `<ul class="pl-0">
       ${outputLocs.map((item) => {
       let food = item.properties
-      return `<li>
-          <p><strong>${food.distance} miles away:</strong></p>
-
-          <p>${food.title}<br>
-            ${food.address}<br>
-            ${food.address2}<br>
-            <a href="${food.website}">${food.website}</a><br>
-            ${food.phone}</p>
+      return `<li class="card mb-20">
+        <div class="card-body">
+          <h4>${food.distance.toFixed(2)} miles away</h4>
+          <h5 class="card-title">${food.title}</h5>
+          <p class="card-text">${food.address}<br>
+            ${food.address2}</p>
+          <a href="${food.website}" target="_blank">Visit ${food.title}'s website</a><br>
+          <p>${food.phone}</p>
+          <a href="#" class="btn btn-primary">Get directions</a>
 
           <!--<p>Hours: 
           Monday to Friday
           8 a.m.–5 p.m.</p>-->
-        </li>`;
+        </div>
+      </li>`;
     }).join(' ')}
     </ul>`;
     document.querySelector('.js-nearest-results').innerHTML = html;
@@ -198,7 +201,7 @@ Promise.all(urls.map(u=>fetch(u))).then(responses =>
       fetch(url)
       .then((resp) => resp.json())
       .then(function (data) {
-        console.log(data.features[0].geometry);
+        document.querySelector('.js-location-display').innerHTML = "Food banks near "+finalval;
         reorient(data.features[0].center);
       })
     }
