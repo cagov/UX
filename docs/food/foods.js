@@ -101,10 +101,10 @@ function setupMapInteractions() {
 
       new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(`<p class="card-text">${food.address}<br>
-            ${food.address2}</p>
+        .setHTML(`${food.address}<br>
+            ${food.address2}<br>
           <a href="${food.website}" target="_blank">Visit ${food.title}'s website</a><br>
-          <p>${food.phone}</p>
+          ${food.phone}<br>
           <a href="geo:${item.geometry.coordinates[1]},${item.geometry.coordinates[0]}" onclick="mapsSelector(${item.geometry.coordinates[1]},${item.geometry.coordinates[0]})" target="_blank"class="btn btn-primary">Get directions</a>`)
         .addTo(map);
     });
@@ -144,10 +144,10 @@ function displaySortedResults(coords, data) {
       let food = item.properties
       return `<li class="card mb-20">
         <div class="card-body">
-          <h4>${food.distance.toFixed(2)} miles away</h4>
-          <h5 class="card-title">${food.title}</h5>
-          <p class="card-text">${food.address}<br>
-            ${food.address2}</p>
+          <p>${food.distance.toFixed(2)} miles away</p>
+          <p>${food.title}</p>
+          <p>${food.address}<br>
+            ${food.address2}<br>
           <a href="${food.website}" target="_blank">Visit ${food.title}'s website</a><br>
           <p>${food.phone}</p>
           <a href="geo:${item.geometry.coordinates[1]},${item.geometry.coordinates[0]}" onclick="mapsSelector(${item.geometry.coordinates[1]},${item.geometry.coordinates[0]})" target="_blank"class="btn btn-primary">Get directions</a>
