@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="author" content="Bootstrap, Luke Fretwell, Artem Khomishen">
   <meta name="generator" content="Hugo 0.61.0">
-  <title>California Food Assistance Locator</title>
+  <title>Find food banks in California</title>
 
   <!-- Bootstrap core CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"></script>
@@ -22,12 +22,11 @@
   <link rel="icon" href="/docs/4.3/assets/img/favicons/favicon.ico">
   <meta name="msapplication-config" content="/docs/4.3/assets/img/favicons/browserconfig.xml">
   <meta name="theme-color" content="#563d7c">
+
+  <link rel="stylesheet" href="../libs/awesomplete.css" />
+  <script type="text/javascript" src="../libs/awesomplete.min.js"></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.css' rel='stylesheet' />    
   <style>
-    .placeholder {
-      border: solid 1px;
-      padding: 10px;
-      margin: 10px 0 20px 0;
-    }
     .alert.alert-info {
       padding-top: 20px;
     }
@@ -39,6 +38,10 @@
     }
     .display-6 {
       font-size: 1.2rem;
+    }
+    #mapid { 
+      height: 280px; 
+      margin-bottom: 20px;
     }
   </style>
 </head>
@@ -65,7 +68,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1>Find Food Assistance in California</h1>
+          <h1>Find food banks in California</h1>
         </div>
       </div>
     </div>
@@ -75,36 +78,37 @@
     <div class="row">
       <div class="col-md-12">
 
-        <div class="placeholder alert alert-danger">This page is asking for your location in order to find nearby services. Please accept the authorization prompt.</div>
+        <h2>Find food near you</h2>
 
-        <div class="alert alert-info display-6">
-          <p>Phone number to call for assistance:</p>
-          <p>Food Helpline at <span class="text-info">800-123-1234</span></p>
-          <p>Monday thru Friday 9am-4pm</p> 
-        </div>
+        <p>We’ll help you find the food banks and pantries closest to you.</p>
 
-        <div class="alert alert-info display-6">
-          <p>Text a city name to:</p>
-          <p><span class="text-info">800-123-1111</span></p>
-          <p> for list of nearby assistance locations anytime</p> 
-        </div>
+        <div class="form-group">
+          <form class="form-inline mb-20">
+            <label for="cityInput" style="margin-right: 10px;">Please enter your city or zip code</label>
+            <input type="input" class="form-control city-search" id="cityInput" data-multiple>
+            <!--<button type="submit" class="btn btn-primary">Search</button>-->
+          </form>
+        </div>  
 
-        <h2 class="mt-30">Search for nearby food assistance</h2>
-        <form>
-          <div class="mb-3">
-            <label for="cityInput">Please enter a city or zip code</label>
-            <input type="input" class="form-control" id="cityInput" aria-describedby="emailHelp">
-          </div>
-        </form>
-
-        <div class="placeholder" style="width: 100%; height: 300px;">map</div>
         <h3>Nearest results</h3>
-        <div class="placeholder">
-          <div>sample result:</div>
-          <div>Name of organization</div>
-          <div><address>address</address></div>
-          <div>phone number</div>
-          <div>hours of operation</div>
+        <div class="js-nearest-results"></div>
+
+        <div id="mapid" class="mv-20"></div>
+
+        <h2>Contact us if you need help finding food</h2>
+
+        <h3>Call us with your questions</h3>
+
+        <div class="alert alert-info display-6">
+          <p><span class="text-info">211</span></p>
+          <p>9 a.m.–4 p.m.<br>
+            Monday to Friday</p> 
+        </div>
+
+        <h3>Text us to find your nearest source of food</h3>
+
+        <div class="alert alert-info display-6">
+          <p>Text your city name or zip code to <span class="text-info">800-123-1111</span> anytime. We’ll respond with a list of the food banks and pantries near you.</p>
         </div>
 
       </div>
@@ -129,46 +133,9 @@
     </div>
   </div>
 
-  <script src="https://cwds.dev/docs/cali/js/accordion/index.js" defer async></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.js'></script>
+  <script src='haversine.js'></script>
+  <script src="foods.js"></script>
 
-  <script>
-    function getGeo() {
-  var startPos;
-  var nudge = document.getElementById("nudge");
-
-  var showNudgeBanner = function() {
-    nudge.style.display = "block";
-  };
-
-  var hideNudgeBanner = function() {
-    nudge.style.display = "none";
-  };
-
-  var nudgeTimeoutId = setTimeout(showNudgeBanner, 5000);
-
-  var geoSuccess = function(position) {
-    hideNudgeBanner();
-    // We have the location, don't display banner
-    clearTimeout(nudgeTimeoutId); 
-
-    // Do magic with location
-    startPos = position;
-    console.log(position)
-    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
-    document.getElementById('startLon').innerHTML = startPos.coords.longitude;
-  };
-  var geoError = function(error) {
-    switch(error.code) {
-      case error.TIMEOUT:
-        // The user didn't accept the callout
-        showNudgeBanner();
-        break;
-    }
-  };
-
-  navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
-};
-getGeo();
-</script>
 </body>
 </html>

@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Bootstrap, Luke Fretwell, Artem Khomishen">
+  <meta name="generator" content="Hugo 0.61.0">
+  <title>California Food Assistance Locator</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"></script>
+  <!-- Custom State of California CSS -->
+  <link href="../css/style.css" rel="stylesheet"></script>
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" href="/docs/4.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" href="/docs/4.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/docs/4.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+  <link rel="manifest" href="/docs/4.3/assets/img/favicons/manifest.json">
+  <link rel="mask-icon" href="/docs/4.3/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+  <link rel="icon" href="/docs/4.3/assets/img/favicons/favicon.ico">
+  <meta name="msapplication-config" content="/docs/4.3/assets/img/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#563d7c">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin=""/>
+  </style>
+  <style>
+    .placeholder {
+      border: solid 1px;
+      padding: 10px;
+      margin: 10px 0 20px 0;
+    }
+    .alert.alert-info {
+      padding-top: 20px;
+    }
+    .display-4, .display-3, .display-4, .display-5, .display-6 {
+      font-family: 'Public Sans ExtraBold', sans-serif;
+    }
+    .display-5 {
+      font-size: 1.5rem;
+    }
+    .display-6 {
+      font-size: 1.2rem;
+    }
+    #mapid { 
+      height: 280px; 
+    }
+  </style>
+</head>
+<body>
+  <div class="official">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p>Official California State Government</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand nav-cali-bg navbar-left" href="index.html">CA.gov <sup>(ALPHA)</sup></a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid jumbotron">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Find Food Assistance in California</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="placeholder alert alert-danger">This page is asking for your location in order to find nearby services. Please accept the authorization prompt.</div>
+
+        <div class="alert alert-info display-6">
+          <p>Phone number to call for assistance:</p>
+          <p>Food Helpline at <span class="text-info">800-123-1234</span></p>
+          <p>Monday thru Friday 9am-4pm</p> 
+        </div>
+
+        <div class="alert alert-info display-6">
+          <p>Text a city name to:</p>
+          <p><span class="text-info">800-123-1111</span></p>
+          <p> for list of nearby assistance locations anytime</p> 
+        </div>
+
+        <h2 class="mt-30">Search for nearby food assistance</h2>
+        <form>
+          <div class="mb-3">
+            <label for="cityInput">Please enter a city or zip code</label>
+            <input type="input" class="form-control" id="cityInput" aria-describedby="emailHelp">
+          </div>
+        </form>
+
+        <div id="mapid" class="mv-20"></div>
+
+        <h3>Nearest results</h3>
+        <div class="placeholder">
+          <div>sample result:</div>
+          <div>Name of organization</div>
+          <div><address>address</address></div>
+          <div>phone number</div>
+          <div>hours of operation</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p>
+            2019 State of California 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alphabar">
+    <div class="container">
+      <p>This is an alpha project and a work in progress (<a href="https://medium.com/cadotgov">Details</a>)</p>
+    </div>
+  </div>
+
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+ integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+ crossorigin=""></script>
+  <script>
+    var mymap = L.map('mapid').setView([-121.500665, 38.583843], 13);
+// http://a.tiles.mapbox.com/v4/mapbox.mapbox-streets-v7/14/4823/6160.mvt?access_token=
+// https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox/streets-v11',
+      accessToken: 'pk.eyJ1IjoiYWFyb25oYW5zIiwiYSI6ImNqdmVtaHpvaDA3ZWg0ZHA0NG43OGgzamcifQ.ZE5ZbGmvajo62g8keK2cZg'
+    }).addTo(mymap);
+
+    function getGeo() {
+    var startPos;
+
+    var geoSuccess = function(position) {
+      hideNudgeBanner();
+      // We have the location, don't display banner
+      clearTimeout(nudgeTimeoutId); 
+
+      // Do magic with location
+      startPos = position;
+      reorient(position)
+    };
+    var geoError = function(error) {
+      switch(error.code) {
+        case error.TIMEOUT:
+          // The user didn't accept the callout
+          
+          
+          break;
+      }
+    };
+
+    navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+  };
+  getGeo();
+
+  // call reorient on map change
+  function reorient(position) {
+    // reset map
+    // figure out which api to call
+    // call api and get more resutls
+  }
+
+  fetch('foods.json')
+  .then((resp) => resp.json())
+  .then(function(data) {
+    console.log(data)
+    data.forEach( (item) => {
+      let locPieces = item.latlon.split(',');
+      let latlon = [];
+      locPieces.forEach( (loc) => {
+        latlon.push(parseFloat(loc))
+      })
+      console.log(latlon)
+      var marker = L.marker(latlon).addTo(map);
+      L.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+    })
+  })
+  
+
+  // handle city search
+  // do autocomplete
+  // get center location for map lookup
+</script>
+</body>
+</html>
