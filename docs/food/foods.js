@@ -140,7 +140,7 @@ function displaySortedResults(coords, data) {
         outputLocs.push(food);
       }
     }
-    let html = `<ul class="pl-0">
+    let html = `<ul class="pl-0 card-set">
       ${outputLocs.map((item) => {
       let food = item.properties
       return `<li class="card mb-20">
