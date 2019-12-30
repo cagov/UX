@@ -200,12 +200,12 @@ Promise.all(urls.map(u=>fetch(u))).then(responses =>
     },
 
     item: function(text, input) {
-      // document.querySelector('.wage-city-search .invalid-feedback').style.display = 'none';
+      document.querySelector('.invalid-feedback').style.display = 'none';
       return Awesomplete.ITEM(text, input.match(/[^,]*$/)[0]);
     },
 
     replace: function(text) {
-      var before = this.input.value.match(/^.+,\s*|/)[0];
+      let before = this.input.value.match(/^.+,\s*|/)[0];
       let finalval = before + text;
       this.input.value = finalval;
       let cabb = '-124.409591,32.534156,-114.131211,42.009518';
@@ -219,13 +219,24 @@ Promise.all(urls.map(u=>fetch(u))).then(responses =>
     }
   });
 
-  /*
-  document.querySelector('.js-wage-lookup').addEventListener('click',(event) => {
+  
+  document.querySelector('.js-food-lookup').addEventListener('submit',function(event) {
     event.preventDefault();
-    let location = document.getElementById('location-query').value;
-    findWageMatch(location, wageJson, zipMap, cityNames);
+    document.querySelector('.invalid-feedback').style.display = 'none';
+    let val = this.querySelector('input').value;
+    let cabb = '-124.409591,32.534156,-114.131211,42.009518';
+    let url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${val}.json?bbox=${cabb}&access_token=${mapboxgl.accessToken}`;
+    fetch(url)
+    .then((resp) => resp.json())
+    .then(function (data) {
+      document.querySelector('.js-location-display').innerHTML = "Food banks near "+val;
+      if(data.features.length > 0) {
+        reorient(data.features[0].center);
+      } else {
+        document.querySelector('.invalid-feedback').style.display = 'block';
+      }
+    })
   })
-  */
 })
 
 
