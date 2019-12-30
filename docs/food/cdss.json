@@ -1,0 +1,376 @@
+[
+  {
+    "county": "Orange County",
+    "name": "Second Harvest Food Bank of Orange County",
+    "url": "http://feedoc.org/",
+    "address": "8014 Marine Way",
+    "address2": "Irvine",
+    "phone": "949-653-2900"
+  },
+  {
+    "name": "Community Action Partnership of Orange County",
+    "url": "http://ocfoodbank.org/",
+    "address": "11870 Monarch Street",
+    "addres2": "Garden Grove",
+    "phone": "714-897-6670"
+  },
+  {
+    "county": "Alpine County",
+    "name": "Food Bank of El Dorado County",
+    "url": "http://foodbankedc.org/",
+    "address": "4550 Business Drive",
+    "address2": "Cameron Park",
+    "phone": "530-621-9950"
+  },
+  {
+    "county": "Placer County",
+    "name": "Placer Food Bank",
+    "url": "http://placerfoodbank.org/",
+    "address": "8284 Industrial Avenue",
+    "address2": "Roseville",
+    "phone": "916-783-0481"
+  },
+  {
+    "county": "Amador County",
+    "name": "Interfaith Council of Amador County",
+    "url": "http://www.feedamador.org/site/pages/home.cgi",
+    "address": "12181 Airport Road",
+    "address2": "Jackson",
+    "phone": "209-267-9006"
+  },
+  {
+    "county": "Riverside County",
+    "name": "Second Harvest Food Bank",
+    "address": "2950-B Jefferson Street",
+    "address2": "Riverside",
+    "phone": "951-359-4757"
+  },
+  {
+    "county": "Butte County",
+    "name": "Community Action Agency of Butte County",
+    "url": "http://www.buttecaa.com/menus/food-nutrition.html",
+    "address": "2640 S. Fifth Avenue, Suite 7",
+    "address2": "Oroville",
+    "phone": "530-538-7559"
+  },
+  {
+    "county": "Calaveras County",
+    "name": "Resource Connection",
+    "url": "http://www.trcac.org/index.php",
+    "address": "206 George Reed Drive",
+    "address2": "San Andreas",
+    "phone": "209-754-1257"
+  },
+  {
+    "county": "San Benito County",
+    "name": "The Community Food Bank of San Benito County",
+    "url": "http://communityfoodbankofsbc.org/",
+    "address": "1133 San Felipe Road",
+    "address2": "Hollister",
+    "phone": "831-637-0340"
+  },
+  {
+    "county": "Contra Costa County",
+    "name": "Food Bank of Contra Costa & Solano",
+    "url": "http://www.foodbankccs.org/",
+    "address": "4010 Nelson Avenue",
+    "address2": "Concord",
+    "phone": "925-676-7543"
+  },
+  {
+    "county": "San Bernardino County",
+    "name": "Community Action Partnership of San Bernardino County",
+    "url": "http://www.sbcounty.gov/capsbc/",
+    "address": "696 S. Tippecanoe Avenue",
+    "address2": "San Bernardino",
+    "phone": "909-723-1500"
+  },
+  {
+    "county": "Del Norte County",
+    "name": "Rural Human Services, Inc.",
+    "url": "http://www.ruralhumanservices.org/",
+    "address": "286 M Street Suite A",
+    "address2": "Crescent City",
+    "phone": "707-464-7441"
+  },
+  {
+    "county": "San Diego County",
+    "name": "San Diego Food Bank",
+    "url": "http://sandiegofoodbank.org/",
+    "address": "9850 Distribution Avenue",
+    "address2": "San Diego",
+    "phone": "858-527-1419"
+  },
+  {
+    "county": "El Dorado County",
+    "name": "Food Bank of El Dorado County",
+    "url": "http://foodbankedc.org/",
+    "address": "4550 Business Drive",
+    "address2": "Cameron Park",
+    "phone": "530-621-9950"
+  },
+  {
+    "county": "Fresno County",
+    "name": "Central California Food Bank",
+    "url": "http://www.communityfoodbank.net/",
+    "address": "4010 E Amendola Dr",
+    "address2": "Fresno",
+    "phone": "559-237-3663"
+  },
+  {
+    "county": "San Joaquin County",
+    "name": "San Joaquin County Human Services Agency",
+    "address": "2736 North Teepee Dr, Suite C",
+    "address2": "Stockton",
+    "phone": "209-468-0982"
+  },
+  {
+    "county": "Humboldt County",
+    "name": "Food For People, Inc.",
+    "url": "http://www.foodforpeople.org/",
+    "address": "307 West 14th Street",
+    "address2": "Eureka",
+    "phone": "707-445-3166"
+  },
+  {
+    "county": "San Luis Obispo County",
+    "name": "Food Bank Coalition of San Luis Obispo County",
+    "url": "http://www.slofoodbank.org/",
+    "address": "1180 Kendall Rd",
+    "address2": "San Luis Obispo",
+    "phone": "805-238-4664"
+  },
+  {
+    "county": "Imperial County",
+    "name": "Imperial Valley Food Bank",
+    "url": "http://www.ivfoodbank.com/",
+    "address": "329 Applestill Road",
+    "address2": "El Centro",
+    "phone": "760-370-0966"
+  },
+  {
+    "county": "Inyo County",
+    "name": "Inyo/Mono Advocates For Community Action",
+    "url": "http://imaca.net/",
+    "address": "137 East South Street",
+    "address2": "Bishop",
+    "phone": "760-873-8557"
+  },
+  {
+    "county": "Santa Barbara County",
+    "name": "Food Bank of Santa Barbara",
+    "url": "http://www.foodbanksbc.org/",
+    "address": "4554 Hollister",
+    "address2": "Santa Barbara",
+    "phone": "805-967-5741"
+  },
+  {
+    "county": "Kern County",
+    "name": "Community Action Partnership of Kern",
+    "url": "http://www.capk.org/",
+    "address": "5005 Business Park N",
+    "address2": "Bakersfield",
+    "phone": "661-336-5236"
+  },
+  {
+    "county": "Santa Clara County",
+    "name": "Second Harvest Food Bank of Silicon Valley",
+    "url": "http://www.shfb.org/",
+    "address": "750 Curtner Avenue",
+    "address2": "San Jose",
+    "phone": "408-266-8866"
+  },
+  {
+    "county": "Kings County",
+    "name": "Kings County Community Action Organization",
+    "url": "http://www.kcao.org/",
+    "address": "1130 North 11th Avenue",
+    "address2": "Hanford",
+    "phone": "559-582-4386"
+  },
+  {
+    "county": "Santa Cruz County",
+    "name": "Second Harvest Food Bank Serving Santa Cruz",
+    "url": "http://www.thefoodbank.org/",
+    "address": "800 Ohlone Parkway",
+    "address2": "Watsonville",
+    "phone": "831-722-7110"
+  },
+  {
+    "county": "Lake County",
+    "name": "Clearlake Gleaners, Inc.",
+    "address": "1896 Big Valley Road",
+    "address2": "Finley",
+    "phone": "707-263-8082"
+  },
+  {
+    "county": "Shasta County",
+    "name": "Dignity Health Connected Living",
+    "url": "http://ssnpweb.org/",
+    "address": "100 Mercy Oaks Drive",
+    "address2": "Redding",
+    "phone": "530-226-3060"
+  },
+  {
+    "county": "Siskiyou County",
+    "name": "Great Northern Corporation",
+    "address": "310 Boles Street",
+    "address2": "Weed",
+    "phone": "530-938-4115"
+  },
+  {
+    "county": "Solano County",
+    "name": "Food Bank of Contra Costa & Solano",
+    "url": "http://www.foodbankccs.org/",
+    "address": "4010 Nelson Avenue",
+    "address2": "Concord",
+    "phone": "925-676-7543"
+  },
+  {
+    "county": "Madera County",
+    "name": "Madera County Food Bank",
+    "url": "http://maderafoodbank.com/",
+    "address": "225 South Pine Street, Suite 101",
+    "address2": "Madera",
+    "phone": "559-674-1482"
+  },
+  {
+    "county": "Sonoma County",
+    "name": "Redwood Empire Food Bank",
+    "url": "http://www.refb.org/",
+    "address": "3990 Brickway Blvd.",
+    "address2": "Santa Rosa",
+    "phone": "707-523-7900"
+  },
+  {
+    "county": "Marin County",
+    "name": "SF-Marin Food Bank",
+    "url": "http://www.sfmfoodbank.org/",
+    "address": "75 Digital Drive",
+    "address2": "Novato",
+    "phone": "415-883-1302"
+  },
+  {
+    "county": "Stanislaus County",
+    "name": "Salvation Army Modesto Citadel",
+    "address": "600 Janopaul Way",
+    "address2": "Modesto",
+    "phone": "209-522-3209"
+  },
+  {
+    "county": "Mariposa County",
+    "name": "Merced County Food Bank, Inc",
+    "url": "http://www.mercedcountyfoodbank.org/",
+    "address": "2000 West Olive",
+    "address2": "Merced",
+    "phone": "209-726-3663"
+  },
+  {
+    "county": "Sutter County",
+    "name": "Yuba/Sutter Gleaners Food Bank, Inc.",
+    "address": "760 Stafford Way",
+    "address2": "Yuba City",
+    "phone": "530-673-3834"
+  },
+  {
+    "county": "Mendocino County",
+    "name": "Mendocino Food and Nutrition Program, Inc.",
+    "url": "http://www.fortbraggfoodbank.org/home",
+    "address": "910 North Franklin",
+    "address2": "Fort Bragg",
+    "phone": "707-964-9404"
+  },
+  {
+    "county": "Tehama County",
+    "name": "Tehama County Gleaners",
+    "address": "20699 Walnut Street",
+    "address2": "Red Bluff",
+    "phone": "530-529-2264"
+  },
+  {
+    "county": "Merced County",
+    "name": "Merced County Food Bank, Inc",
+    "url": "http://www.mercedcountyfoodbank.org/",
+    "address": "2000 West Olive",
+    "address2": "Merced",
+    "phone": "209-726-3663"
+  },
+  {
+    "county": "Trinity County",
+    "name": "Trinity County Food Assistance Program",
+    "address": "9069 3rd Street",
+    "address2": "Weaverville",
+    "phone": "530-623-5409"
+  },
+  {
+    "county": "Tulare County",
+    "name": "Foodlink for Tulare County",
+    "url": "http://www.foodlinktc.org/",
+    "address": "611 2nd St",
+    "address2": "Exeter",
+    "phone": "559-651-3663"
+  },
+  {
+    "county": "Mono County",
+    "name": "Inyo/Mono Advocates For Community Action",
+    "url": "http://imaca.net/",
+    "address": "137 East South Street",
+    "address2": "Bishop",
+    "phone": "760-873-8557"
+  },
+  {
+    "county": "Tuolumne County",
+    "name": "Amador/Tuolumne Community Action Agency, Inc.",
+    "url": "http://atcaa.org/atcaa-programs/food-bank/",
+    "address": "10590 State Hwy 88",
+    "address2": "Jackson",
+    "phone": "209-223-1485"
+  },
+  {
+    "county": "Monterey County",
+    "name": "Food Bank for Monterey County",
+    "url": "http://www.foodbankformontereycounty.org/",
+    "address": "353 W Rossi St",
+    "address2": "Salinas",
+    "phone": "831-758-1523"
+  },
+  {
+    "county": "Ventura County",
+    "name": "Food Share Inc. of Ventura County",
+    "url": "http://www.foodshare.com/",
+    "address": "4156 North Southbank Road",
+    "address2": "Oxnard",
+    "phone": "805-983-7100"
+  },
+  {
+    "county": "Napa County",
+    "name": "Community Action of Napa Valley",
+    "url": "http://canv.org/",
+    "address": "2521 Old Sonoma Rd",
+    "address2": "Napa",
+    "phone": "707-253-6100"
+  },
+  {
+    "county": "Yolo County",
+    "name": "Food Bank of Yolo County",
+    "url": "http://www.yolofoodbank.org/",
+    "address": "233 Harter Ave",
+    "address2": "Woodland",
+    "phone": "530-668-0690"
+  },
+  {
+    "county": "Nevada County",
+    "name": "Food Bank of Nevada County",
+    "url": "http://www.foodbankofnc.org/",
+    "address": "310 Railroad Ave #100",
+    "address2": "Grass Valley",
+    "phone": "530-272-3796"
+  },
+  {
+    "county": "Yuba County",
+    "name": "Yuba/Sutter Gleaners Food Bank, Inc.",
+    "address": "760 Stafford Way",
+    "address2": "Yuba City",
+    "phone": "530-673-3834"
+  }
+]

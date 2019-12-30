@@ -133,7 +133,7 @@ function displaySortedResults(coords, data) {
       return haversine(coords, a, { format: 'geojson', unit: 'mile' }) - haversine(coords, b, { format: 'geojson', unit: 'mile' })
     })
     let outputLocs = [];
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 30; i++) {
       let food = sortedLocs[i];
       if (food) {
         food.properties.distance = haversine(coords, food, { format: 'geojson', unit: 'mile' });
@@ -227,3 +227,17 @@ Promise.all(urls.map(u=>fetch(u))).then(responses =>
   })
   */
 })
+
+
+
+// get cdss.json
+// for each get the lat, lon using:
+function retriever(address, callback) {
+  let cabb = '-124.409591,32.534156,-114.131211,42.009518';
+  let url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?bbox=${cabb}&access_token=${mapboxgl.accessToken}`;
+  fetch(url)
+  .then((resp) => resp.json())
+  .then(function (data) {
+    callback(data.features[0].center);
+  })
+}
