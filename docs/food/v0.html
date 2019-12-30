@@ -42,6 +42,12 @@
     .mb-20 {
       margin-bottom: 20px;
     }
+    .ml-10 {
+      margin-left: 10px;
+    }
+    .mr-10 {
+      margin-right: 10px;
+    }
     #mapid { 
       height: 280px; 
       margin-bottom: 20px;
@@ -103,10 +109,11 @@
         <p>We’ll help you find the food banks and pantries closest to you.</p>
 
         <div class="form-group">
-          <form class="form-inline mb-20">
-            <label for="cityInput" style="margin-right: 10px;">Please enter your city or zip code</label>
+          <form class="form-inline mb-20 js-food-lookup">
+            <label for="cityInput" class="mr-10">Please enter your city or zip code</label>
             <input type="input" class="form-control city-search" id="cityInput" data-multiple>
-            <!--<button type="submit" class="btn btn-primary">Search</button>-->
+            <button type="submit" class="btn btn-primary ml-10">Search</button>
+            <div class="invalid-feedback">Please enter a city or zip code in California.</div>
           </form>
         </div>  
 
