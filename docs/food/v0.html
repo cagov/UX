@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Bootstrap, Luke Fretwell, Artem Khomishen">
+  <meta name="generator" content="Hugo 0.61.0">
+  <title>Find food banks in California</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"></script>
+  <!-- Custom State of California CSS -->
+  <link href="../css/style.css" rel="stylesheet"></script>
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" href="/docs/4.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" href="/docs/4.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/docs/4.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+  <link rel="manifest" href="/docs/4.3/assets/img/favicons/manifest.json">
+  <link rel="mask-icon" href="/docs/4.3/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+  <link rel="icon" href="/docs/4.3/assets/img/favicons/favicon.ico">
+  <meta name="msapplication-config" content="/docs/4.3/assets/img/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#563d7c">
+
+  <link rel="stylesheet" href="../libs/awesomplete.css" />
+  <script type="text/javascript" src="../libs/awesomplete.min.js"></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.css' rel='stylesheet' />    
+  <style>
+    .alert.alert-info {
+      padding-top: 20px;
+    }
+    .display-4, .display-3, .display-4, .display-5, .display-6 {
+      font-family: 'Public Sans ExtraBold', sans-serif;
+    }
+    .display-5 {
+      font-size: 1.5rem;
+    }
+    .display-6 {
+      font-size: 1.2rem;
+    }
+    .mb-20 {
+      margin-bottom: 20px;
+    }
+    #mapid { 
+      height: 280px; 
+      margin-bottom: 20px;
+    }
+    .card-set {
+      display: grid;
+      grid-template-columns: 33% 33% 33%; 
+    }
+    .card-set .card {
+      margin-right: 20px;
+    }
+    @media (max-width: 1080px) {
+      .card-set {
+        grid-template-columns: 50% 50%; 
+      } 
+    }
+    @media (max-width: 720px) {
+      .card-set {
+        grid-template-columns: 100%; 
+      } 
+    }
+  </style>
+</head>
+<body>
+  <div class="official">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p>Official California State Government</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand nav-cali-bg navbar-left" href="index.html">CA.gov <sup>(ALPHA)</sup></a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid jumbotron">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Find food banks in California</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+        <h2>Find food near you</h2>
+
+        <p>We’ll help you find the food banks and pantries closest to you.</p>
+
+        <div class="form-group">
+          <form class="form-inline mb-20">
+            <label for="cityInput" style="margin-right: 10px;">Please enter your city or zip code</label>
+            <input type="input" class="form-control city-search" id="cityInput" data-multiple>
+            <!--<button type="submit" class="btn btn-primary">Search</button>-->
+          </form>
+        </div>  
+
+        <h3 class="js-location-display">Food banks near Sacramento</h3>
+        <div class="js-nearest-results"></div>
+
+        <div id="mapid" class="mv-20"></div>
+
+        <h2>Contact us for help finding food</h2>
+
+        <h3>Call us with your questions</h3>
+
+        <div class="alert alert-info display-6">
+          <p><span class="text-info">211</span></p>
+          <p>9 a.m.–4 p.m.<br>
+            Monday to Friday</p> 
+        </div>
+
+        <h3>Text us to find food close to you</h3>
+
+        <div class="alert alert-info display-6">
+          <p>Text your city name or zip code to <span class="text-info">(415) 630-4521</span> anytime. We’ll respond with a list of the food banks and pantries near you.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p>
+            2019 State of California 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alphabar">
+    <div class="container">
+      <p>This is an alpha project and a work in progress (<a href="https://medium.com/cadotgov">Details</a>)</p>
+    </div>
+  </div>
+
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.js'></script>
+  <script src='haversine.js'></script>
+  <script src="foods.js"></script>
+
+</body>
+</html>

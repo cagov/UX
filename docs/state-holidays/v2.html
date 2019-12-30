@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <!-- saved from url=(0051)https://getbootstrap.com/examples/starter-template/ -->
-<html lang="en"><head>
+<html lang="en">
+
+<head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <meta name="description" content="The official website for the State of California.">
+  <meta name="description" content="See upcoming holidays for State of California employees.">
   <meta name="author" content="CA.gov - State of California">
 
   <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
@@ -17,7 +19,7 @@
   <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
   <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
-  <link rel="icon" type="img/favicon/png" sizes="192x192"  href="img/favicon/android-icon-192x192.png">
+  <link rel="icon" type="img/favicon/png" sizes="192x192" href="img/favicon/android-icon-192x192.png">
   <link rel="icon" type="img/favicon/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
   <link rel="icon" type="img/favicon/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
   <link rel="icon" type="img/favicon/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
@@ -35,21 +37,65 @@
   <meta property="og:image" content="img/thumbnail.png">
   <meta property="og:image:height" content="630">
   <meta property="og:image:width" content="630">
-  <meta property="og:title" content="CA.gov - State of California">
-  <meta property="og:description" content="The official website for the State of California.">
+  <meta property="og:title" content="State of California employee holidays - Alpha.CA.gov">
+  <meta property="og:description" content="See upcoming holidays for State of California employees.">
   <meta property="og:url" content="https://alpha.ca.gov">
 
-  <title>CA.gov - State of California</title>
+  <title>State of California employee holidays - Alpha.CA.gov</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+  </script>
   <!-- Custom State of California CSS -->
-  <link href="../css/style.css" rel="stylesheet"></script>
+  <link href="../css/style.css" rel="stylesheet">
+  </script>
+  <style>
+    .display-4,
+    .display-3,
+    .display-4,
+    .display-5,
+    .display-6 {
+      font-family: 'Public Sans ExtraBold', sans-serif;
+    }
+
+    .display-5 {
+      font-size: 1.5rem;
+    }
+
+    .display-6 {
+      font-size: 1.2rem;
+    }
+
+    .display-6.alert {
+      padding: .2rem 1.25rem;
+    }
+
+    /* accordion component specific classes */
+    cwds-accordion .card-container {
+      height: 0px;
+      display: block;
+      transition: height .3s;
+    }
+
+    cwds-accordion .card-header {
+      cursor: pointer;
+    }
+
+    cwds-accordion .collapsed {
+      display: block;
+      overflow: hidden;
+    }
+
+    .mb-20 {
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
+
 <body>
 
-	
-	
+
+
   <div class="official">
     <div class="container">
       <div class="row">
@@ -73,154 +119,286 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-            <h1>State of California employee holidays</h1>
+          <h1>State of California employee holidays</h1>
         </div>
       </div>
     </div>
   </div>
-      
+
   <div class="container">
-        
+
     <div class="row">
       <div class="col">
         <h2>Next holiday</h2>
-        
-     <div class="alert alert-secondary " role="alert">
-          <h3>December 25</h3>
-	     <h4>Wednesday</h4>
-          <h4>Christmas Day</h4>
-        </div>
-	      
-	<p><i class="far lead fa-calendar-alt"></i> <a href="#">Add State holidays to your calendar (iCalendar subscription)</a></p>
 
-        
+        <div class="alert alert-secondary " role="alert">
+          <p class="display-5 alert">December 25</p>
+          <p class="display-6 alert">Wednesday</p>
+          <p class="display-6 alert">Christmas Day</p>
+        </div>
+
+        <p><i class="far lead fa-calendar-alt"></i> <a href="#">Add State holidays to your calendar (iCalendar
+            subscription)</a></p>
+
+
         <h2>Upcoming holidays</h2>
-	<p>State of California employees have paid holidays on the following dates.</p>
-        <h3>2020</h3>
-        <table class="table">
-          <thead >
-            <tr>
-              <th  scope="col" class="lead">Date</th>
-              <th scope="col" class="lead">Day of the week</th>
-              <th scope="col" class="lead">Holiday</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>January 1</td>
-              <td>Wednesday</td>
-              <td>New Year's Day</td>
-            </tr>
-            <tr>
-              <td>January 20</td>
-              <td>Monday</td>
-              <td>Martin Luther King Jr. Day</td>
-            </tr>
-            <tr>
-              <td>February 17</td>
-              <td>Monday</td>
-              <td>Presidents' Day</td>
-            </tr>
-            <tr>
-              <td>March 31</td>
-              <td>Tuesday</td>
-              <td>Cesar Chavez Day</td>
-            </tr>
-            <tr>
-              <td>May 25</td>
-              <td>Monday</td>
-              <td>Memorial Day</td>
-            </tr>
-			      <tr>
-              <td>July 4 (<a href="#credits">holiday credit</a>)</td>
-              <td>Saturday</td>
-              <td>Independence Day</td>
-            </tr>
-            <tr>
-              <td>September 7</td>
-              <td>Monday</td>
-              <td>Labor Day</td>
-            </tr>
-            <tr>
-              <td>November 11</td>
-              <td>Wednesday</td>
-              <td>Veterans Day</td>
-            </tr>
-            <tr>
-              <td>November 26</td>
-              <td>Thursday</td>
-              <td>Thanksgiving Day</td>
-            </tr>
-            <tr>
-              <td>November 27</td>
-              <td>Friday</td>
-              <td>Day after Thanksgiving</td>
-            </tr>
-            <tr>
-              <td>December 25</td>
-              <td>Friday</td>
-              <td>Christmas Day</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    
-      <div class="container">
-	      <h2>Holiday credits</h2>
-	      
-        <div class="alert alert-secondary" role="alert">
-		
-          <p class="lead">Most employees get</p>
-          <h2>2 holiday credits</h2>
-          <p class="lead">July 1, 2020, to June 30, 2021</p>
+        <p>State of California employees have paid holidays on the following dates.</p>
+
+        <div class="container mb-20">
+
+          <cwds-accordion>
+            <div class="card">
+              <div class="card-header py-20" id="headingOne">
+                <button class="btn btn-link" type="button" aria-expanded="false">
+                  <h3>2020 holidays</h3>
+                </button>
+              </div>
+              <div class="card-container collapsed" aria-labelledby="headingOne">
+                <div class="card-body">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="lead">Date</th>
+                        <th scope="col" class="lead">Day of the week</th>
+                        <th scope="col" class="lead">Holiday</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>January 1</td>
+                        <td>Wednesday</td>
+                        <td>New Year's Day</td>
+                      </tr>
+                      <tr>
+                        <td>January 20</td>
+                        <td>Monday</td>
+                        <td>Martin Luther King Jr. Day</td>
+                      </tr>
+                      <tr>
+                        <td>February 17</td>
+                        <td>Monday</td>
+                        <td>Presidents' Day</td>
+                      </tr>
+                      <tr>
+                        <td>March 31</td>
+                        <td>Tuesday</td>
+                        <td>Cesar Chavez Day</td>
+                      </tr>
+                      <tr>
+                        <td>May 25</td>
+                        <td>Monday</td>
+                        <td>Memorial Day</td>
+                      </tr>
+                      <tr>
+                        <td>July 4 (<a href="#credits">holiday credit</a>)</td>
+                        <td>Saturday</td>
+                        <td>Independence Day</td>
+                      </tr>
+                      <tr>
+                        <td>September 7</td>
+                        <td>Monday</td>
+                        <td>Labor Day</td>
+                      </tr>
+                      <tr>
+                        <td>November 11</td>
+                        <td>Wednesday</td>
+                        <td>Veterans Day</td>
+                      </tr>
+                      <tr>
+                        <td>November 26</td>
+                        <td>Thursday</td>
+                        <td>Thanksgiving Day</td>
+                      </tr>
+                      <tr>
+                        <td>November 27</td>
+                        <td>Friday</td>
+                        <td>Day after Thanksgiving</td>
+                      </tr>
+                      <tr>
+                        <td>December 25</td>
+                        <td>Friday</td>
+                        <td>Christmas Day</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="container">
+                    
+                    <h3>Additional holidays</h3>
+  
+                    <div class="alert alert-secondary" role="alert">
+  
+                      <p class="lead">Most employees get</p>
+                      <p class="display-5 alert"><a href="#credits">1 personal holiday</a></p>
+                      <p class="lead">and</p>
+                      <p class="display-5 alert"><a href="#credits">1 holiday credit (8 hours)</a></p>
+                      <p class="lead">July 1, 2020, to June 30, 2021</p>
+                    </div>
+                    
+                  </div>  
+                </div>
+              </div>
+            </div>
+          </cwds-accordion>
         </div>
-		  <a name="credits"></a>
-        <h3>How holiday credits work</h3>
+
+        <div class="container mb-20">
+          <cwds-accordion>
+            <div class="card">
+              <div class="card-header py-20" id="headingOne">
+                <button class="btn btn-link" type="button" aria-expanded="false">
+                  <h3>2021 holidays</h3>
+                </button>
+              </div>
+              <div class="card-container collapsed" aria-labelledby="headingOne">
+                <div class="card-body">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="lead">Date</th>
+                        <th scope="col" class="lead">Day of the week</th>
+                        <th scope="col" class="lead">Holiday</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>January 1</td>
+                        <td>Friday</td>
+                        <td>New Year's Day</td>
+                      </tr>
+                      <tr>
+                        <td>January 18</td>
+                        <td>Monday</td>
+                        <td>Martin Luther King Jr. Day</td>
+                      </tr>
+                      <tr>
+                        <td>February 15</td>
+                        <td>Monday</td>
+                        <td>Presidents' Day</td>
+                      </tr>
+                      <tr>
+                        <td>March 31</td>
+                        <td>Wednesday</td>
+                        <td>Cesar Chavez Day</td>
+                      </tr>
+                      <tr>
+                        <td>May 31</td>
+                        <td>Monday</td>
+                        <td>Memorial Day</td>
+                      </tr>
+                      <tr>
+                        <td>July 4 (or <a href="#credits">July 5</a>)</td>
+                        <td>Sunday (or <a href="#credits">Monday</a>)</td>
+                        <td>Independence Day</td>
+                      </tr>
+                      <tr>
+                        <td>September 6</td>
+                        <td>Monday</td>
+                        <td>Labor Day</td>
+                      </tr>
+                      <tr>
+                        <td>November 11</td>
+                        <td>Thursday</td>
+                        <td>Veterans Day</td>
+                      </tr>
+                      <tr>
+                        <td>November 25</td>
+                        <td>Thursday</td>
+                        <td>Thanksgiving Day</td>
+                      </tr>
+                      <tr>
+                        <td>November 26</td>
+                        <td>Friday</td>
+                        <td>Day after Thanksgiving</td>
+                      </tr>
+                      <tr>
+                        <td>December 25 (<a href="#credits">holiday credit</a>)</td>
+                        <td>Saturday</td>
+                        <td>Christmas Day</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="container">
+                    <h3>Additional holidays</h3>
+  
+                    <div class="alert alert-secondary" role="alert">
+  
+                      <p class="lead">Most employees get</p>
+                      <p class="display-5 alert">1 personal holiday</p>
+                      <p class="lead">and</p>
+                      <p class="display-5 alert">1 holiday credit (8 hours)</p>
+                      <p class="lead">July 1, 2021, to June 30, 2022</p>
+                    </div>
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </cwds-accordion>
+        </div>
+
+        <div class="container">
+
+          <a name="credits">
+            <h3>Weekend holidays</h3>
             <ul>
-              <li>Employees can spend holiday credits on the days they choose between July 1 and June 30.</li>
-              <li>Every year, most employees get one personal holiday.</li>
-              <li>This year, most employees have an additional holiday credit because July 4 falls on a Saturday.</li>
-          </ul>
-      </div>  
-    </div>
-  </div>
-  
-  
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-          <p><em>See more details about <a href="https://www.calhr.ca.gov/employees/pages/state-holidays.aspx">State holidays</a></em>.</p>
+              <li>When a holiday is on a Saturday, most employees get one holiday credit (eight hours of leave).</li>
+              <li>When a holiday is on a Sunday, most employees have a paid holiday on the following Monday.</li>
+            </ul>
+            <h3>Holiday credits</h3>
+            <ul>
+              <li>Spend your holiday credit on the day or hours you choose.</li>
+            </ul>
+              <h3>Personal holidays</h3>
+            <ul>
+              <li>Most employees get one personal holiday every fiscal year (July 1 to June 30).</li>
+              <li>Take your personal holiday on the day you choose.</li> 
+              <li>Most employees get personal holidays after they've worked with the State for six months.</li>
+            </ul>
+          </a>
+        </div>
       </div>
     </div>
+
   </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <hr>
-      </div>
-    </div>
-  </div>
-
-    
-  <div class="footer">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <p>
-            2019 State of California 
-          </p>
+          <p><em>More about <a href="https://www.calhr.ca.gov/employees/pages/state-holidays.aspx">State
+                holidays</a></em>.</p>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="alphabar">
     <div class="container">
-      <p>This is an alpha project and a work in progress (<a href="https://medium.com/cadotgov">Details</a>)</p>
+      <div class="row">
+        <div class="col-md-12">
+          <hr>
+        </div>
+      </div>
     </div>
-  </div>
+
+
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>
+              2019 State of California
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alphabar">
+      <div class="container">
+        <p>This is an alpha project and a work in progress (<a href="https://medium.com/cadotgov">Details</a>)</p>
+      </div>
+    </div>
+
+    <script src="https://cwds.dev/docs/cali/js/accordion/index.js" defer async></script>
 
 </body>
+
 </html>
