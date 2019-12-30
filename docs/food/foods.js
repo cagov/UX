@@ -66,7 +66,7 @@ function setupMapInteractions() {
   
   document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
 */  
-  map.loadImage("burrito.png", function (error, image) {
+  map.loadImage("marker.png", function (error, image) {
     if (error) throw error;
     map.addImage("custom-marker", image);
 
@@ -80,7 +80,7 @@ function setupMapInteractions() {
         },
         'layout': {
           'icon-image': 'custom-marker',
-          'icon-size': 0.15,
+          'icon-size': 0.075,
           'icon-allow-overlap': true
         }
       }
@@ -133,7 +133,7 @@ function displaySortedResults(coords, data) {
       return haversine(coords, a, { format: 'geojson', unit: 'mile' }) - haversine(coords, b, { format: 'geojson', unit: 'mile' })
     })
     let outputLocs = [];
-    for (var i = 0; i < 30; i++) {
+    for (var i = 0; i < 9; i++) {
       let food = sortedLocs[i];
       if (food) {
         food.properties.distance = haversine(coords, food, { format: 'geojson', unit: 'mile' });
