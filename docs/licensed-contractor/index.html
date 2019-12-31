@@ -25,6 +25,7 @@
   <link rel="icon" href="https://cwds.dev/docs/4.3/assets/img/favicons/favicon.ico">
   <meta name="msapplication-config" content="https://cwds.dev/docs/4.3/assets/img/favicons/browserconfig.xml">
   <meta name="theme-color" content="#000000">
+	<link href="https://california.azureedge.net/cdt/statetemplate/6.0.0/css/cagov.font-only.min.css" rel="stylesheet" />
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -40,6 +41,111 @@
         font-size: 3.5rem;
       }
     }
+	  
+	  /* ---- Custom Styles to migrate to CWDS ---*/
+	  
+a.btn {
+	padding: 10px;
+}
+	  
+cwds-step-list li .step-interior {
+    padding-bottom: 20px;
+}
+	  
+.checkbox {
+	vertical-align: text-top;
+}	 
+	  
+.list-group-item.active {
+    background-color: #e5e8e4;
+    border-color: #e5e8e4;
+	color: #000;
+}	  
+	  
+.list-group-item1 {    
+	background-color: #005279;
+    border-color: #005279;
+}
+	  
+.list-group-item.active > a  {
+    color: #073984;
+}
+	  
+ul > li.list-group-item.and-or-lead.lead.list-open {
+   border-bottom-width: 0!important;
+}
+	
+	  
+.badge-primary {
+
+    background-color: #005279!important;
+}
+	  
+	  
+.show {
+    float: right;
+    font-size: 15px;
+    color: #0071bc;
+    text-decoration: underline;
+}
+	  
+.hide {
+    float: right;
+    font-size: 15px;
+    color: #0071bc;
+    text-decoration: underline;
+}
+	  
+cwds-step-list li .hide {
+    display: none;
+}
+	  
+cwds-step-list li.list-group-item.lead.list-open > div > span.hide {
+    display: none;
+}
+
+
+
+	  
+cwds-step-list li.list-open .show {
+    display: none;
+}
+	  
+cwds-step-list li.list-open .hide {
+    display: block;
+}
+	  
+.lead {
+
+    font-weight: 400;
+}
+	 
+	  
+.step-list-and-or {	  
+	border-radius: 0!important;
+    width: fit-content;
+    padding: 0px 5px;
+}	 
+	  
+ul > span.nested-and-or {
+    border-left: #ccc solid 4px;
+    padding: 5px;
+    line-height: 2rem;
+}	  
+	  
+cwds-step-list li .unstyled {
+	
+    border-left-width: 0!important;
+    width: fit-content;
+    list-style-type: none;
+}
+	  
+	  .no-border {
+		  
+		  border:0!important;
+	  }
+
+	  
   </style>
 </head>
 
@@ -84,7 +190,7 @@
               <span class="step-description">
                 <span class="list-number">1</span>
                 Decide what type of contractor you need
-              </span>
+              </span><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details"><span class="step-interior">
                 <br>
                 <p><strong>General Engineering Contractors</strong> and <strong>General Building Contractors</strong> usually oversee projects and manage subcontractors for a job.</p> 
@@ -101,10 +207,10 @@
               <span class="step-description">
                 <span class="list-number">2</span>
                 Check if you need a building permit
-              </span>
+              </span><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details"><span class="step-interior">
                 <br>
-                <a href="https://www.cslb.ca.gov/Consumers/Hire_A_Contractor/Building_Permit_Requirements.aspx">Check with your local building department</a>
+				  <span class="ca-gov-icon-link lead pr-2"></span><a href="https://www.cslb.ca.gov/Consumers/Hire_A_Contractor/Building_Permit_Requirements.aspx">Check with your local building department</a>
               </span>
             </div>
             </li>
@@ -112,48 +218,50 @@
               <span class="step-description">
                 <span class="list-number">3</span>
                 Find at least three licensed contractors
-              </span>
+              </span><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details"><span class="step-interior">
               <br>
                 <ul class="unstyled pt-2 pl-0">
                     <li class="list-group-item unstyled">Ask friends and family for contractors they’d recommend.</li>
                     <li class="list-group-item unstyled">Search online and read reviews, but consider the source.</li>
                     <li class="list-group-item unstyled">For repairs, your homeowners insurance might cover the cost and suggest contractors for you. </li>
+					<li class="list-group-item unstyled">For repairs, your homeowners insurance might cover the cost and suggest contractors for you. </li>
                 </ul>
                 <br>
-                <p><a href="http://cslb.ca.gov/OnlineServices/CheckLicenseII/ZipCodeSearch.aspx">Find licensed contractors in your city</a></p>
-              </span></div>
+                <p><span class="ca-gov-icon-online-services lead pr-2"></span><a href="http://cslb.ca.gov/OnlineServices/CheckLicenseII/ZipCodeSearch.aspx">Find licensed contractors in your city</a></p>
+              </span><span class="show">Show</span><span class="hide">Hide</span></div>
             </li>
             <li class="list-group-item lead">
               <span class="step-description">
                 <span class="list-number">4</span>
                 Look up their licenses
-              </span>
+              </span><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details"><span class="step-interior"><br><p>Contractors must have a license to do work that costs $500 or more.</p> 
 
                 <p>To look up their licenses, you could:</p>
                 <ul class="unstyled pt-2 pl-0">
-                  <li class="list-group-item unstyled">Call (800) 321-2752</li>
-                  <li class="list-group-item unstyled"><a href="https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/CheckLicense.aspx">Check your contractors’ licenses online</a></li>
+                  <li class="list-group-item unstyled no-border">Call (800) 321-2752</li>
+					  <span class="nested-and-or">OR</span>
+                  <li class="list-group-item unstyled no-border"><a href="https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/CheckLicense.aspx">Check your contractors’ licenses online</a></li>
               </ul>
-                </span></div>
+                </span><span class="show">Show</span><span class="hide">Hide</span></div>
             </li>
             <li class="list-group-item lead">
               <span class="step-description">
                 <span class="list-number">5</span>
                 Get at least three price estimates in writing
-              </span>
+              </span><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details"><span class="step-interior"><br>
                 <p>Compare your contractors' costs for the same project.</p> 
 
                 <p>Beware of a price estimate that’s much lower than the others. They may do the job with cheap materials or poor quality of work.</p> 
                 </span></div>
             </li>
-            <li class="list-group-item lead">
+            <li class="list-group-item and-or-lead lead">
               <span class="step-description">
                 <span class="list-number">6</span>
                 Ask your contractor to share their insurance
-              </span>
+              </span><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details"><span class="step-interior">
                 <br>
                 <p>You might be held responsible for workers’ injuries if your contractor doesn’t have the right insurance.</p> 
@@ -169,9 +277,9 @@
             </li>
             <li class="list-group-item lead">
               <span class="step-description">
-                <span class="list-number">and</span>
+                <span class="list-number step-list-and-or">and</span>
                 Confirm their contact information
-              </span>
+              </span><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details"><span class="step-interior">
                 <br>
                 <p>Make sure your contractor has a current business address and phone number. If their work needs repair, you’ll want to be able to find them after you’ve paid the last bill.</p> 
@@ -182,7 +290,7 @@
               <span class="step-description">
                 <span class="list-number">7</span>
                 Contact their references
-              </span>
+              </span><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details"><span class="step-interior">
                 <br>
                 <p>Ask your contractor for the contact information of their former customers.</p> 
@@ -196,7 +304,7 @@
               <span class="step-description">
                 <span class="list-number">8</span>
                 Ask to see your contractor’s pocket license
-              </span>
+              </span><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details"><span class="step-interior">
                 <br>
 
@@ -209,7 +317,7 @@
               <span class="step-description">
                 <span class="list-number">9</span>
                 Sign a contract
-              </span>
+              </span><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details"><span class="step-interior">
                 <br>
                 <p><a href="https://www.cslb.ca.gov/Consumers/Hire_A_Contractor/Contracts_And_Binding_Agreements.aspx">What to look for in your contract</a></p>
@@ -219,7 +327,7 @@
               <span class="step-description">
                 <span class="list-number">10</span>
                 Pay no more than $1,000 or 10 percent down, whichever is less
-              </span>
+              </span><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details"><span class="step-interior">
                 <br>
                 <p>To protect your money, never pay in cash.</p>
