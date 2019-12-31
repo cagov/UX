@@ -107,6 +107,17 @@ li.lead {
     font-weight: 400;
 }
 	  
+.list-group-item-action {
+    color: #1e1f1f;
+}
+	  
+.list-group-item-action:active :hover {
+    color: #000;
+}
+	  .list-group-item-action:hover {
+    color: #000;
+}
+	  
 
 </style>
 	
@@ -153,7 +164,7 @@ li.lead {
         <p class="lead">A Cal Grant is money for college you don’t have to pay back. There are two steps to apply for a Cal Grant.</p>
         <cwds-step-list>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item lead">
+            <li class="list-group-item lead list-group-item-action">
               <span class="step-description">
                 <span class="list-number">1</span> Apply for financial aid</span><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details"><span class="step-interior"><br>Submit the Free Application for Federal Student Aid (FAFSA) or the California Dream Act Application (CADAA).
@@ -161,7 +172,7 @@ li.lead {
           <a class="btn btn-secondary btn-sm mt-3" href="#" role="button">Apply for financial aid</a>
                 </span></div>
             </li>
-            <li class="list-group-item lead">
+            <li class="list-group-item lead list-group-item-action">
               <span class="step-description">
                 <span class="list-number">2</span>
                 Submit your Cal Grant GPA form
