@@ -1,20 +1,36 @@
 ---
 name: User Story
 about: User story or user need
-title: User Story
-labels: UX
+title: User Needs
+labels: UX, User Story
 assignees: ''
 
 ---
 
-**As a ______**
-A clear and concise description of the person/who
+As a:
+I need to:
+So I can:
 
-**I need to ______**
-A clear and concise description of what the person needs to happen.
+*Content Type*  Quick Answer, Step by Step, Transaction Landing page, Calculator (smart answer), Location, News, Service Page (Dept), homepage
 
-**So I can ______**
-A clear and concise description of the action they want to accomplish
+*Baseline (use screenshots)*
+- URL
+- Speed
+- Accessibility
+- Readability, Service 
+- Usability
 
-**Include any of the following, if applicable**
-Key contacts/SMEs, what do we think we know, any existing data, ptential content types, level of complexity
+*Process (add links to relevant Github issues, prototypes)*
+"Done when"
+
+- [ ] Content Research [document]
+- [ ] User Research
+- [ ] Content Prototype [document]
+- [ ] Design Prototype 
+- [ ] Accessible
+- [ ] Responsive
+- [ ] User Testing 
+- [ ] Iterating
+- [ ] End to End Testing
+- [ ] Live 
+- [ ] Production Testing
