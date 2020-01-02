@@ -238,6 +238,23 @@ mark {
   color: #fff;
 }
 
+.btn-primary {
+    color: #fff;
+    background-color: #000000;
+    border-color: #000000;
+}
+
+a.btn {
+    background: #000 ;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #005279;
+    border-color: #005279;
+}
+
 /* Footer */
 
 .footer {
