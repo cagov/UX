@@ -13,19 +13,20 @@ So I can...
 
 **Content Type**  Quick Answer, Step by Step, Transaction Landing page, Calculator (smart answer), Location, News, Service Page (Dept), homepage
 
-**Baseline (use screenshots)**
+**Baseline (use screenshots and links)**
 - URL
 - Speed
 - Accessibility
 - Readability, Service 
 - Usability
 
-**Process (add links to relevant Github issues, prototypes)**
+**Process (add links to relevant Github issues and prototypes)**
+
 "Done when"
 
-- [ ] Content Research [document]
-- [ ] User Research
-- [ ] Content Prototype [document]
+- [ ] Content Research [include document]
+- [ ] User Research [include document]
+- [ ] Content Prototype [Include document]
 - [ ] Design Prototype 
 - [ ] Accessible
 - [ ] Responsive
