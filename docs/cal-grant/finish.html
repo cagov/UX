@@ -179,7 +179,7 @@
         <p class="lead"> You’ve applied for a Cal Grant as long as you:</p>
         <ul class="list-group list-group-flush ">
           <li class="list-group-item"><input class="checkbox js-apply-aid" type="checkbox"
-              onclick="this.parentNode.classList.toggle('active')" name="apply-aid"
+              onclick="this.parentNode.classList.toggle('active'); maybeThanks();" name="apply-aid"
               aria-label="Checkbox for following text input">
             applied for financial aid by the deadline</li>
           <li class="list-group-item"><input class="checkbox js-gpa-submit" name="gpa-submit" type="checkbox"
@@ -194,11 +194,10 @@
       <script>
         function maybeThanks() {
           let thanksDisplayed = document.querySelector('.js-thanks-for-applying').classList.contains('d-none');
-
           if (document.querySelector('.js-gpa-submit').checked && document.querySelector('.js-apply-aid').checked) {
             document.querySelector('.js-thanks-for-applying').classList.remove('d-none');
           } else {
-            if (thanksDisplayed) {
+            if (!thanksDisplayed) {
               document.querySelector('.js-thanks-for-applying').classList.add('d-none');
             }
           }
