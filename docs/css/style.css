@@ -228,6 +228,8 @@ a.btn {
 
 /* Footer */
 
+/* Footer */
+
 .footer {
   border-top: 1px solid #f1f1f1;
   background-color: #fff;
@@ -235,9 +237,11 @@ a.btn {
   padding-bottom: 70px;
   padding-top: 50px;
 }
+
 .footer a, .footer a:visited, .footer a:hover, .footer {
-  color: #000000;
+  color: #000;
 }
+
 
 /* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) { 
