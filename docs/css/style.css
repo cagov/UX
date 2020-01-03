@@ -89,6 +89,11 @@ mark {
   font-size: 105%;
 }
 
+.checkbox {
+	vertical-align: text-top;
+	margin-top: 5px;
+}
+
 /* Letter */
 
 .letter {
@@ -226,7 +231,18 @@ a.btn {
     border-color: #005279;
 }
 
-/* Footer */
+.list-number {
+    position: relative;
+    display: inline-block;
+    width: 33px;
+    height: 33px;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 50%;
+    border-color: #cccccc;
+    text-align: center;
+    line-height: normal;
+}
 
 /* Footer */
 
