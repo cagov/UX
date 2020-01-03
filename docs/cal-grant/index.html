@@ -12,6 +12,7 @@
   <!-- Bootstrap core CSS -->
   <link href="https://cwds.dev/docs/4.3/dist/css/bootstrap.css" rel="stylesheet">
   <link href="https://cwds.dev/docs/4.3/assets/css/docs.css" rel="stylesheet" />
+<link href="../css/style.css" rel="stylesheet" />
 
   <!-- Favicons -->
   <link rel="apple-touch-icon" href="https://cwds.dev/docs/4.3/assets/img/favicons/apple-touch-icon.png"
@@ -20,7 +21,7 @@
     type="image/png">
   <link rel="icon" href="https://cwds.dev/docs/4.3/assets/img/favicons/favicon-16x16.png" sizes="16x16"
     type="image/png">
-  <link rel="manifest" href="https://cwds.dev/docs/4.3/assets/img/favicons/manifest.json">
+
   <link rel="mask-icon" href="https://cwds.dev/docs/4.3/assets/img/favicons/safari-pinned-tab.svg" color="#1d1a16">
   <link rel="icon" href="https://cwds.dev/docs/4.3/assets/img/favicons/favicon.ico">
   <meta name="msapplication-config" content="https://cwds.dev/docs/4.3/assets/img/favicons/browserconfig.xml">
@@ -45,6 +46,13 @@
 	  
 a.btn {
 	padding: 10px;
+	background: #000 ;
+}
+	  
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #005279;
+    border-color: #005279;
 }
 	  
 cwds-step-list li .step-interior {
@@ -53,6 +61,7 @@ cwds-step-list li .step-interior {
 	  
 .checkbox {
 	vertical-align: text-top;
+	margin-top: 5px;
 }	 
 	  
 .list-group-item.active {
@@ -114,7 +123,7 @@ li.lead {
 .list-group-item-action:active :hover {
     color: #000;
 }
-	  .list-group-item-action:hover {
+.list-group-item-action:hover {
     color: #000;
 }
 	  
@@ -155,7 +164,7 @@ li.lead {
     </div>
   </div>
 
-  <div class="container">
+  <div class="container pb-5">
     <div class="row">
       <div class="col-md-9">
 		  <div class="alert alert-warning" role="alert">
@@ -169,7 +178,7 @@ li.lead {
                 <span class="list-number">1</span> Apply for financial aid</span><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details"><span class="step-interior"><br>Submit the Free Application for Federal Student Aid (FAFSA) or the California Dream Act Application (CADAA).
 <br>
-          <a class="btn btn-secondary btn-sm mt-3" href="#" role="button">Apply for financial aid</a>
+          <a class="btn btn-secondary btn-sm mt-3" href="step-1.html" role="button">Apply for financial aid</a>
                 </span></div>
             </li>
             <li class="list-group-item lead list-group-item-action">
@@ -178,7 +187,7 @@ li.lead {
                 Submit your Cal Grant GPA form
               </span><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details"><span class="step-interior"><br>You’ll fill out a one-page form and get it signed by an official from your high school or college. There’s no need to submit a transcript. <br>   
-                <a class="btn btn-secondary btn-sm mt-3" href="#" role="button">Submit your GPA form</a></span></div>
+                <a class="btn btn-secondary btn-sm mt-3" href="step-2.html" role="button">Submit your GPA form</a></span></div>
 			  
             </li>
             
@@ -226,34 +235,21 @@ li.lead {
 </div>
 	
 	
-
-    <div class="footer alpha-footer">
+    <div class="footer">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-			  <ul class="list-group list list-group-horizontal-lg flex-fill list-group-flush">
-				  <a href="#"><li class="list-group-item alpha-footer ">Conditions of Use</li></a>
-				  <a href="#"><li class="list-group-item alpha-footer">Privacy Policy</li></a>
-				  <a href="#"><li class="list-group-item alpha-footer">Accessibility</li></a>
-				  <a href="#"><li class="list-group-item alpha-footer">Technical Issues</li></a>
-				  <a href="#"><li class="list-group-item alpha-footer">Contact Us</li></a>
-				  <a href="#"><li class="list-group-item alpha-footer">Help</li></a>
-				</ul>
+            <p>
+            &copy; 2019 State of California </p>
           </div>
-			   <p class="col-md-12 pt-1 text-right">
-              &copy; 2019 State of California 
-            </p>	
         </div>
       </div>
     </div>
-
-
-
-    <div class="alphabar">
-      <div class="container">
-        <p>This is an alpha project and a work in progress (<a href="https://medium.com/cadotgov">Details</a>)</p>
-      </div>
+  <div class="alphabar">
+    <div class="container">
+      <p>This is an alpha project and a work in progress (<a href="https://medium.com/cadotgov">Details</a>)</p>
     </div>
+  </div>
 <script src="https://cwds.dev/docs/cali/js/accordion/index.js" defer async></script>
 		  <!--- Custom Scripts to migrate to CWDS ----->	
 	

@@ -9,35 +9,26 @@
   <meta name="author" content="Alpha.CA.gov - State of California">
   <meta name="google-site-verification" content="aBJHYsPN6AfEPViMwkLKVpjzhOE9wF_DMzaX39EwZRM" />
 
-  <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
-  <link rel="manifest" href="/manifest.json">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
-  <meta name="theme-color" content="#ffffff">
-  <meta property="og:image" content="img/thumbnail.png">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:width" content="630">
+   <!-- Favicons -->
+  <link rel="apple-touch-icon" href="https://cwds.dev/docs/4.3/assets/img/favicons/apple-touch-icon.png"
+    sizes="180x180">
+  <link rel="icon" href="https://cwds.dev/docs/4.3/assets/img/favicons/favicon-32x32.png" sizes="32x32"
+    type="image/png">
+  <link rel="icon" href="https://cwds.dev/docs/4.3/assets/img/favicons/favicon-16x16.png" sizes="16x16"
+    type="image/png">
+	
   <meta property="og:title" content="Minimum wage in California - Alpha.CA.gov">
   <meta property="og:description" content="Find the minimum wage in your California city and the State of California. Compare your city's minimum wage to other cities in California.">
   <meta property="og:url" content="https://alpha.ca.gov">
   <title>Minimum wage in California - Alpha.CA.gov</title>
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="../css/style.css" rel="stylesheet" />
+	
+	  <!-- Bootstrap core CSS -->
+  <link href="https://cwds.dev/docs/4.3/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cwds.dev/docs/4.3/assets/css/docs.css" rel="stylesheet" />
+  <link href="../css/style.css" rel="stylesheet" />
   <link rel="stylesheet" href="../libs/awesomplete.css" />
+
+
   <script type="text/javascript" src="../libs/awesomplete.min.js"></script>
   <style>
   /* bootstrap style utility classes */
@@ -90,7 +81,7 @@ cwds-accordion .card-header .button {
     </div>
   </nav>
 
-  <div class="jumbotron text-center">
+  <div class="jumbotron text-left">
     <div class="container">
       <h1>Minimum wage in California</h1>
     </div>
@@ -98,9 +89,7 @@ cwds-accordion .card-header .button {
 
   <div class="container">
     <div class="row">
-      <div class="col-md-2">
-        &nbsp;
-      </div>
+    
       <div class="col-md-8">
 
         <h2>Find the minimum wage in your city</h2>
@@ -111,7 +100,7 @@ cwds-accordion .card-header .button {
             <input class="city-search form-control" data-multiple id="location-query"
               data-list="City of Berkeley, City of Cupertino, City of El Cerrito, Emeryville, Los Altos, Milpitas, Mountain View, Oakland, Palo Alto, San Diego, San Francisco, San Jose, San Mateo, Santa Clara, Sunnyvale, Alameda, Belmont, Daly City, Fremont, Los Angeles (City), Los Angeles County, Malibu, Menlo Park, Novato, Pasadena, Petaluma, Redwood City, Richmond, San Leandro, Santa Monica, Santa Rosa, Sonoma, South San Francisco" />
           </div>
-          <button type="submit" class="btn btn-primary js-wage-lookup">See your minimum wage</button>
+          <button type="submit" class="btn btn-primary js-wage-lookup mt-3">See your minimum wage</button>
         </form>
         <p></p>
         <div id="answer"></div>
@@ -140,21 +129,19 @@ cwds-accordion .card-header .button {
         <div class="display-wage-by-city"></div>
         <p></p>
       </div>
-      <div class="col-md-2">
-      </div>
+    
     </div>
   </div>
-  <div class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <p>
-            State of California Website
-          </p>
+     <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>
+            &copy; 2019 State of California </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   <div class="alphabar">
     <div class="container">
       <p>This is an alpha project and a work in progress (<a href="https://medium.com/cadotgov">Details</a>)</p>
