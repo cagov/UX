@@ -291,28 +291,40 @@
         <div class="container">
 
           <a name="credits">
-            <h3>Weekend holidays</h3>
-            <ul>
-              <li>When a holiday is on a Saturday, most employees get one holiday credit (eight hours of leave).</li>
-              <li>When a holiday is on a Sunday, most employees have a paid holiday on the following Monday.</li>
-            </ul>
-            <h3>Holiday credits</h3>
-            <ul>
-              <li>Spend your holiday credit on the day or hours you choose.</li>
-            </ul>
-              <h3>Personal holidays</h3>
-            <ul>
-              <li>Most employees get one personal holiday every fiscal year (July 1 to June 30).</li>
-              <li>Take your personal holiday on the day you choose.</li> 
-              <li>Most employees get personal holidays after they've worked with the State for six months.</li>
-            </ul>
+          <cwds-accordion class="js-credits">
+            <div class="card">
+              <div class="card-header py-20" id="headingOne">
+                <button class="btn btn-link js-credit-button" type="button" aria-expanded="false">
+                  <h3 class="pl-3">More details about holidays</h3>
+                </button>
+              </div>
+              <div class="card-container collapsed" aria-labelledby="headingOne">
+                <div class="card-body">
+                  <h3>Weekend holidays</h3>
+                  <ul>
+                    <li>When a holiday is on a Saturday, most employees get one holiday credit (eight hours of leave).</li>
+                    <li>When a holiday is on a Sunday, most employees have a paid holiday on the following Monday.</li>
+                  </ul>
+                  <h3>Holiday credits</h3>
+                  <ul>
+                    <li>Spend your holiday credit on the day or hours you choose.</li>
+                  </ul>
+                    <h3>Personal holidays</h3>
+                  <ul>
+                    <li>Most employees get one personal holiday every fiscal year (July 1 to June 30).</li>
+                    <li>Take your personal holiday on the day you choose.</li> 
+                    <li>Most employees get personal holidays after they've worked with the State for six months.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            </cwds-accordion>
           </a>
         </div>
       </div>
     </div>
 
   </div>
-
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -346,7 +358,17 @@
     </div>
   </div>
     <script src="https://cwds.dev/docs/cali/js/accordion/index.js" defer async></script>
-
+    <script>
+      document.querySelectorAll('a').forEach(function(link) {
+        if(link.href.indexOf('#credits')) {
+          link.addEventListener('click',function(event) {
+            let height = document.querySelector('.js-credits .card-container').style.height;
+            if(!height || height == '0px') {
+              document.querySelector('.js-credit-button').click();
+            }
+          })
+        }
+      })
+    </script>
 </body>
-
 </html>
