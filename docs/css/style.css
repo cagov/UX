@@ -214,15 +214,27 @@ mark {
   color: #fff;
 }
 
+
+a.btn {
+    background: #000 ;
+    color: #fff;
+}
+
 .btn-primary {
     color: #fff;
     background-color: #000000;
     border-color: #000000;
 }
 
-a.btn {
-    background: #000 ;
-    color: #fff;
+.btn-light {
+    color: #000;
+    background-color: #ccc;
+    border-color: #ccc;
+}
+
+.btn-primary:hover {
+    background-color: #005279;
+    border-color: #005279;
 }
 
 .btn-secondary:hover {
