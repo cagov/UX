@@ -42,51 +42,10 @@
   <link href="https://cwds.dev/docs/4.3/assets/css/docs.css" rel="stylesheet" />
   <link href="../css/style.css" rel="stylesheet" />
 
-  <style>
-    .display-4,
-    .display-3,
-    .display-4,
-    .display-5,
-    .display-6 {
-      font-family: 'Public Sans ExtraBold', sans-serif;
-    }
-
-    .display-5 {
-      font-size: 1.5rem;
-    }
-
-    .display-6 {
-      font-size: 1.2rem;
-    }
-
-    .display-6.alert {
-      padding: .2rem 1.25rem;
-    }
-
-    /* accordion component specific classes */
-    cwds-accordion .card-container {
-      height: 0px;
-      display: block;
-      transition: height .3s;
-    }
-
-    cwds-accordion .card-header {
-      cursor: pointer;
-    }
-
-    cwds-accordion .collapsed {
-      display: block;
-      overflow: hidden;
-    }
-
-    .mb-20 {
-      margin-bottom: 20px;
-    }
-  </style>
+  
 </head>
 
 <body>
-
 
 
   <div class="official">
@@ -125,9 +84,9 @@
         <h2>Next holiday</h2>
 
         <div class="alert alert-secondary " role="alert">
-          <p class="display-5 alert">December 25</p>
-          <p class="display-6 alert">Wednesday</p>
-          <p class="display-6 alert">Christmas Day</p>
+          <p class="display-4 alert">December 25</p>
+          <p class="display-5 alert">Wednesday, Christmas Day</p>
+         
         </div>
 
         <p><i class="far lead fa-calendar-alt"></i> <a href="https://fa-go-alph-d-002.azurewebsites.net/StateHolidayCalendar.ics" download>Add State holidays to your calendar (iCalendar
@@ -143,7 +102,7 @@
             <div class="card">
               <div class="card-header py-20" id="headingOne">
                 <button class="btn btn-link" type="button" aria-expanded="false">
-                  <h3>2020 holidays</h3>
+                  <h3 class="pl-3">2020 holidays</h3>
                 </button>
               </div>
               <div class="card-container collapsed" aria-labelledby="headingOne">
@@ -239,7 +198,7 @@
             <div class="card">
               <div class="card-header py-20" id="headingOne">
                 <button class="btn btn-link" type="button" aria-expanded="false">
-                  <h3>2021 holidays</h3>
+                  <h3 class="pl-3">2021 holidays</h3>
                 </button>
               </div>
               <div class="card-container collapsed" aria-labelledby="headingOne">
