@@ -43,7 +43,9 @@
     }
 	  
 /* ---- Custom Styles to migrate to CWDS ---*/
-	  
+.list-group input[type="checkbox"] {
+  margin-right: 8px;
+}
 a.btn {
 	padding: 10px;
 	background: #000 ;
@@ -176,7 +178,11 @@ li.lead {
             <li class="list-group-item lead list-group-item-action">
               <span class="step-description">
                 <span class="list-number">1</span> Apply for financial aid</span><span class="show">Show</span><span class="hide">Hide</span>
-              <div class="details"><span class="step-interior"><br>Submit the Free Application for Federal Student Aid (FAFSA) or the California Dream Act Application (CADAA).
+              <div class="details"><span class="step-interior"><br>Submit the Free Application for Federal Student Aid (FAFSA) 
+		      
+		      <br><i>or</i>
+		      
+		      <br>the California Dream Act Application (CADAA)
 <br>
           <a class="btn btn-secondary btn-sm mt-3" href="step-1.html" role="button">Apply for financial aid</a>
                 </span></div>
@@ -186,7 +192,7 @@ li.lead {
                 <span class="list-number">2</span>
                 Submit your Cal Grant GPA form
               </span><span class="show">Show</span><span class="hide">Hide</span>
-              <div class="details"><span class="step-interior"><br>You’ll fill out a one-page form and get it signed by an official from your high school or college. There’s no need to submit a transcript. <br>   
+              <div class="details"><span class="step-interior"><br>You’ll fill out a one-page form and get it signed by any official from your high school or college. There’s no need to submit a transcript. <br>   
                 <a class="btn btn-secondary btn-sm mt-3" href="step-2.html" role="button">Submit your GPA form</a></span></div>
 			  
             </li>
@@ -204,15 +210,17 @@ li.lead {
 				  <li class="list-group-item list-group-item-action"><input class="checkbox" type="checkbox" onclick="this.parentNode.classList.toggle('active')" aria-label="Checkbox for following text input">
 					  Be a California resident for one year or more </li>
 				  <li class="list-group-item list-group-item-action"><input class="checkbox" type="checkbox" onclick="this.parentNode.classList.toggle('active')" aria-label="Checkbox for following text input">
-			      Attend an <a href="https://www.csac.ca.gov/post/cal-grant-eligible-school-list-0">eligible California college </a></li>
+			      Attend an <a href="https://www.csac.ca.gov/sites/main/files/file-attachments/2020_21_eligible_cal_grant_schools.pdf?1576277804">eligible California college </a></li>
 				  <li class="list-group-item list-group-item-action"><input class="checkbox" type="checkbox" onclick="this.parentNode.classList.toggle('active')" aria-label="Checkbox for following text input">
 			      Not already have a bachelor&rsquo;s or professional degree</li>
 				  <li class="list-group-item list-group-item-action"><input class="checkbox" type="checkbox" onclick="this.parentNode.classList.toggle('active')" aria-label="Checkbox for following text input">
-			      Have U.S. citizenship, or be <a href="https://studentaid.gov/understand-aid/eligibility/requirements/non-us-citizens#can-i-get-aid">eligible for federal student aid</a>, or be <a href="https://admission.universityofcalifornia.edu/tuition-financial-aid/tuition-cost-of-attendance/ab-540-nonresident-tuition-exemption.html">eligible for AB540</a></li>
+			      Have U.S. citizenship
+			      <br>or be <a href="https://studentaid.gov/understand-aid/eligibility/requirements/non-us-citizens#can-i-get-aid"> eligible for federal student aid</a>
+			      <br>or be <a href="https://admission.universityofcalifornia.edu/tuition-financial-aid/tuition-cost-of-attendance/ab-540-nonresident-tuition-exemption.html">eligible for AB540</a></li>
 				  <li class="list-group-item list-group-item-action"><input class="checkbox" type="checkbox" onclick="this.parentNode.classList.toggle('active')" aria-label="Checkbox for following text input">
-			      Need help to pay for your college&rsquo;s tuition</li>  
+			      Need financial help to pay for your college&rsquo;s tuition</li>  
 				  <li class="list-group-item list-group-item-action"><input class="checkbox" type="checkbox" onclick="this.parentNode.classList.toggle('active')" aria-label="Checkbox for following text input">
-			      Have family income and assets (such as savings) <a href="https://www.csac.ca.gov/post/cal-grant-income-and-asset-ceilings">at or below the minimum</a> </li>
+			      Have family income and assets (such as savings) <a href="https://www.csac.ca.gov/sites/main/files/file-attachments/2020-21_income_and_asset_ceilings_for_new_applicants_and_renewing_recipients.pdf?1565127243">at or below the minimum</a> </li>
 				 <li class="list-group-item list-group-item-action"><input class="checkbox" type="checkbox" onclick="this.parentNode.classList.toggle('active')" aria-label="Checkbox for following text input">
 				  Be enrolled or plan to enroll in a program that leads to an undergraduate degree or certificate</li>				
 				<li class="list-group-item list-group-item-action"><input class="checkbox" type="checkbox" onclick="this.parentNode.classList.toggle('active')" aria-label="Checkbox for following text input">
