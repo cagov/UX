@@ -141,27 +141,49 @@ function displaySortedResults(coords, data) {
       }
     }
     let html = `<ul class="pl-0 card-set">
-      ${outputLocs.map((item) => {
-      let food = item.properties
-      return `<li class="card mb-20">
-        <div class="card-body">
-          <p>${food.distance.toFixed(2)} miles away</p>
-          <p>${food.title}</p>
-          <p>${food.address}<br>
-            ${food.address2}<br>
-          <a href="${food.website}" target="_blank">Visit ${food.title}'s website</a><br>
-          <p>${food.phone}</p>
-          <a href="geo:${item.geometry.coordinates[1]},${item.geometry.coordinates[0]}" onclick="mapsSelector(${item.geometry.coordinates[1]},${item.geometry.coordinates[0]})" target="_blank"class="btn btn-primary">Get directions</a>
+      ${outputLocs.map((item, itemindx) => {
+        let food = item.properties
+        let displayClass = '';
+        if(itemindx > 2) {
+          displayClass = 'd-none';
+        }
+        let showMore = '';
+        if(itemindx == 2) {
+          showMore = `<li class="card mb-20 js-expand-link">
+            <div class="card-body">
+              <p>
+                <a href="#" onclick="showAll()">Show more &raquo; &raquo;</a>
+              </p>
+            </div>
+          </li>`;
+        }
+        return `<li class="card mb-20 ${displayClass}">
+          <div class="card-body">
+            <p>${food.distance.toFixed(2)} miles away</p>
+            <p>${food.title}</p>
+            <p>${food.address}<br>
+              ${food.address2}<br>
+            <a href="${food.website}" target="_blank">Visit ${food.title}'s website</a><br>
+            <p>${food.phone}</p>
+            <a href="geo:${item.geometry.coordinates[1]},${item.geometry.coordinates[0]}" onclick="mapsSelector(${item.geometry.coordinates[1]},${item.geometry.coordinates[0]})" target="_blank"class="btn btn-primary">Get directions</a>
 
-          <!--<p>Hours: 
-          Monday to Friday
-          8 a.m.–5 p.m.</p>-->
-        </div>
-      </li>`;
-    }).join(' ')}
+            <!--<p>Hours: 
+            Monday to Friday
+            8 a.m.–5 p.m.</p>-->
+          </div>
+        </li>${showMore}`;
+      }).join(' ')}
     </ul>`;
     document.querySelector('.js-nearest-results').innerHTML = html;
   }
+}
+
+function showAll() {
+  event.preventDefault();
+  document.querySelectorAll('.card-set li.d-none').forEach( (item) => {
+    item.classList.remove('d-none');
+  })
+  document.querySelector('.js-expand-link').style.display = 'none';
 }
 
 function mapsSelector(lat,lon) {
@@ -240,15 +262,3 @@ Promise.all(urls.map(u=>fetch(u))).then(responses =>
 })
 
 
-
-// get cdss.json
-// for each get the lat, lon using:
-function retriever(address, callback) {
-  let cabb = '-124.409591,32.534156,-114.131211,42.009518';
-  let url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?bbox=${cabb}&access_token=${mapboxgl.accessToken}`;
-  fetch(url)
-  .then((resp) => resp.json())
-  .then(function (data) {
-    callback(data.features[0].center);
-  })
-}
