@@ -46,7 +46,7 @@ img {
 }
 h1, h2, h3, h4, h5, h6 {
   color: #212121;
-  font-family: 'Public Sans', sans-serif;
+  font-family: 'Public Sans bold', sans-serif;
 }
 h1 {
   padding-bottom: 10px;
@@ -348,7 +348,203 @@ cwds-accordion .card-header .button {
 }
 
 
-/*------- -------*/
+/*-------From Contractor Step by Step Page -------*/
+
+	  
+a.btn {
+	padding: 10px;
+}
+	  
+cwds-step-list li .step-interior {
+    padding-bottom: 20px;
+}
+	  
+.checkbox {
+	vertical-align: text-top;
+}	 
+	  
+.list-group-item.active {
+    background-color: #e5e8e4;
+    border-color: #e5e8e4;
+	color: #000;
+}	  
+	  
+.list-group-item1 {    
+	background-color: #005279;
+    border-color: #005279;
+}
+	  
+.list-group-item.active > a  {
+    color: #073984;
+}
+	  
+ul > li.list-group-item.and-or-lead.list-open {
+   border-bottom-width: 0!important;
+}
+	
+	  
+.badge-primary {
+
+    background-color: #005279!important;
+}
+	  
+	  
+.show {
+    float: right;
+    font-size: 15px;
+    color: #0071bc;
+    text-decoration: underline;
+}
+	  
+.hide {
+    float: right;
+    font-size: 15px;
+    color: #0071bc;
+    text-decoration: underline;
+}
+	  
+cwds-step-list li .hide {
+    display: none;
+}
+	  
+cwds-step-list li.list-group-item.list-open > div > span.hide {
+    display: none;
+}
+
+
+
+	  
+cwds-step-list li.list-open .show {
+    display: none;
+}
+	  
+cwds-step-list li.list-open .hide {
+    display: block;
+}
+	  
+ li.lead {
+
+    font-weight: 400;
+}
+	 
+	  
+.step-list-and-or {	  
+	border-radius: 0!important;
+    width: min-content;
+    padding: 0px 5px;
+}	 
+	  
+ul > span.nested-and-or {
+    border-left: #ccc solid 4px;
+    padding: 5px;
+    line-height: 2rem;
+}	  
+	  
+cwds-step-list li .unstyled {
+	
+    border-left-width: 0!important;
+    width: fit-content;
+    list-style-type: none;
+	background: none;
+}
+	  
+.no-border {
+		  
+	border:0!important;
+}
+	  
+	  	  
+.list-group-item-action {
+    color: #1e1f1f;
+}
+	  
+.list-group-item-action:active :hover {
+    color: #000;
+}
+	  .list-group-item-action:hover {
+    color: #000;
+}
+	  
+.lead {
+
+    font-weight: 400;
+
+}
+
+ 
+.list-group input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.checkbox {
+	vertical-align: text-top;
+	margin-top: 5px;
+}	 
+	  
+.list-group-item.active {
+    background-color: #efefef;
+    border-color: #efefef;
+	color: #000;
+}	  
+	  
+.list-group-item1 {    
+	background-color: #005279;
+    border-color: #005279;
+}
+	  
+.list-group-item.active > a  {
+    color: #073984;
+}
+	  
+.badge-primary {
+
+    background-color: #005279!important;
+}
+	  
+	  
+.show {
+    float: right;
+    font-size: 15px;
+    color: #0071bc;
+    text-decoration: underline;
+}
+	  
+.hide {
+    float: right;
+    font-size: 15px;
+    color: #0071bc;
+    text-decoration: underline;
+}
+	  
+cwds-step-list li .hide {
+    display: none;
+}
+	  
+cwds-step-list li.list-open .show {
+    display: none;
+}
+	  
+cwds-step-list li.list-open .hide {
+    display: block;
+}
+	  
+li.lead {
+
+    font-weight: 400;
+}
+	  
+.list-group-item-action {
+    color: #1e1f1f;
+}
+	  
+.list-group-item-action:active :hover {
+    color: #000;
+}
+.list-group-item-action:hover {
+    color: #000;
+}
+	  
+
 
 
 
