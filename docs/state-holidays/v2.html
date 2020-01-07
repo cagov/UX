@@ -17,7 +17,7 @@
     type="image/png">
   <link rel="icon" href="https://cwds.dev/docs/4.3/assets/img/favicons/favicon-16x16.png" sizes="16x16"
     type="image/png">
-	
+
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
@@ -42,7 +42,7 @@
   <link href="https://cwds.dev/docs/4.3/assets/css/docs.css" rel="stylesheet" />
   <link href="../css/style.css" rel="stylesheet" />
 
-  
+
 </head>
 
 <body>
@@ -86,10 +86,12 @@
         <div class="alert alert-secondary " role="alert">
           <p class="display-4 alert">December 25</p>
           <p class="display-5 alert">Wednesday, Christmas Day</p>
-         
+
         </div>
 
-        <p><i class="far lead fa-calendar-alt"></i> <a href="https://fa-go-alph-d-002.azurewebsites.net/StateHolidayCalendar.ics" download>Add State holidays to your calendar (iCalendar
+        <p><i class="far lead fa-calendar-alt"></i> <a
+            href="https://fa-go-alph-d-002.azurewebsites.net/StateHolidayCalendar.ics" download>Add State holidays to
+            your calendar (iCalendar
             subscription)</a></p>
 
 
@@ -174,19 +176,19 @@
                     </tbody>
                   </table>
                   <div class="container">
-                    
+
                     <h3>Additional holidays</h3>
-  
+
                     <div class="alert" role="alert">
-  
+
                       <p>Most employees get</p>
                       <p class="display-5 alert"><a href="#credits">1 personal holiday</a></p>
                       <p>and</p>
                       <p class="display-5 alert"><a href="#credits">1 holiday credit (8 hours)</a></p>
                       <p>July 1, 2020, to June 30, 2021</p>
                     </div>
-                    
-                  </div>  
+
+                  </div>
                 </div>
               </div>
             </div>
@@ -271,16 +273,16 @@
                   </table>
                   <div class="container">
                     <h3>Additional holidays</h3>
-  
+
                     <div class="alert " role="alert">
-  
+
                       <p>Most employees get</p>
                       <p class="display-5 alert">1 personal holiday</p>
                       <p>and</p>
                       <p class="display-5 alert">1 holiday credit (8 hours)</p>
                       <p>July 1, 2021, to June 30, 2022</p>
                     </div>
-  
+
                   </div>
                 </div>
               </div>
@@ -291,36 +293,41 @@
         <div class="container">
 
           <a name="credits">
-            <h3>Weekend holidays</h3>
-            <ul>
-              <li>When a holiday is on a Saturday, most employees get one holiday credit (eight hours of leave).</li>
-              <li>When a holiday is on a Sunday, most employees have a paid holiday on the following Monday.</li>
-            </ul>
-            <h3>Holiday credits</h3>
-            <ul>
-              <li>Spend your holiday credit on the day or hours you choose.</li>
-            </ul>
-              <h3>Personal holidays</h3>
-            <ul>
-              <li>Most employees get one personal holiday every fiscal year (July 1 to June 30).</li>
-              <li>Take your personal holiday on the day you choose.</li> 
-              <li>Most employees get personal holidays after they've worked with the State for six months.</li>
-            </ul>
+            <cwds-accordion class="js-credits">
+              <div class="card">
+                <div class="card-header py-20" id="headingOne">
+                  <button class="btn btn-link js-credit-button" type="button" aria-expanded="false">
+                    <h3 class="pl-3">More details about holidays</h3>
+                  </button>
+                </div>
+                <div class="card-container collapsed" aria-labelledby="headingOne">
+                  <div class="card-body">
+                    <h3>Weekend holidays</h3>
+                    <ul>
+                      <li>When a holiday is on a Saturday, most employees get one holiday credit (eight hours of leave).
+                      </li>
+                      <li>When a holiday is on a Sunday, most employees have a paid holiday on the following Monday.
+                      </li>
+                    </ul>
+                    <h3>Holiday credits</h3>
+                    <ul>
+                      <li>Spend your holiday credit on the day or hours you choose.</li>
+                    </ul>
+                    <h3>Personal holidays</h3>
+                    <ul>
+                      <li>Most employees get one personal holiday every fiscal year (July 1 to June 30).</li>
+                      <li>Take your personal holiday on the day you choose.</li>
+                      <li>Most employees get personal holidays after they've worked with the State for six months.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </cwds-accordion>
           </a>
         </div>
       </div>
     </div>
 
-  </div>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <p><em>More about <a href="https://www.calhr.ca.gov/employees/pages/state-holidays.aspx">State
-                holidays</a></em>.</p>
-        </div>
-      </div>
-    </div>
 
     <div class="container">
       <div class="row">
@@ -335,18 +342,29 @@
         <div class="row">
           <div class="col-md-12">
             <p>
-            &copy; 2019 State of California </p>
+              &copy; 2019 State of California </p>
           </div>
         </div>
       </div>
     </div>
-  <div class="alphabar">
-    <div class="container">
-      <p>This is an alpha project and a work in progress (<a href="https://medium.com/cadotgov">Details</a>)</p>
+    <div class="alphabar">
+      <div class="container">
+        <p>This is an alpha project and a work in progress (<a href="https://medium.com/cadotgov">Details</a>)</p>
+      </div>
     </div>
-  </div>
     <script src="https://cwds.dev/docs/cali/js/accordion/index.js" defer async></script>
-
+    <script>
+      document.querySelectorAll('a').forEach(function (link) {
+        if (link.href.indexOf('#credits')) {
+          link.addEventListener('click', function (event) {
+            let height = document.querySelector('.js-credits .card-container').style.height;
+            if (!height || height == '0px') {
+              document.querySelector('.js-credit-button').click();
+            }
+          })
+        }
+      })
+    </script>
 </body>
 
 </html>
