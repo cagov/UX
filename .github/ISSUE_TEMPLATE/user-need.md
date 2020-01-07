@@ -1,8 +1,8 @@
 ---
 name: User Need
-about: User story or user need
+about: Delivery checklist and documentation for all user needs
 title: User Needs
-labels: UX, User Story
+labels: User Story
 assignees: ''
 
 ---
@@ -19,20 +19,19 @@ So I can...
 - Accessibility  (Use Lighthouse in dev tools to trigger an audit on page)
 - Readability (Use http://www.hemingwayapp.com/)
 
-**Process (add links to relevant Github issues and prototypes)**
 
-"Done when"
+**Process (add links to relevant Github issues and prototypes)**
 
 - [ ] Content Research [include document or URL]
 - [ ] User Research [include document or URL]
 - [ ] Content Prototype [Include document or URL]
-- [ ] Design Prototype (URL)
+- [ ] Design Prototype (URLs)
 - [ ] Fact Check (where applicable)
 - [ ] Accessible (Use Lighthouse in dev tools to trigger an audit on page)
 - [ ] Responsive
-- [ ] User Testing 
-- [ ] Iterating
-- [ ] Shipped
+- [ ] User Tested
+- [ ] Iterated
+- [ ] Shipped (tested and ready to push to live)
 - [ ] End to End Testing
 - [ ] Live 
 - [ ] Production Testing
