@@ -39,9 +39,10 @@ function reorient(position) {
 }
 
 fetch('foods.json')
-.then((resp) => resp.json())
+.then( function(resp) { return resp.json() })
 .then(function (data) {
   window.foodLocations = data;
+  console.log('got some food')
   displaySortedResults({ type: 'Feature', geometry: { coordinates: [-121.489987, 38.574024] } }, data)
 })
 
@@ -58,14 +59,6 @@ function mapInteractions() {
 }
 
 function setupMapInteractions() {
-/* couldn't get this off map version to work, would need to filter carefully to use
-  var geocoder = new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken,
-    mapboxgl: mapboxgl
-  });
-  
-  document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
-*/  
   map.loadImage("marker.png", function (error, image) {
     if (error) throw error;
     map.addImage("custom-marker", image);
@@ -88,9 +81,9 @@ function setupMapInteractions() {
     // When a click event occurs on a feature in the foods layer, open a popup at the
     // location of the feature, with description HTML from its properties.
     map.on('click', 'foods', function (e) {
-      let coordinates = e.features[0].geometry.coordinates.slice();
-      let item = e.features[0];
-      let food = item.properties;
+      var coordinates = e.features[0].geometry.coordinates.slice();
+      var item = e.features[0];
+      var food = item.properties;
 
       // Ensure that if the map is zoomed out such that multiple
       // copies of the feature are visible, the popup appears
@@ -129,25 +122,25 @@ function displaySortedResults(coords, data) {
     }, 300)
   } else {
     // sort all the results based on proximity to coords
-    let sortedLocs = data.features.sort(function (a, b) {
+    var sortedLocs = data.features.sort(function (a, b) {
       return haversine(coords, a, { format: 'geojson', unit: 'mile' }) - haversine(coords, b, { format: 'geojson', unit: 'mile' })
     })
-    let outputLocs = [];
+    var outputLocs = [];
     for (var i = 0; i < 9; i++) {
-      let food = sortedLocs[i];
+      var food = sortedLocs[i];
       if (food) {
         food.properties.distance = haversine(coords, food, { format: 'geojson', unit: 'mile' });
         outputLocs.push(food);
       }
     }
-    let html = `<ul class="pl-0 card-set">
-      ${outputLocs.map((item, itemindx) => {
-        let food = item.properties
-        let displayClass = '';
+    var html = `<ul class="pl-0 card-set">
+      ${outputLocs.map( function(item, itemindx) {
+        var food = item.properties
+        var displayClass = '';
         if(itemindx > 2) {
           displayClass = 'd-none';
         }
-        let showMore = '';
+        var showMore = '';
         if(itemindx == 2) {
           showMore = `<li class="card mb-20 js-expand-link">
             <div class="card-body">
@@ -180,7 +173,7 @@ function displaySortedResults(coords, data) {
 
 function showAll() {
   event.preventDefault();
-  document.querySelectorAll('.card-set li.d-none').forEach( (item) => {
+  document.querySelectorAll('.card-set li.d-none').forEach( function(item) {
     item.classList.remove('d-none');
   })
   document.querySelector('.js-expand-link').style.display = 'none';
@@ -194,24 +187,30 @@ function mapsSelector(lat,lon) {
     window.open(`https://maps.google.com/maps?daddr=${lat},${lon}`);
   }
 }
-
-let urls = ['../mw/just-cities.json', '../mw/unique-zips.json']
-Promise.all(urls.map(u=>fetch(u))).then(responses =>
-  Promise.all(responses.map(res => res.json()))
-).then(jsons => {
+/*
+// This section was how I did autocomplete but it was irresponsible and crashed iOS
+var urls = ['../mw/just-cities.json', '../mw/unique-zips.json']
+Promise.all(urls.map(function (u) {
+  return fetch(u);
+}))
+.then( function(responses) {
+  Promise.all(responses.map(function (res) {
+    return res.json();
+  }))
+}).then( function(jsons) {
   // handle search autocomplete
-  let uniqueZipArray = [];
-  let zipMap = new Map();
+  var uniqueZipArray = [];
+  var zipMap = new Map();
 
-  jsons[1].forEach( (item) => {
+  jsons[1].forEach( function(item) {
     for(var key in item) {
       uniqueZipArray.push(key)
       zipMap.set(key, item[key])
     }
   })
 
-  let cityNames = new Map();
-  jsons[0].forEach( (item) => {
+  var cityNames = new Map();
+  jsons[0].forEach( function(item) {
     cityNames.set(item.replace(', CA', '').toLowerCase(), item)
   })
   document.querySelector('.city-search').dataset.list = [...jsons[0], ...uniqueZipArray];
@@ -227,13 +226,13 @@ Promise.all(urls.map(u=>fetch(u))).then(responses =>
     },
 
     replace: function(text) {
-      let before = this.input.value.match(/^.+,\s*|/)[0];
-      let finalval = before + text;
+      var before = this.input.value.match(/^.+,\s*|/)[0];
+      var finalval = before + text;
       this.input.value = finalval;
-      let cabb = '-124.409591,32.534156,-114.131211,42.009518';
-      let url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${finalval}.json?bbox=${cabb}&access_token=${mapboxgl.accessToken}`;
+      var cabb = '-124.409591,32.534156,-114.131211,42.009518';
+      var url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${finalval}.json?bbox=${cabb}&access_token=${mapboxgl.accessToken}`;
       fetch(url)
-      .then((resp) => resp.json())
+      .then(function(resp) { return resp.json() })
       .then(function (data) {
         document.querySelector('.js-location-display').innerHTML = "Food banks near "+finalval;
         reorient(data.features[0].center);
@@ -241,15 +240,14 @@ Promise.all(urls.map(u=>fetch(u))).then(responses =>
     }
   });
 
-  
   document.querySelector('.js-food-lookup').addEventListener('submit',function(event) {
     event.preventDefault();
     document.querySelector('.invalid-feedback').style.display = 'none';
-    let val = this.querySelector('input').value;
-    let cabb = '-124.409591,32.534156,-114.131211,42.009518';
-    let url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${val}.json?bbox=${cabb}&access_token=${mapboxgl.accessToken}`;
+    var val = this.querySelector('input').value;
+    var cabb = '-124.409591,32.534156,-114.131211,42.009518';
+    var url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${val}.json?bbox=${cabb}&access_token=${mapboxgl.accessToken}`;
     fetch(url)
-    .then((resp) => resp.json())
+    .then( function(resp) { return resp.json() })
     .then(function (data) {
       document.querySelector('.js-location-display').innerHTML = "Food banks near "+val;
       if(data.features.length > 0) {
@@ -260,5 +258,4 @@ Promise.all(urls.map(u=>fetch(u))).then(responses =>
     })
   })
 })
-
-
+*/
