@@ -13,16 +13,19 @@ So I can...
 
 **Content Type**  Quick Answer, Step by Step, Transaction Landing page, Calculator (smart answer), Location, News, Service Page (Dept), homepage
 
-**Baseline (use screenshots and links)**
+###**Our assumptions:**
+
+###**Baseline (use screenshots. Github Issues, Links, and date of when test was conducted)**
+
 - URL (Link to current state page)
-- Speed (Use https://developers.google.com/speed/pagespeed/insights/)
-- Accessibility  (Use Lighthouse in dev tools to trigger an audit on page)
-- Readability (Use http://www.hemingwayapp.com/)
+- Speed (Test for mobile and desktop, include #, add date of when you did the test: https://developers.google.com/speed/pagespeed/insights/)
+- Accessibility  (Check for mobile and desktop, slowest speed, include score, use Lighthouse in dev tools to trigger an audit on page, see for walk through https://github.com/cagov/Alpha/issues/68#issuecomment-570694179 )
+- Readability (Use http://www.hemingwayapp.com/ and take a screenshot include grade)
 
 
-**Process (add links to relevant Github issues and prototypes)**
+###**Process (add links, attachments, DRI, and Github issues)**
 
-- [ ] Content Research [include document or URL]
+- [ ] Content Research [DRI: Rebecca, include document or URL, Github Issue Number]
 - [ ] User Research [include document or URL]
 - [ ] Content Prototype [Include document or URL]
 - [ ] Design Prototype (URLs)
