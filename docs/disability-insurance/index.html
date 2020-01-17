@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
-    content="Follow these steps to apply for disability insurance.">
+    content="Follow these steps to hire a licensed contractor and make home improvements the legal way and protect your money.">
   <meta name="author" content="Bootstrap, Luke Fretwell, Artem Khomishen">
   <meta name="generator" content="Hugo 0.61.0">
   <title>Apply for disability insurance benefits - Alpha.CA.gov</title>
@@ -84,8 +84,9 @@
     <div class="row">
       <div class="col-md-9">
         <h2>Steps to get disability insurance </h2>
-        <p>You could possibly get these short-term payments if you can’t work because you’re sick or
-          injured for reasons unrelated to your work or if you're pregnant.</p>
+        <p>Follow these steps to file a claim for disability insurance benefits.</p>
+        <p>You could possibly get these short-term payments if you can’t work because you’re pregnant, or sick or
+          injured for reasons unrelated to your work.</p>
         <cwds-step-list>
           <ul class="list-group list-group-flush">
             <li class="list-group-item lead unstyled list-group-item-action">
@@ -95,12 +96,14 @@
               </span><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details">
                 <span class="step-interior">
-                    <p><a href="https://www.edd.ca.gov/disability/Am_I_Eligible_for_DI_Benefits.htm">Find out if you’re
-                        eligible for disability insurance benefits</a></p>
-                    <p><a href="https://www.edd.ca.gov/disability/Employer_Voluntary_Plans.htm">Learn if your employer
-                        has a voluntary plan</a></p>
-                    <p><a href="https://www.edd.ca.gov/disability/Self-Employed_Eligibility.htm">Learn about disability
-                        insurance for self-employed workers</a></p>
+                  <ul class="mt-20">
+                    <li><a href="https://www.edd.ca.gov/disability/Am_I_Eligible_for_DI_Benefits.htm">Find out if you’re
+                        eligible for disability insurance benefits</a></li>
+                    <li><a href="https://www.edd.ca.gov/disability/Employer_Voluntary_Plans.htm">Learn if your employer
+                        has a voluntary plan</a></li>
+                    <li><a href="https://www.edd.ca.gov/disability/Self-Employed_Eligibility.htm">Learn about disability
+                        insurance for self-employed workers</a></li>
+                  </ul>
                 </span>
               </div>
             </li>
@@ -110,10 +113,10 @@
                 File your claim
               </span><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details"><span class="step-interior">
-                  <br><p><a href="https://www.edd.ca.gov/disability/How_to_File_a_DI_Claim_in_SDI_Online.htm">File
+                  <p class="mt-20"><a href="https://www.edd.ca.gov/disability/How_to_File_a_DI_Claim_in_SDI_Online.htm">File
                       online</a></p>
-                  <span class="nested-and-or">or</span>
-                  <br><p><a href="https://www.edd.ca.gov/disability/How_to_File_a_DI_Claim_by_Mail.htm">File by mail</a></p>
+                  <span class="nested-and-or">OR</span>
+                  <p><a href="https://www.edd.ca.gov/disability/How_to_File_a_DI_Claim_by_Mail.htm">File by mail</a></p>
               </div>
             </li>
             <li class="list-group-item lead unstyled list-group-item-action">
@@ -123,8 +126,8 @@
               </span><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details"><span class="step-interior">
                   <p class="mt-20">A doctor has to certify your medical condition. They must submit a form within 49 days of the first
-                    day you couldn’t work because of your disability.</p>
-                    <p><a href="https://www.edd.ca.gov/disability/PP_Forms_and_Publications.htm">Your doctor can certify
+                    day you couldn’t work because of your disability.
+                    <a href="https://www.edd.ca.gov/disability/PP_Forms_and_Publications.htm">Your doctor can certify
                       your disability online or by mail.</a></p>
                 </span><span class="show">Show</span><span class="hide">Hide</span></div>
             </li>
@@ -202,56 +205,7 @@
       <p>This is an alpha project and a work in progress (<a href="https://medium.com/cadotgov">Details</a>)</p>
     </div>
   </div>
-  <script>
-  class CWDSAccordion extends HTMLElement {
-  connectedCallback() {
-    this.expandTarget = this.querySelector('.card-container');
-    this.expandButton = this.querySelector('.card-header');
-    this.expandButton.addEventListener('click', this.listen.bind(this))
-  }
-
-  listen() {
-    let cardBodyHeight = this.parentNode.querySelector('.card-body').clientHeight;
-    if(this.style.display == 'none' || this.expandTarget.clientHeight > 0) {
-      this.expandTarget.style.height = '0px';
-      this.querySelector('.card-header').classList.remove('accordion-alpha-open');
-      let expando = this.expandTarget;
-      setTimeout(function() {
-        // expando.style.display = "none";
-      }, 300)
-    } else {
-      // this.expandTarget.style.display = "block";
-      this.expandTarget.style.height = cardBodyHeight+'px';
-      this.querySelector('.card-header').classList.add('accordion-alpha-open');
-    }
-  }
-}
-window.customElements.define('cwds-accordion', CWDSAccordion);
-
-class CWDSStepList extends HTMLElement {
-  connectedCallback() {
-    this.expandTargets = this.querySelectorAll('li');
-    this.expandTargets.forEach( (item) => {
-      item.addEventListener('click', this.listen)
-    })
-  }
-
-  listen() {
-    let detailsEl = this.querySelector('.details');
-    if(this.classList.contains('list-open')) {
-      this.classList.remove('list-open')
-    } else {
-      this.classList.add('list-open')
-    }
-    if(!detailsEl.style.height || detailsEl.style.height.indexOf('0px') == 0) {
-      detailsEl.style.height = detailsEl.scrollHeight + 'px';
-    } else {
-      detailsEl.style.height = '0px';
-    }
-  }
-}
-window.customElements.define('cwds-step-list', CWDSStepList);
-</script>
+  <script src="https://www.alpha.ca.gov/js/javascript.fd1a365746841499f5b1.js" defer async></script>
 </body>
 
 </html>
