@@ -3,113 +3,32 @@
 <body>
   <form>
     
-    Start: <input type="text" class="place1" /> <button class="find1">Find</button>
+    Start: <input type="text" class="place1" value="Sacramento" /> <button class="find1">Find</button>
     <br>
-    Start loc: <span class="start">-121.489873,38.573708</span>
+    Start loc: <span class="start"></span>
     <br><br>
 
-    End: <input type="text" class="place2" /> <button class="find2">Find</button>
+    End: <input type="text" class="place2" value="Heavenly Village" /> <button class="find2">Find & Show highways</button>
     <br>
-    End loc: <span class="end">-121.743483,37.938460</span>
+    End loc: <span class="end"></span>
     <br><br>
     
     The Highways on your route are:
     <br><br>
     <div class="highways"></div>
+    <br><br>
+    The major obstructions on your route are:
+    <div class="obstructions-major"></div>
+    <br><br>
+    The minor obstructions on your route are:
+    <div class="obstructions-minor"></div>
+    <br><br>
     
   </form>
-<script>
-  document.querySelector('.find1').addEventListener('click', async function(event) {
-    event.preventDefault();
-    let place = document.querySelector('.place1').value;
-    let loc = await getLatLon(place);
-    console.log(loc)
-    document.querySelector('.start').innerHTML = loc;
-  })
+
+  <script src="node_modules/geolib/lib/index.js"></script>
   
-  document.querySelector('.find2').addEventListener('click', async function(event) {
-    event.preventDefault();
-    let place = document.querySelector('.place2').value;
-    let loc = await getLatLon(place);
-    console.log(loc)
-    document.querySelector('.end').innerHTML = loc;
-
-
-    let postUrl = 'https://api.mapbox.com/directions/v5/mapbox/driving?access_token=pk.eyJ1IjoiYWxwaGEtY2EtZ292IiwiYSI6ImNrNTZ5em1qMDA4ZWkzbG1yMDg4OXJyaDIifQ.GleKGsZsaOcmxfsYUR9bTg';
-
-    postData(postUrl, `coordinates=${document.querySelector('.start').innerHTML};${document.querySelector('.end').innerHTML}&steps=true&banner_instructions=true`)
-    .then((data) => {
-      console.log(data);
-      writeSteps(data)
-    });
-
-  })
-
-  async function getLatLon(place) {
-    let url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${place}.json?access_token=pk.eyJ1IjoiYWxwaGEtY2EtZ292IiwiYSI6ImNrNTZ5em1qMDA4ZWkzbG1yMDg4OXJyaDIifQ.GleKGsZsaOcmxfsYUR9bTg`
-
-    let center = '';
-    // const request = async () => {
-    const response = await fetch(url);
-    const json = await response.json();
-    console.log(json);
-    center = json.features[0].center;
-    console.log(center)
-    console.log('returning center')
-    // }
-    // request();
-    
-    return center;
-  }
-
-  async function postData(url, data) {
-    const response = await fetch(url, {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      redirect: 'follow', // manual, *follow, error
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },      
-      referrerPolicy: 'no-referrer', // no-referrer, *client
-      body: data // body data type must match "Content-Type" header
-    });
-    return await response.json(); // parses JSON response into native JavaScript objects
-}
-
-fetch('http://localhost:1338/caltrans/result.json')
-  .then((response) => {
-    return response.json();
-  })
-  .then((myJson) => {
-  });
-
-
-function writeSteps(json) {
-  let steps = json.routes[0].legs[0].steps;
-    console.log(steps);
-    steps.forEach( (step) => {
-      // console.log(step.name)
-    })
-    console.log('----------------')
-    let html = '<ul>';
-    let stepMap = new Map();
-    steps.forEach( (step) => {
-      step.bannerInstructions.forEach( (inst) => {
-        if((inst.primary.text.indexOf('CA ') == 0) || (inst.primary.text.indexOf('I-') == 0)) {
-          stepMap.set(inst.primary.text, `<li>${inst.primary.text}</li>`)
-        }
-        // collect only the unique ones that start with "CA " or "I-"    
-      })
-    })
-    stepMap.forEach( (step) => {
-      html += step;
-    })
-    html += "</ul>";
-    document.querySelector('.highways').innerHTML = html
-
-}
-</script>
+  <script type="module"  src="index.js"></script>
 
 </body>
 </html>
