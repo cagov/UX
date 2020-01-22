@@ -41,7 +41,7 @@
   // let response = await fetch('data/D10.SR-4.json');
   // let lcs = await response.json();
   function parseLCS(lcs, direction) {
-    console.log('parsing lcs with direction '+direction)
+    // console.log('parsing lcs with direction '+direction)
     let possibles = [];
     if(direction) {
       lcs.forEach( (issue) => {
@@ -75,9 +75,9 @@
       */
       if(inPoly) {
         finalObstructions.push(issue);
-        console.log('added to poly')
+        // console.log('added to poly')
       } else {
-        console.log('dropped outside poly')
+        // console.log('dropped outside poly')
       }
     })
   }

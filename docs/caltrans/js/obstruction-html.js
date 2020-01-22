@@ -13,19 +13,24 @@ export default function createHTML(myObstructions) {
   
   let majorhtml = '<h2 class="mt-20">Road conditions for your trip</h2>';
   obstructionMap.forEach( (obstructionArray, key, map) => {
-    console.log(myObstructions);
     let foundMajor = false;
     let internalHTML = '';
+    let uniqueObsMap = new Map();
     obstructionArray.forEach( (obs) => {
-      if(obs.lcs.closure.isCHINReportable == "true") {
-        internalHTML += `<tr>
-          <td>${obs.lcs.closure.typeOfWork}</td>
-          <td>near ${obs.lcs.location.begin.beginNearbyPlace}</td>
-          <td>Lanes closed: ${obs.lcs.closure.lanesClosed}</td>
-        </tr>`
-        foundMajor = true;
-      } else {
-        // skip these non chin reportable ones
+      if(!uniqueObsMap.get(obs.lcs.closure.closureID)) {
+        uniqueObsMap.set(obs.lcs.closure.closureID,'here')
+        if(obs.lcs.closure.isCHINReportable == "true") {
+          console.log(obs);
+          // remove duplicates
+          internalHTML += `<tr>
+            <td>${obs.lcs.closure.typeOfWork}</td>
+            <td>near ${obs.lcs.location.begin.beginNearbyPlace}</td>
+            <td>Lanes closed: ${obs.lcs.closure.lanesClosed}</td>
+          </tr>`
+          foundMajor = true;
+        } else {
+          // skip these non chin reportable ones
+        }
       }
     })
 
