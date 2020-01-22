@@ -20,7 +20,7 @@ export default function createHTML(myObstructions) {
       if(!uniqueObsMap.get(obs.lcs.closure.closureID)) {
         uniqueObsMap.set(obs.lcs.closure.closureID,'here')
         if(obs.lcs.closure.isCHINReportable == "true") {
-          console.log(obs);
+          // console.log(obs);
           // remove duplicates
           internalHTML += `<tr>
             <td>${obs.lcs.closure.typeOfWork}</td>
