@@ -10,6 +10,7 @@ assignees: artuoma lukefretwell
 **Parent User Story:** Link to parent user story
 **Prototype Link(s):** Link to UX prototype page
 
+- [ ] Wireframes iterated and finalized (If applicable)
 - [ ] HTML page(s) created and linked in UX repo
 - [ ] Meta description added 
 - [ ] Page title updated
