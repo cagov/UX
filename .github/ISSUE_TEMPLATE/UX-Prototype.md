@@ -19,3 +19,8 @@ assignees: artuoma lukefretwell
 - [ ] HTML structure verified
 - [ ] Design issue template # (Closed)
 - [ ] Migrated to Alpha repo
+
+**11y Status:** Issues and resolution status if applicable
+
+
+**Design Issue Link:** Link to Design issue if applicable#
