@@ -7,6 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
+    "start": "npm run server",
     "server": "node local-server.js"
   },
   "repository": {
