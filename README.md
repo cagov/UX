@@ -1,5 +1,6 @@
 # UX
-To track of our user needs and stories. 
+
+To track and prototype our possible services for user needs and stories. The work in this repository are created quickly for user testing and initial review. They are not optimized for performance or reviewed for accessibility. Any user story prototype which we decide to promote to the Alpha repository will get rebuilt to meet our code, performance and accessibility standards.
 
 ## Development
 
