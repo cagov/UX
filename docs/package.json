@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@cagov/accordion": "^1.0.0",
+    "@cagov/accordion": "^1.0.1",
     "@cagov/step-list": "^1.0.0"
   },
   "devDependencies": {
