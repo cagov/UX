@@ -1,6 +1,6 @@
 ---
 name: UX prototype
-about: Checklist for UX prototype needs
+about: Checklist for UX prototype needs to prepare for staging/production
 title: UX prototype (TEMPLATE)
 labels: UX
 assignees: artuoma lukefretwell
@@ -10,7 +10,8 @@ assignees: artuoma lukefretwell
 **Parent User Story:** Link to parent user story
 **Prototype Link(s):** Link to UX prototype page
 
-- [ ] HTML page created and linked in UX repo
+- [ ] Wireframes iterated and finalized (If applicable)
+- [ ] HTML page(s) created and linked in UX repo
 - [ ] Meta description added 
 - [ ] Page title updated
 - [ ] Content integrated according to design system and standards 

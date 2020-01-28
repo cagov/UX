@@ -6,21 +6,19 @@ labels: UX
 assignees: artuoma lukefretwell
 
 ---
-- [ ] Link to UX prototype issue # or CWDS template 
-- [ ] Link to UX page (if applicable)
+
 - [ ] Content organization reviewed from Design perspective 
 - [ ] User interaction discussed and documented 
 - [ ] Wireframes iterated and finalized (If applicable)
 - [ ] Design system discrepancies minimized
 - [ ] Design and UX issues documented and resolved
 
-**Links to parent prototype issue(s)**
+**Links to parent user story and prototype issue(s)**
 - Applicable link(s)
-- Comments:
+- Applicable link(s)
 
 **Link to UX prototype or CWDS template page(s)**
 - Applicable link(s)
-- Comments:
 
 **Comments on content information architecture and Organization**
 - Comments:
