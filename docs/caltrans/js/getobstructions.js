@@ -28,6 +28,38 @@
     routeArr.push(filename);
   })
 
+  let receivedJSON = 0;
+  let targetJSON = routeArr.length;
+
+  routeArr.forEach( (route, index) => {
+    fetch('./data/'+route+'.json')
+    .then((response) => {
+      return response.json();
+    })
+    .then((json) => {
+      let direction = routeMap.get(routeArr[index]);
+      parseLCS(json,direction);
+      receivedJSON++;
+      checkOut();
+    })
+    .catch(function(err) {
+      receivedJSON++;
+      console.log(err.message); // some coding error in handling happened
+      checkOut();
+    });
+  })
+
+  function checkOut() {
+    if(receivedJSON == targetJSON) {
+      console.log('add received')
+      callback(finalObstructions);
+    } else {
+      console.log(receivedJSON+' out ot '+targetJSON);
+    }
+  }
+
+  /*
+  error prone methodology that fails on single 404
   Promise.all(routeArr.map(u=>fetch('./data/'+u+'.json'))).then(responses =>
     Promise.all(responses.map(res => res.json()))
   ).then(jsons => {
@@ -37,6 +69,22 @@
     })
     callback(finalObstructions);
   })
+  */
+
+  /*
+  A single error fails everything
+  Promise.all(state.routes.map(function(route) {
+    return route.handler.promiseHandler().catch(function(err) {
+      return err;
+    });
+  }))
+  .then(function(arrayOfValuesOrErrors) {
+    // handling of my array containing values and/or errors. 
+  })
+  .catch(function(err) {
+    console.log(err.message); // some coding error in handling happened
+  });
+  */
 
   // let response = await fetch('data/D10.SR-4.json');
   // let lcs = await response.json();

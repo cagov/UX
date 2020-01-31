@@ -26,6 +26,28 @@
   <link rel="icon" href="https://cwds.dev/docs/4.3/assets/img/favicons/favicon.ico">
   <meta name="msapplication-config" content="https://cwds.dev/docs/4.3/assets/img/favicons/browserconfig.xml">
 
+  <!-- mapbox autocomplete -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
+  <script
+    src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
+  <link rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css"
+    type="text/css" />
+  <style>
+    .mapboxgl-ctrl-geocoder {
+      border: solid 1px;
+      width: 90vw;
+      max-width: 600px;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .mt-20 {
+      margin-top: 20px;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -61,72 +83,77 @@
 
   <div class="container pb-5">
     <div class="row">
-	    <p class="lead">Road conditions include lane closures, planned maintenance, accidents, and snow plows.</p>
-      <form>
-        <h2>Where are you going?</h2>
-	      <p>Please enter the city or zip code of your destination.</p>
-        <input type="text" class="place2" value="Heavenly Village" /> 
-        <button class="find1">Enter</button>
-        
-        <p style="display:none;">Your destination address
-        4080 Lake Tahoe Blvd.
-        South Lake Tahoe, CA 95738</p>
+      <div class="col-lg-8">
+        <!--
+      <p class="lead">Road conditions include lane closures, planned maintenance, accidents, and snow plows.</p>
+    -->
+        <form>
+          <h2>Where are you going?</h2>
+          <p>Please enter the city or zip code of your destination.</p>
 
-        <span style="display:none;" class="start"></span>
+          <div id="map"></div>
+          <div id="geocoder" class="geocoder"></div>
 
-        <h2 class="mt-20">What's your starting location?</h2>
-	      <p>Please enter the city or zip code of your starting location.</p>
-        <input type="text" class="place1" value="1425 14th st., Sacramento" /> 
-        <button class="find2">Enter</button>
+          <div style="display:none;"><input type="text" class="place2" value="" />
+            <button class="find1">Enter</button></div>
 
-        <!--<button class="currentloc">Use my current location</button>-->
+          <p style="display:none;" class="mt-20 js-destination-address"></p>
 
-        <span class="end" style="display:none;"></span>
-        <div class="highways" style="display:none;"></div>
-        
-        
-        <div class="obstructions-major"></div>
-        <br><br>
-        
-        <br><br>
-      </form>
+          <span style="display:none;" class="start"></span>
 
-      <script src="js/lib/geolib.js"></script>
+          <div style="display:none;" class="js-start-input">
+            <h2 class="mt-20">Starting location?</h2>
+            <p>Please enter the city or zip code of your starting location.</p>
+            <input type="text" class="place1" value="" style="display:none" />
+            <div id="geocoderStart" class="geocoder"></div>
+            <button class="find2" style="display:none;">Enter</button>
+          </div>
 
-      <script type="module" src="index.js"></script>
+          <p style="display:none;" class="mt-20 js-starting-address"></p>
+
+          <!--<button class="currentloc">Use my current location</button>-->
+
+          <span class="end" style="display:none;"></span>
+          <div class="highways" style="display:none;"></div>
 
 
-      <script>
-      window.onload = function() {
-        document.querySelector('.find1').click();
-        document.querySelector('.find2').click();
-      }
-      </script>
-    </div>
-  </div>
+          <a name="obstructions"></a>
+          <div class="obstructions-major"></div>
+          <br><br>
 
- <div class="footer alpha-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 ml-0 pl-0">
-        <ul class="list-group list list-group-horizontal-lg flex-fill list-group-flush">
-			<li class="list-group-item alpha-footer border-0">State of California</li>        
-            <li class="list-group-item alpha-footer"><a href="/about/">About</a></li>
-			<li class="list-group-item alpha-footer"><a href="https://news.alpha.ca.gov/">News</a></li>
-            <li class="list-group-item alpha-footer"><a href="/feedback/">Feedback</a></li>          
-        </ul>
+          <br><br>
+        </form>
+
+        <script src="js/lib/geolib.js"></script>
+
+        <script type="module" src="index.js"></script>
+
       </div>
     </div>
   </div>
-</div>
-<script nomodule src="/js/es5.js?cache=false" ></script>
+
+  <div class="footer alpha-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 ml-0 pl-0">
+          <ul class="list-group list list-group-horizontal-lg flex-fill list-group-flush">
+            <li class="list-group-item alpha-footer border-0">State of California</li>
+            <li class="list-group-item alpha-footer"><a href="/about/">About</a></li>
+            <li class="list-group-item alpha-footer"><a href="https://news.alpha.ca.gov/">News</a></li>
+            <li class="list-group-item alpha-footer"><a href="/feedback/">Feedback</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="alphabar">
     <div class="container">
       <p>This is an alpha project and a work in progress (<a href="https://medium.com/cadotgov">Details</a>)</p>
     </div>
   </div>
-  <script src="https://cwds.dev/docs/cali/js/accordion/index.js" defer async></script>
-  <!--- Custom Scripts to migrate to CWDS ----->
+  <script src="https://cagov.github.io/UX/dist/main.js" defer async></script>
 
 </body>
+
 </html>

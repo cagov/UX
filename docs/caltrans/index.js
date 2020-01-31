@@ -33,4 +33,59 @@ export default function addListeners() {
   })
 }
 
-addListeners();
+let startCoords, endCoords;
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWFyb25oYW5zIiwiYSI6ImNqNGs4cms1ZzBocXkyd3FzZGs3a3VtamYifQ.HQjFfVzwwxwCmGr2nvnvSA';
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/streets-v11',
+  center: [-79.4512, 43.6568],
+  zoom: 13
+});
+  
+var geocoder = new MapboxGeocoder({
+  accessToken: mapboxgl.accessToken,
+  bbox: [1-124.409591, 32.534156, -114.131211, 42.009518],
+  mapboxgl: mapboxgl
+}).on('result',function(item) {
+  document.querySelector('.js-destination-address').innerHTML = `<p class="lead bold mb-0">Destination address:</p>
+  ${item.result.place_name}`;
+  document.querySelector('.js-destination-address').style.display = 'block';
+  endCoords = item.result.center;
+
+  document.querySelector('.js-start-input').style.display = 'block'
+})
+   
+document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+
+var geocoderStart = new MapboxGeocoder({
+  accessToken: mapboxgl.accessToken,
+  bbox: [1-124.409591, 32.534156, -114.131211, 42.009518],
+  mapboxgl: mapboxgl
+}).on('result',function(item) {
+  document.querySelector('.js-starting-address').innerHTML = `<p class="lead bold mb-0">Starting address:</p>
+  ${item.result.place_name}`;
+  document.querySelector('.js-starting-address').style.display = 'block';
+  startCoords = item.result.center;
+  displayObs();
+})
+
+document.getElementById('geocoderStart').appendChild(geocoderStart.onAdd(map));
+
+function displayObs() {
+  getDirections(`coordinates=${startCoords};${endCoords}&steps=true&banner_instructions=true`)
+  .then((data) => {
+    let stepMap = getSteps(data);
+
+    console.log('steps received are')
+    console.log(stepMap)
+
+    getObstructions(stepMap, { startCoords, endCoords }, function(myObstructions) {
+      console.log('obstructions are:')
+      console.log(myObstructions)
+      document.querySelector('.obstructions-major').innerHTML = createHTML(myObstructions);
+      // document.querySelector('.obstructions-minor').innerHTML = minorhtml;
+      location.hash = "#obstructions";
+    });
+  });
+}

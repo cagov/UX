@@ -11,9 +11,9 @@ export default function createHTML(myObstructions) {
     }
   })
   
-  let majorhtml = '<h2 class="mt-20">Road conditions for your trip</h2>';
+  let majorhtml = '<hr><h2 class="mt-20">Road conditions for your trip</h2>';
+  let foundMajor = false;
   obstructionMap.forEach( (obstructionArray, key, map) => {
-    let foundMajor = false;
     let internalHTML = '';
     let uniqueObsMap = new Map();
     obstructionArray.forEach( (obs) => {
@@ -37,12 +37,17 @@ export default function createHTML(myObstructions) {
     if(internalHTML != '') {
       majorhtml += `<h3>${key}</h3>
       <table class="table">
-      <tr>
-        <th>Road condition</th><th>Landmark</th><th>Description</th>
-        </tr>
+        <thead class="thead-dark">
+          <tr>
+            <th>Road condition</th><th>Landmark</th><th>Description</th>
+          </tr>
+        </thead>
         ${internalHTML}
       </table>`;
     }
   })
+  if(!foundMajor || myObstructions.length == 0) {
+    majorhtml += '<p>No major obstructions on your route</p>'
+  }
   return majorhtml;
 }
