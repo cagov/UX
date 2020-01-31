@@ -12,6 +12,9 @@ export default function createHTML(myObstructions) {
   })
   
   let majorhtml = '<h2 class="mt-20">Road conditions for your trip</h2>';
+  if(myObstructions.length == 0) {
+    majorhtml += '<p>No obstructions on your route</p>'
+  }
   obstructionMap.forEach( (obstructionArray, key, map) => {
     let foundMajor = false;
     let internalHTML = '';

@@ -45,6 +45,7 @@ var map = new mapboxgl.Map({
   
 var geocoder = new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
+  bbox: [1-124.409591, 32.534156, -114.131211, 42.009518],
   mapboxgl: mapboxgl
 }).on('result',function(item) {
   document.querySelector('.js-destination-address').innerHTML = `<p class="lead bold mb-0">Destination address:</p>
@@ -59,6 +60,7 @@ document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
 
 var geocoderStart = new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
+  bbox: [1-124.409591, 32.534156, -114.131211, 42.009518],
   mapboxgl: mapboxgl
 }).on('result',function(item) {
   document.querySelector('.js-starting-address').innerHTML = `<p class="lead bold mb-0">Starting address:</p>
@@ -75,7 +77,12 @@ function displayObs() {
   .then((data) => {
     let stepMap = getSteps(data);
 
+    console.log('steps received are')
+    console.log(stepMap)
+
     getObstructions(stepMap, { startCoords, endCoords }, function(myObstructions) {
+      console.log('obstructions are:')
+      console.log(myObstructions)
       document.querySelector('.obstructions-major').innerHTML = createHTML(myObstructions);
       // document.querySelector('.obstructions-minor').innerHTML = minorhtml;
       location.hash = "#obstructions";
