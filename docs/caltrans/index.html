@@ -28,26 +28,26 @@
 
   <!-- mapbox autocomplete -->
   <script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script>
-<link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
-  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
-  <link
-  rel="stylesheet"
-  href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css"
-  type="text/css"
-  />
+  <link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
+  <script
+    src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
+  <link rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css"
+    type="text/css" />
   <style>
-  .mapboxgl-ctrl-geocoder {
-    border: solid 1px;
-    width: 90vw;
-    max-width: 600px;
-    border-radius: 0;
-    box-shadow: none;
-  }
-  .mt-20 {
-    margin-top: 20px;
-  }
+    .mapboxgl-ctrl-geocoder {
+      border: solid 1px;
+      width: 90vw;
+      max-width: 600px;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .mt-20 {
+      margin-top: 20px;
+    }
   </style>
-  
+
 </head>
 
 <body>
@@ -83,51 +83,52 @@
 
   <div class="container pb-5">
     <div class="row">
-    <!--
+      <div class="col-lg-8">
+        <!--
       <p class="lead">Road conditions include lane closures, planned maintenance, accidents, and snow plows.</p>
     -->
-      <form>
-        <h2>Where are you going?</h2>
-        <p>Please enter the city or zip code of your destination.</p>
+        <form>
+          <h2>Where are you going?</h2>
+          <p>Please enter the city or zip code of your destination.</p>
 
-        <div id="map"></div>
-        <div id="geocoder" class="geocoder"></div>
+          <div id="map"></div>
+          <div id="geocoder" class="geocoder"></div>
 
-        <div style="display:none;"><input type="text" class="place2" value="" />
-        <button class="find1">Enter</button></div>
+          <div style="display:none;"><input type="text" class="place2" value="" />
+            <button class="find1">Enter</button></div>
 
-        <p style="display:none;" class="mt-20 js-destination-address"></p>
+          <p style="display:none;" class="mt-20 js-destination-address"></p>
 
-        <span style="display:none;" class="start"></span>
+          <span style="display:none;" class="start"></span>
 
-        <div style="display:none;" class="js-start-input">
-          <h2 class="mt-20">Starting location?</h2>
-          <p>Please enter the city or zip code of your starting location.</p>
-          <input type="text" class="place1" value="" style="display:none" />
-          <div id="geocoderStart" class="geocoder"></div>
-          <button class="find2" style="display:none;">Enter</button>
-        </div>
+          <div style="display:none;" class="js-start-input">
+            <h2 class="mt-20">Starting location?</h2>
+            <p>Please enter the city or zip code of your starting location.</p>
+            <input type="text" class="place1" value="" style="display:none" />
+            <div id="geocoderStart" class="geocoder"></div>
+            <button class="find2" style="display:none;">Enter</button>
+          </div>
 
-        <p style="display:none;" class="mt-20 js-starting-address"></p>
+          <p style="display:none;" class="mt-20 js-starting-address"></p>
 
-        <!--<button class="currentloc">Use my current location</button>-->
+          <!--<button class="currentloc">Use my current location</button>-->
 
-        <span class="end" style="display:none;"></span>
-        <div class="highways" style="display:none;"></div>
-
-        
-        <a name="obstructions"></a>
-        <div class="obstructions-major"></div>
-        <br><br>
-
-        <br><br>
-      </form>
-
-      <script src="js/lib/geolib.js"></script>
-
-      <script type="module" src="index.js"></script>
+          <span class="end" style="display:none;"></span>
+          <div class="highways" style="display:none;"></div>
 
 
+          <a name="obstructions"></a>
+          <div class="obstructions-major"></div>
+          <br><br>
+
+          <br><br>
+        </form>
+
+        <script src="js/lib/geolib.js"></script>
+
+        <script type="module" src="index.js"></script>
+
+      </div>
     </div>
   </div>
 
