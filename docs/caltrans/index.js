@@ -54,6 +54,7 @@ var geocoder = new MapboxGeocoder({
   endCoords = item.result.center;
 
   document.querySelector('.js-start-input').style.display = 'block'
+  location.hash = "#destination";
 })
    
 document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
