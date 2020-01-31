@@ -3,7 +3,7 @@ name: UX prototype
 about: Checklist for UX prototype needs to prepare for staging/production
 title: UX prototype (TEMPLATE)
 labels: UX
-assignees: artuoma lukefretwell
+assignees: ''
 
 ---
 
