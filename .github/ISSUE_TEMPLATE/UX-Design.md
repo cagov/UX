@@ -3,7 +3,7 @@ name: UX issue
 about: Checklist for UX Design issue needs
 title: UX Design issue(TEMPLATE)
 labels: UX
-assignees: artuoma lukefretwell
+assignees: ''
 
 ---
 
