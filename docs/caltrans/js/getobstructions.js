@@ -30,7 +30,6 @@
 
   let receivedJSON = 0;
   let targetJSON = routeArr.length;
-  console.log(routeArr);
 
   routeArr.forEach( (route, index) => {
     fetch('./data/'+route+'.json')
