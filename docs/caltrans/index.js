@@ -3,6 +3,7 @@ import getDirections from './js/getdirections.js';
 import getSteps from './js/getsteps.js';
 import getObstructions from './js/getobstructions.js';
 import createHTML from './js/obstruction-html.js';
+var scroll = new SmoothScroll();
 
 export default function addListeners() {
   let startCoords, endCoords;
@@ -54,7 +55,11 @@ var geocoder = new MapboxGeocoder({
   endCoords = item.result.center;
 
   document.querySelector('.js-start-input').style.display = 'block'
-  location.hash = "#destination";
+  var anchor = document.querySelector('a[name="destination"]');
+  scroll.animateScroll(anchor);
+
+  document.querySelector('#geocoderStart .mapboxgl-ctrl-geocoder--input').focus()
+
   if(startCoords) {
     displayObs();
   }
@@ -89,7 +94,8 @@ function displayObs() {
       console.log(myObstructions)
       document.querySelector('.obstructions-major').innerHTML = createHTML(myObstructions);
       // document.querySelector('.obstructions-minor').innerHTML = minorhtml;
-      location.hash = "#obstructions";
+      var anchor = document.querySelector('a[name="obstructions"]');
+      scroll.animateScroll(anchor);
     });
   });
 }
