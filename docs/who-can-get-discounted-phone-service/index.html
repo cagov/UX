@@ -67,6 +67,17 @@ label {
     vertical-align: middle;
 }
 	
+label.custom-control-label {
+	text-indent: 0px;
+	padding-left: 30px;
+    text-indent: 0;
+
+}
+	
+.list-group input[type="checkbox"] {
+    	margin-right: -20px;
+}
+	
  h2 {    
 	padding-top: 2rem;
 }
@@ -74,6 +85,17 @@ label {
 .aside {
 	border-bottom: solid #000;
 	padding-bottom: 1rem;
+}
+
+	
+	.list-number {
+		text-indent: 0;
+	}
+	
+	
+	li.list-group-item.unstyled {
+    text-indent: -45px;
+		padding-left: 50px;
 }
 	
 
@@ -117,7 +139,7 @@ label {
 		  	<p class="lead">Do you or someone in your <span data-toggletip>For most people, a household includes you as well as your spouse and dependents, if you have them.
 			  </span> get support from any of these programs? Please check all that apply. </p>
 
-			<ul class="list-group custom-control custom-checkbox">
+			<ul class="list-group custom-control custom-checkbox pb-5">
 				<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-1" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')">
 					<label for="check-1" class="custom-control-label">I’m not sure</label></li>
 				<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-2" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
@@ -163,13 +185,13 @@ label {
 			<p class="aside"><span class="display-5">Part of: <br></span>
 			<a href="/apply-discounted-phone-service/" class="lead">Applying for California LifeLine</a></p>
 			  	<div class="list-group">
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item unstyled pl-0"><span class="list-number">1</span>Check if you can get a discount</li>
-					<li class="list-group-item unstyled pl-0"><span class="list-number list-number-inverse">2</span>Choose a phone company that offers discounts</li>
-					<li class="list-group-item unstyled pl-0"><span class="list-number list-number-inverse">3</span>Call your phone company</li>
-					<li class="list-group-item unstyled pl-0"><span class="list-number list-number-inverse">4</span>Read our pink letter in the mail</li>
-					<li class="list-group-item unstyled pl-0"><span class="list-number list-number-inverse">5</span>Apply online or by mail</li>
-					<li class="list-group-item unstyled pl-0"><span class="list-number list-number-inverse">6</span>Read our decision in the mail</li>
+				<ul class="list-group list-group-flush pl-1">
+					<li class="list-group-item unstyled"><span class="list-number">1</span>Check if you can get a discount</li>
+					<li class="list-group-item unstyled"><span class="list-number list-number-inverse">2</span>Choose a phone company that offers discounts</li>
+					<li class="list-group-item unstyled"><span class="list-number list-number-inverse">3</span>Call your phone company</li>
+					<li class="list-group-item unstyled"><span class="list-number list-number-inverse">4</span>Read our pink letter in the mail</li>
+					<li class="list-group-item unstyled"><span class="list-number list-number-inverse">5</span>Apply online or by mail</li>
+					<li class="list-group-item unstyled"><span class="list-number list-number-inverse">6</span>Read our decision in the mail</li>
 				  </ul>			  
 				</div>
     	</div>
