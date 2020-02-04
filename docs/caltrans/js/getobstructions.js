@@ -29,12 +29,14 @@
   })
 
   let receivedJSON = 0;
-  let targetJSON = routeArr.length + 2;
+  let targetJSON = routeArr.length; // + 2;
 
+  /*
   // call CHPIncidents too
   getKML(`https://api.alpha.ca.gov/CHPIncidents?lat1=${coords.startCoords[1]}&lat2=${coords.endCoords[1]}&lon1=${coords.startCoords[0]}&lon2=${coords.endCoords[0]}`);
   // call full road closures too
-  getKML(`https://api.alpha.ca.gov/RoadClosures?lat1=${coords.startCoords[1]}&lat2=${coords.endCoords[1]}&lon1=${coords.startCoords[0]}&lon2=${coords.endCoords[0]}`);
+  getKML(`https://api.alpha.ca.gov/RoadClosures?lat1=${coords.startCoords[1]}&lat2=${coords.endCoords[1]}&lon1=${coords.startCoords[0]}&lon2=${coords.endCoords[0]}`); 
+  */
 
   routeArr.forEach( (route, index) => {
     let url = `https://api.alpha.ca.gov/LaneClosures/${route}?lat1=${coords.startCoords[1]}&lat2=${coords.endCoords[1]}&lon1=${coords.startCoords[0]}&lon2=${coords.endCoords[0]}&direction=${routeMap.get(routeArr[index])}`
