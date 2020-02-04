@@ -1,13 +1,18 @@
 export default function createHTML(myObstructions) {
   let obstructionMap = new Map();
+  let incidentMap = new Map();
   myObstructions.forEach( (obs) => {
-    let obsKey = `${obs.lcs.location.begin.beginRoute} affecting flow ${obs.lcs.location.travelFlowDirection}`;
-    if(obstructionMap.get(obsKey)) {
-      let theseObstructions = obstructionMap.get(obsKey);
-      theseObstructions.push(obs);
-      obstructionMap.set(obsKey, theseObstructions)
+    if(obs.name && (obs.name.indexOf('CHP Incident') > -1 || obs.name == 'Caltrans Highway Information')) {
+      incidentMap.set(`${obs.lat},${obs.lon}`,obs);
     } else {
-      obstructionMap.set(obsKey, [obs])
+      let obsKey = `${obs.lcs.location.begin.beginRoute} affecting flow ${obs.lcs.location.travelFlowDirection}`;
+      if(obstructionMap.get(obsKey)) {
+        let theseObstructions = obstructionMap.get(obsKey);
+        theseObstructions.push(obs);
+        obstructionMap.set(obsKey, theseObstructions)
+      } else {
+        obstructionMap.set(obsKey, [obs])
+      }  
     }
   })
   
@@ -46,6 +51,13 @@ export default function createHTML(myObstructions) {
       </table>`;
     }
   })
+  if(incidentMap.length > 0) {
+    majorhtml += '<h2>Incidents in the area</h2>'
+  }
+  incidentMap.forEach( (item, key, map) => {
+    majorhtml += item.description
+  })
+
   if(!foundMajor || myObstructions.length == 0) {
     majorhtml += '<p>No major obstructions on your route</p>'
   }
