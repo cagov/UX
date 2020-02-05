@@ -29,16 +29,25 @@
   })
 
   let receivedJSON = 0;
-  let targetJSON = routeArr.length;
+  let targetJSON = routeArr.length + 2;
+
+  // call CHPIncidents too
+  getKML(`https://api.alpha.ca.gov/CHPIncidents?lat1=${coords.startCoords[1]}&lat2=${coords.endCoords[1]}&lon1=${coords.startCoords[0]}&lon2=${coords.endCoords[0]}`);
+  // call full road closures too
+  getKML(`https://api.alpha.ca.gov/RoadClosures?lat1=${coords.startCoords[1]}&lat2=${coords.endCoords[1]}&lon1=${coords.startCoords[0]}&lon2=${coords.endCoords[0]}`);
 
   routeArr.forEach( (route, index) => {
-    fetch('./data/'+route+'.json')
+    let url = `https://api.alpha.ca.gov/LaneClosures/${route}?lat1=${coords.startCoords[1]}&lat2=${coords.endCoords[1]}&lon1=${coords.startCoords[0]}&lon2=${coords.endCoords[0]}&direction=${routeMap.get(routeArr[index])}`
+    fetch(url)
     .then((response) => {
       return response.json();
     })
     .then((json) => {
-      let direction = routeMap.get(routeArr[index]);
-      parseLCS(json,direction);
+      
+      json.route.forEach( (issue) => {
+        finalObstructions.push(issue);
+      })
+
       receivedJSON++;
       checkOut();
     })
@@ -49,6 +58,27 @@
     });
   })
 
+  function getKML(url) {
+    fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((json) => {
+      json.forEach( (issue) => {
+        finalObstructions.push(issue);
+      })
+      receivedJSON++;
+      checkOut();
+    })
+    .catch(function(err) {
+      receivedJSON++;
+      console.log(err.message); // some coding error in handling happened
+      checkOut();
+    });
+  }
+
+
+
   function checkOut() {
     if(receivedJSON == targetJSON) {
       console.log('add received')
@@ -57,77 +87,6 @@
       console.log(receivedJSON+' out ot '+targetJSON);
     }
   }
-
-  /*
-  error prone methodology that fails on single 404
-  Promise.all(routeArr.map(u=>fetch('./data/'+u+'.json'))).then(responses =>
-    Promise.all(responses.map(res => res.json()))
-  ).then(jsons => {
-    jsons.forEach( (json, index) => {
-      let direction = routeMap.get(routeArr[index]);
-      parseLCS(json,direction);
-    })
-    callback(finalObstructions);
-  })
-  */
-
-  /*
-  A single error fails everything
-  Promise.all(state.routes.map(function(route) {
-    return route.handler.promiseHandler().catch(function(err) {
-      return err;
-    });
-  }))
-  .then(function(arrayOfValuesOrErrors) {
-    // handling of my array containing values and/or errors. 
-  })
-  .catch(function(err) {
-    console.log(err.message); // some coding error in handling happened
-  });
-  */
-
-  // let response = await fetch('data/D10.SR-4.json');
-  // let lcs = await response.json();
-  function parseLCS(lcs, direction) {
-    // console.log('parsing lcs with direction '+direction)
-    let possibles = [];
-    if(direction) {
-      lcs.forEach( (issue) => {
-        if(issue.lcs.location.travelFlowDirection.indexOf(direction) > -1) {
-          possibles.push(issue);
-        }
-      })  
-    } else {
-      possibles = lcs;
-    }
-
-    possibles.forEach( (issue) => {
-      let lon = issue.lcs.location.begin.beginLongitude;
-      let lat = issue.lcs.location.begin.beginLatitude;
-
-      let inPoly = window.geolib.isPointInPolygon({ latitude: lat, longitude: lon }, [
-        { latitude: coords.startCoords[1], longitude: coords.startCoords[0] },
-        { latitude: coords.endCoords[1], longitude: coords.startCoords[0] },
-        { latitude: coords.endCoords[1], longitude: coords.endCoords[0] },
-        { latitude: coords.startCoords[1], longitude: coords.endCoords[0] },
-      ]);
-      /*
-      console.log({ latitude: lat, longitude: lon })
-      console.log([
-        { latitude: coords.startCoords[1], longitude: coords.startCoords[0] },
-        { latitude: coords.endCoords[0], longitude: coords.startCoords[0] },
-        { latitude: coords.endCoords[0], longitude: coords.endCoords[1] },
-        { latitude: coords.startCoords[1], longitude: coords.endCoords[1] },
-      ])
-      console.log(inPoly)
-      */
-      if(inPoly) {
-        finalObstructions.push(issue);
-        // console.log('added to poly')
-      } else {
-        // console.log('dropped outside poly')
-      }
-    })
-  }
+  // reverted promise.all version which didn't include proper catch logic because sometimes routes can be missing
 }
 
