@@ -1,6 +1,5 @@
 export default async function getLatLon(place) {
-  let url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${place}.json?access_token=pk.eyJ1IjoiYWxwaGEtY2EtZ292IiwiYSI6ImNrNTZ5em1qMDA4ZWkzbG1yMDg4OXJyaDIifQ.GleKGsZsaOcmxfsYUR9bTg`
-
+  let url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${place}.json?bbox=-124.409591,32.534156,-114.131211,42.009518&access_token=pk.eyJ1IjoiYWxwaGEtY2EtZ292IiwiYSI6ImNrNTZ5em1qMDA4ZWkzbG1yMDg4OXJyaDIifQ.GleKGsZsaOcmxfsYUR9bTg`
 
   let response = await fetch(url)
   .then((response) => response.json())

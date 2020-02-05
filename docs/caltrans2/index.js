@@ -105,7 +105,7 @@ var map = new mapboxgl.Map({
 var geocoder = new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
   placeholder: ' ',
-  bbox: [1-124.409591, 32.534156, -114.131211, 42.009518],
+  bbox: [-124.409591, 32.534156, -114.131211, 42.009518],
   mapboxgl: mapboxgl
 }).on('result',function(item) {
   window.endCoords = item.result.center;
@@ -120,7 +120,7 @@ document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
 var geocoderStart = new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
   placeholder: ' ',
-  bbox: [1-124.409591, 32.534156, -114.131211, 42.009518],
+  bbox: [-124.409591, 32.534156, -114.131211, 42.009518],
   mapboxgl: mapboxgl
 }).on('result',function(item) {
   window.startCoords = item.result.center;
