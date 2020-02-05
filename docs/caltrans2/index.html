@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Bootstrap, alpha.ca.gov team">
+  <meta name="generator" content="Hugo 0.61.0">
+  <title>Check road conditions for your trip</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cwds.dev/docs/4.3/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cwds.dev/docs/4.3/assets/css/docs.css" rel="stylesheet" />
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" href="https://cwds.dev/docs/4.3/assets/img/favicons/apple-touch-icon.png"
+    sizes="180x180">
+  <link rel="icon" href="https://cwds.dev/docs/4.3/assets/img/favicons/favicon-32x32.png" sizes="32x32"
+    type="image/png">
+  <link rel="icon" href="https://cwds.dev/docs/4.3/assets/img/favicons/favicon-16x16.png" sizes="16x16"
+    type="image/png">
+
+  <link rel="mask-icon" href="https://cwds.dev/docs/4.3/assets/img/favicons/safari-pinned-tab.svg" color="#1d1a16">
+  <link rel="icon" href="https://cwds.dev/docs/4.3/assets/img/favicons/favicon.ico">
+  <meta name="msapplication-config" content="https://cwds.dev/docs/4.3/assets/img/favicons/browserconfig.xml">
+
+  <!-- mapbox autocomplete -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
+  <script
+    src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
+  <link rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css"
+    type="text/css" />
+  <style>
+    .mapboxgl-ctrl-geocoder {
+      border: solid 1px;
+      width: 90vw;
+      max-width: 600px;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .mt-20 {
+      margin-top: 20px;
+    }
+    #geocoder .mapboxgl-ctrl-geocoder {
+      z-index: 99;
+    }
+    .invalid-feedback {
+      color: red;
+      margin: 0 0 10px 0;
+    }
+  </style>
+
+  <!-- smooth scroll plugin -->
+  <script src="js/smooth-scroll.min.js"></script>
+
+</head>
+
+<body>
+  <link href="https://california.azureedge.net/cdt/statetemplate/6.0.0/css/cagov.font-only.min.css" rel="stylesheet" />
+  <div class="official">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p>Official California State Government</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand navbar-left" href="index.html">CA.gov <sup>(ALPHA)</sup></a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid jumbotron">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Check road conditions for your trip</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container pb-5">
+    <div class="row">
+      <div class="col-lg-8">
+
+        <p class="lead">Road conditions include lane closures and planned maintenance.</p>
+        <h2>Where are you going?</h2>
+
+        <div id="map"></div>
+
+        <form>
+          <div class="mb-3">
+            <label for="geocoder">Please enter the city or zip code of your destination.</label>
+            <div id="geocoder" class="geocoder"></div>
+          </div>
+          <div class="invalid-feedback error1" style="display: none;">Could not identify that location</div>
+          <button type="submit" class="destinationButton btn btn-primary mb-3">Enter</button>
+
+          <input style="display:none;" type="text" class="place2" value="" />
+
+          <a name="destination"></a>
+          <p style="display:none;" class="js-destination-address"></p>
+          <span style="display:none;" class="start"></span>
+
+          <h2 class="mt-20">Starting location?</h2>
+          <div class="mb-3">
+            <label for="geocoderStart">Please enter the city or zip code of your destination.</label>
+            <div id="geocoderStart" class="geocoder"></div>
+          </div>
+          <div class="invalid-feedback error2" style="display: none;">Could not identify that location</div>
+          <button type="submit" class="startButton btn btn-primary mb-3">Enter</button>
+
+          <input type="text" class="place1" value="" style="display:none" />
+
+          <p style="display:none;" class="js-starting-address"></p>
+
+          <span class="end" style="display:none;"></span>
+          <div class="highways" style="display:none;"></div>
+
+
+          <a name="obstructions"></a>
+          <div class="obstructions-major"></div>
+          <br><br>
+
+          <br><br>
+        </form>
+
+        <script src="js/lib/geolib.js"></script>
+
+        <script type="module" src="index.js"></script>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer alpha-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 ml-0 pl-0">
+          <ul class="list-group list list-group-horizontal-lg flex-fill list-group-flush">
+            <li class="list-group-item alpha-footer border-0">State of California</li>
+            <li class="list-group-item alpha-footer"><a href="/about/">About</a></li>
+            <li class="list-group-item alpha-footer"><a href="https://news.alpha.ca.gov/">News</a></li>
+            <li class="list-group-item alpha-footer"><a href="/feedback/">Feedback</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alphabar">
+    <div class="container">
+      <p>This is an alpha project and a work in progress (<a href="https://medium.com/cadotgov">Details</a>)</p>
+    </div>
+  </div>
+  <script src="https://cagov.github.io/UX/dist/main.js" defer async></script>
+
+</body>
+
+</html>
