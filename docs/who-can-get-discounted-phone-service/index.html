@@ -32,14 +32,14 @@
 	
 <style>
 	
-.toggletip-container {
+.tooltip-container {
   position: relative;
   display: inline-block;
 }
 
 /* the bubble element, added inside the toggletip live region */
 
-.toggletip-bubble {
+.tooltip-bubble {
   display: inline-block;
   position: absolute;
   left: 100%;
@@ -48,13 +48,17 @@
   padding: 0.5rem;
   background: #000;
   color: #fff;
+	z-index: 10;
 }
-		
-.tooltip {
-	border: 0;
+
+.tooltip-button {
 	background: none;
-	padding: 0;
-}	
+	border:0; 
+	padding:0; 
+	color: #0071bc;
+	text-decoration: underline;
+	background: #fff;
+}
 	
 .list-group-item.active {
     background-color: #000;
@@ -153,8 +157,9 @@ li.list-group-item.unstyled {
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
-		  	<p class="lead">Do you or someone in your <span data-toggletip>For most people, a household includes you as well as your spouse and dependents, if you have them.
-			  </span> get support from any of these programs? Please check all that apply. </p>
+		  	<p class="lead">					
+					Do you or someone in your <button class="tooltip-button" data-tooltip-content="For most people, a household includes you as well as your spouse and dependents, if you have them.">household</button>
+					get support from any of these programs? Please check all that apply. </p>
 				<form>
   					<div class="form-group">
 						<ul class="list-group custom-control custom-checkbox pb-5 pt-3">
@@ -361,57 +366,33 @@ li.list-group-item.unstyled {
 </body>
 
 	<script type="text/javascript">
+
 (function() {
-  // Get all the toggletip buttons
-  var toggletipTexts = document.querySelectorAll('[data-toggletip]');
-
-  // Iterate over them
-  Array.prototype.forEach.call(toggletipTexts, function(toggletipText) {
-    // Create the container element
-    var container = document.createElement('span');
-    container.setAttribute('class', 'toggletip-container');
-    
-    // Put it before the original element in the DOM
-    toggletipText.parentNode.insertBefore(container, toggletipText);
-    
-    // Create the button element
-    var toggletip = document.createElement('button');
+	Array.prototype.forEach.call(document.querySelectorAll('.tooltip-button'), function(toggletip) {
     toggletip.setAttribute('type', 'button');
-    toggletip.setAttribute('aria-label', 'more info');
-    toggletip.setAttribute('data-toggletip-content', toggletipText.textContent);
-	toggletip.setAttribute('style', 'border:0; padding:0; color: #0071bc;text-decoration: underline;background: #fff;');
-    toggletip.textContent = 'household';
+    toggletip.setAttribute('aria-label', 'Word Definition');
 
-    
-    // Place the button element in the contai"n"er
-    container.appendChild(toggletip);
-    
-    // Create the live region
-    var liveRegion = document.createElement('span');
+		//wrap a container around the button
+		var container = document.createElement('span');
+		container.setAttribute('class', 'tooltip-container');
+		toggletip.parentNode.insertBefore(container,toggletip);
+		container.appendChild(toggletip)
+
+		// Create the live region
+		var liveRegion = document.createElement('span');
     liveRegion.setAttribute('role', 'status');
     
     // Place the live region in the container
-    container.appendChild(liveRegion);
-    
-    // Remove the original element
-    toggletipText.parentNode.removeChild(toggletipText);
-    
-    // Build `data-tooltip-content` 
-    var message = toggletip.getAttribute('data-toggletip-content');
-    toggletip.setAttribute('data-toggletip-content', message);
-    toggletip.removeAttribute('title');
-    
-    // Get the message from the data-content element
-    var message = toggletip.getAttribute('data-toggletip-content');
-
-    // Get the live region element
-    var liveRegion = toggletip.nextElementSibling;
-
-    // Toggle the message
-    toggletip.addEventListener('click', function() {
+		container.appendChild(liveRegion);
+		
+		// Get the message from the data-content element
+		var message = toggletip.getAttribute('data-tooltip-content');
+		
+		   // Toggle the message
+			 toggletip.addEventListener('click', function() {
         liveRegion.innerHTML = '';
         window.setTimeout(function() {
-          liveRegion.innerHTML = '<span class="toggletip-bubble">'+ message +'</span>';
+          liveRegion.innerHTML = '<span class="tooltip-bubble">'+ message +'</span>';
         }, 100);
     });
 
@@ -419,7 +400,7 @@ li.list-group-item.unstyled {
     document.addEventListener('click', function (e) {
       if (toggletip !== e.target) {
         liveRegion.innerHTML = '';
-      }                        
+      }
     });
 
     // Remove toggletip on ESC
@@ -434,11 +415,7 @@ li.list-group-item.unstyled {
     });
   });
 }());	
- 
 		
-</script>
-	
-<script>
 	function maybeThanks() {
 	  let thanksDisplayed = document.querySelector('.js-thanks-for-applying').classList.contains('d-none');
 	  if (document.querySelector('.js-gpa-submit').checked && document.querySelector('.js-apply-aid').checked) {
