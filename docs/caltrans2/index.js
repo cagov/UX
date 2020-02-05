@@ -7,28 +7,13 @@ import createHTML from './js/obstruction-html.js';
 export default function addListeners() {
   document.querySelector('.destinationButton').addEventListener('click', async function(event) {
     event.preventDefault();
-    let place = document.querySelector('#geocoder input').value;
-    console.log('looking for lat,lon')
-    let endCoords = await getLatLon(place);
-    console.log(endCoords)
-    let errorSelector = document.querySelector('.error1');
-    if(endCoords.status != '200') {
-      errorSelector.innerHTML = endCoords.message;
-      errorSelector.style.display = 'block'
-    } else {
-      hideErrors()
-      window.endCoords = endCoords.center;
-      if(!isThatInCali(window.endCoords)) {
-        errorSelector.innerHTML = "Location not found in California";
-        errorSelector.style.display = 'block'
-      }
-      window.geocoderStart.clear();
-    }
-    areWeDoneYet();
+    readDestination();
   })
   
   document.querySelector('.startButton').addEventListener('click', async function(event) {
     event.preventDefault();
+    let findDest = await readDestination();
+    console.log(findDest)
     let endPlace = document.querySelector('#geocoderStart input').value;
     let startCoords = await getLatLon(endPlace);
     let errorSelector = document.querySelector('.error2');
@@ -38,6 +23,7 @@ export default function addListeners() {
     } else {
       hideErrors()
       window.startCoords = startCoords.center;
+      document.querySelector('#geocoderStart input').value = startCoords.place_name;
       if(!isThatInCali(window.startCoords)) {
         errorSelector.innerHTML = "Location not found in California";
         errorSelector.style.display = 'block'
@@ -71,25 +57,45 @@ export default function addListeners() {
       });  
     }
   }
-
-  function isThatInCali(coords) {
-    let lat = coords[1];
-    let lon = coords[0];
-    // Cali bbox = xmin, ymin, xmax, ymax
-    // -124.409591	32.534156	-114.131211	42.009518
-    let caliYMin = 32.534156;
-    let caliYMax = 42.009518;
-    let caliXMin = -124.409591;
-    let caliXMax = -114.131211;
-    if(lat > caliYMin && lat < caliYMax && lon > caliXMin && lon < caliXMax) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 }
 
 addListeners();
+
+function isThatInCali(coords) {
+  let lat = coords[1];
+  let lon = coords[0];
+  // Cali bbox = xmin, ymin, xmax, ymax
+  // -124.409591	32.534156	-114.131211	42.009518
+  let caliYMin = 32.534156;
+  let caliYMax = 42.009518;
+  let caliXMin = -124.409591;
+  let caliXMax = -114.131211;
+  if(lat > caliYMin && lat < caliYMax && lon > caliXMin && lon < caliXMax) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+async function readDestination() {
+  console.log('looking up destination')
+  let myPlace = document.querySelector('#geocoder input').value;
+  let endCoords = await getLatLon(myPlace);
+  let errorSelector = document.querySelector('.error1');
+  if(endCoords.status != '200') {
+    errorSelector.innerHTML = endCoords.message;
+    errorSelector.style.display = 'block'
+  } else {
+    hideErrors()
+    window.endCoords = endCoords.center;
+    document.querySelector('#geocoder input').value = endCoords.place_name;
+    if(!isThatInCali(window.endCoords)) {
+      errorSelector.innerHTML = "Location not found in California";
+      errorSelector.style.display = 'block'
+    }
+  }
+  return 'done';
+}
 
 function hideErrors() {
   document.querySelector('.error1').style.display = 'none';
@@ -108,7 +114,7 @@ window.geocoder = new MapboxGeocoder({
   placeholder: ' ',
   bbox: [-124.409591, 32.534156, -114.131211, 42.009518],
   mapboxgl: mapboxgl
-}).on('result',function(item) {
+}).on('result',async function(item) {
   window.endCoords = item.result.center;
   hideErrors()
   if(window.startCoords) {
@@ -125,7 +131,9 @@ window.geocoderStart = new MapboxGeocoder({
   placeholder: ' ',
   bbox: [-124.409591, 32.534156, -114.131211, 42.009518],
   mapboxgl: mapboxgl
-}).on('result',function(item) {
+}).on('result',async function(item) {
+  let findDest = await readDestination();
+  console.log(findDest)
   window.startCoords = item.result.center;
   hideErrors()
   displayObs();

@@ -5,7 +5,7 @@ export default async function getLatLon(place) {
   .then((response) => response.json())
   .then((json) => {
     if(json.features[0].center) {
-      return {"status": "200", center: json.features[0].center};
+      return {"status": "200", center: json.features[0].center, place_name: json.features[0].place_name};
     } else {
       return {"status": "error", "message": "Please enter a valid city or zip code, such as San Francisco or 95818"}
     }  
