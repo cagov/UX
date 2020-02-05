@@ -22,6 +22,7 @@ export default function addListeners() {
         errorSelector.innerHTML = "Location not found in California";
         errorSelector.style.display = 'block'
       }
+      window.geocoderStart.clear();
     }
     areWeDoneYet();
   })
@@ -102,7 +103,7 @@ var map = new mapboxgl.Map({
   zoom: 13
 });
   
-var geocoder = new MapboxGeocoder({
+window.geocoder = new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
   placeholder: ' ',
   bbox: [-124.409591, 32.534156, -114.131211, 42.009518],
@@ -112,12 +113,14 @@ var geocoder = new MapboxGeocoder({
   hideErrors()
   if(window.startCoords) {
     displayObs();
+  } else {
+    window.geocoderStart.clear();
   }
 })
    
-document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+document.getElementById('geocoder').appendChild(window.geocoder.onAdd(map));
 
-var geocoderStart = new MapboxGeocoder({
+window.geocoderStart = new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
   placeholder: ' ',
   bbox: [-124.409591, 32.534156, -114.131211, 42.009518],
@@ -128,7 +131,7 @@ var geocoderStart = new MapboxGeocoder({
   displayObs();
 })
 
-document.getElementById('geocoderStart').appendChild(geocoderStart.onAdd(map));
+document.getElementById('geocoderStart').appendChild(window.geocoderStart.onAdd(map));
 
 function displayObs() {
   getDirections(`coordinates=${window.startCoords};${window.endCoords}&steps=true&banner_instructions=true`)
