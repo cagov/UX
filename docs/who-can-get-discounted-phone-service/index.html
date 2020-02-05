@@ -83,19 +83,32 @@ label.custom-control-label {
 }
 
 .aside {
-	border-bottom: solid #000;
 	padding-bottom: 1rem;
+	padding-top: 1rem;
+	
+}
+.aside .step-title {
+		
+    border: solid #ccc 3px;
+    padding: 0px 7px;
+	font-family: "Public Sans Bold", sans-serif;
+	font-size:1.5rem;
+	
 }
 
-	
-	.list-number {
+
+.list-number {
 		text-indent: 0;
 	}
 	
 	
-	li.list-group-item.unstyled {
+li.list-group-item.unstyled {
     text-indent: -45px;
 		padding-left: 50px;
+}
+	
+.list-group-flush.list-group-item {
+    font-family: "Public Sans Bold", sans-serif;
 }
 	
 
@@ -124,10 +137,14 @@ label.custom-control-label {
 
   <div class="container-fluid jumbotron">
     <div class="container">
+		<nav aria-label="breadcrumb">
+		  <ol class="breadcrumb pl-0">
+			<li class="breadcrumb-item"><span class="ca-gov-icon-caret-left text-larger pr-1"></span><a href="/apply-discounted-phone-service/">Apply for a discounted phone service</a></li>
+		  </ol>
+		</nav>
       <div class="row">
         <div class="col-md-12">
-          <h1>Who can get a discounted phone service</h1>
-		  <p class="lead">California LifeLine eligibility </p>
+          <h1>Check if you can get a discount</h1>
         </div>
       </div>
     </div>
@@ -139,7 +156,7 @@ label.custom-control-label {
 		  	<p class="lead">Do you or someone in your <span data-toggletip>For most people, a household includes you as well as your spouse and dependents, if you have them.
 			  </span> get support from any of these programs? Please check all that apply. </p>
 
-			<ul class="list-group custom-control custom-checkbox pb-5">
+			<ul class="list-group custom-control custom-checkbox pb-5 pt-3">
 				<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-1" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')">
 					<label for="check-1" class="custom-control-label">I’m not sure</label></li>
 				<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-2" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
@@ -182,23 +199,23 @@ label.custom-control-label {
 
       </div>
 		<div class="col-lg-4 mt-n2">
-			<p class="aside"><span class="display-5">Part of: <br></span>
-			<a href="/apply-discounted-phone-service/" class="lead">Applying for California LifeLine</a></p>
+			<div class="aside"><span class="display-5">Steps to apply for a discounted phone service</span>
 			  	<div class="list-group">
-				<ul class="list-group list-group-flush pl-1">
-					<li class="list-group-item unstyled"><span class="list-number">1</span>Check if you can get a discount</li>
-					<li class="list-group-item unstyled"><span class="list-number list-number-inverse">2</span>Choose a phone company that offers discounts</li>
-					<li class="list-group-item unstyled"><span class="list-number list-number-inverse">3</span>Call your phone company</li>
-					<li class="list-group-item unstyled"><span class="list-number list-number-inverse">4</span>Read our pink letter in the mail</li>
-					<li class="list-group-item unstyled"><span class="list-number list-number-inverse">5</span>Apply online or by mail</li>
-					<li class="list-group-item unstyled"><span class="list-number list-number-inverse">6</span>Read our decision in the mail</li>
-				  </ul>			  
+					<ul class="list-group list-group-flush pl-1 pb-3 pt-2">
+						<li class="list-group-item unstyled bold"><span class="list-number">1</span>Check if you can get a discount</li>
+						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">2</span>Choose a phone company that offers discounts</li>
+						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">3</span>Call your phone company</li>
+						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">4</span>Read our pink letter in the mail</li>
+						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">5</span>Apply online or by mail</li>
+						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">6</span>Read our decision in the mail</li>
+					  </ul>			  
 				</div>
+				<span class="ca-gov-icon-caret-left pr-1"></span><a href="/apply-discounted-phone-service/" target="_self">Back to Apply for a discounted phone service</a>
     	</div>
   </div>
+ </div>	
 </div>	
-
-	<hr class="mt-5">
+<hr class="mt-5">
   <div class="container" id="qualified">
 	<div class="row">
 	  <div class="col-lg-8">	
