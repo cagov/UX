@@ -48,7 +48,6 @@
       z-index: 99;
     }
     .invalid-feedback {
-      color: red;
       margin: 0 0 10px 0;
     }
   </style>
@@ -102,7 +101,7 @@
             <label for="geocoder">Please enter the city or address:</label>
             <div id="geocoder" class="geocoder"></div>
           </div>
-          <div class="invalid-feedback error1" style="display: none;">Could not identify that location</div>
+          <div class="invalid-feedback error1 alert alert-warning" style="display: none;">Could not identify that location</div>
           <button style="display:none;" type="submit" class="destinationButton btn btn-primary mb-3">Enter</button>
 
           <input style="display:none;" type="text" class="place2" value="" />
@@ -116,7 +115,7 @@
             <label for="geocoderStart">Please enter the city or address:</label>
             <div id="geocoderStart" class="geocoder"></div>
           </div>
-          <div class="invalid-feedback error2" style="display: none;">Could not identify that location</div>
+          <div class="invalid-feedback error2 alert alert-warning" style="display: none;">Could not identify that location</div>
           <button type="submit" class="startButton btn btn-primary mb-3">Enter</button>
 
           <input type="text" class="place1" value="" style="display:none" />
