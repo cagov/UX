@@ -81,7 +81,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1>Check road conditions for your trip</h1>
+          <h1>Check lane closures for your trip</h1>
         </div>
       </div>
     </div>
@@ -91,17 +91,16 @@
     <div class="row">
       <div class="col-lg-8">
 
-        <p class="lead">Road conditions include lane closures and planned maintenance.</p>
+        <p class="lead">Lane closures can happen because of planned maintenance, construction, and landscaping.</p>
         <h2>Where are you going?</h2>
 
         <div id="map"></div>
 
         <form>
           <div class="mb-3">
-            <label for="geocoder">Please enter the city or address:</label>
             <div id="geocoder" class="geocoder"></div>
           </div>
-          <div class="invalid-feedback error1 alert alert-warning" style="display: none;">Could not identify that location</div>
+          <div class="invalid-feedback error1 alert alert-warning" style="display: none;">Sorry, we can't find that location. Please enter a valid destination in California.</div>
           <button style="display:none;" type="submit" class="destinationButton btn btn-primary mb-3">Enter</button>
 
           <input style="display:none;" type="text" class="place2" value="" />
@@ -110,12 +109,11 @@
           <p style="display:none;" class="js-destination-address"></p>
           <span style="display:none;" class="start"></span>
 
-          <h2 class="mt-20">Starting location?</h2>
+          <h2 class="mt-20">What's your starting location?</h2>
           <div class="mb-3">
-            <label for="geocoderStart">Please enter the city or address:</label>
             <div id="geocoderStart" class="geocoder"></div>
           </div>
-          <div class="invalid-feedback error2 alert alert-warning" style="display: none;">Could not identify that location</div>
+          <div class="invalid-feedback error2 alert alert-warning" style="display: none;">Sorry, we can't find that location. Please enter a valid destination in California.</div>
           <button type="submit" class="startButton btn btn-primary mb-3">Enter</button>
 
           <input type="text" class="place1" value="" style="display:none" />
