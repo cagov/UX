@@ -62,17 +62,17 @@ export default function createHTML(myObstructions, startCoords, endCoords) {
     majorhtml += '<p>No major obstructions on your route</p>'
   }
 
-  function mapsSelector() {
+  function mapsSelector(start,end) {
     if((navigator.platform.indexOf("iPhone") != -1) || 
        (navigator.platform.indexOf("iPad") != -1) || 
        (navigator.platform.indexOf("iPod") != -1)) {
-      return "maps://maps.google.com/";
+      return `http://maps.apple.com/?saddr=${start}&daddr=${end}&dirflg=d`
     } else {
-      return "https://maps.google.com/";
+      return `https://maps.google.com/maps/dir/?api=1&origin=${start}&destination=${end}`;
     }
   }
 
-  let directionsUrl = `${mapsSelector()}/maps/dir/?api=1&origin=${document.querySelector('#geocoderStart input').value}&destination=${document.querySelector('#geocoder input').value}`;
+  let directionsUrl = mapsSelector(document.querySelector('#geocoderStart input').value,document.querySelector('#geocoder input').value);
   majorhtml += `<p>
     <a href="${directionsUrl}" target="_new" class="btn btn-primary">Get Directions</a>
   </p>`;
