@@ -90,7 +90,7 @@ window.geocoder = new MapboxGeocoder({
   let errorSelector = document.querySelector('.error1');
   errorSelector.style.display = 'none';
   if(!isThatInCali(window.endCoords)) {
-    errorSelector.innerHTML = "Hella too far, sorry we can only show road conditions in California";
+    errorSelector.innerHTML = "Sorry, we can only show road conditions in California. Please enter a California location.";
     errorSelector.style.display = 'block'
   }
   if(window.startCoords) {
@@ -114,7 +114,7 @@ window.geocoderStart = new MapboxGeocoder({
   let errorSelector = document.querySelector('.error2');
   errorSelector.style.display = 'none';
   if(!isThatInCali(window.startCoords)) {
-    errorSelector.innerHTML = "Hella too far, sorry we can only show road conditions in California";
+    errorSelector.innerHTML = "Sorry, we can only show road conditions in California. Please enter a California location.";
     errorSelector.style.display = 'block'
   }
   displayObs();
