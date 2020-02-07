@@ -7,7 +7,7 @@ import createHTML from './js/obstruction-html.js';
 export default function addListeners() {
   document.querySelector('.destinationButton').addEventListener('click', async function(event) {
     event.preventDefault();
-    readDestination();
+    // deleted this button
   })
   
   document.querySelector('.startButton').addEventListener('click', async function(event) {
@@ -29,34 +29,8 @@ export default function addListeners() {
         errorSelector.style.display = 'block'
       }
     }
-    areWeDoneYet()
+    displayObs()
   })
-
-  function areWeDoneYet() {
-    console.log('going to get steps')
-    // need to check if within CA bbox
-    if(window.endCoords && window.startCoords) {
-      console.log('got spots')
-      console.log(window.startCoords)
-      console.log(window.startCoords)
-      getDirections(`coordinates=${window.startCoords};${window.endCoords}&steps=true&banner_instructions=true`)
-      .then((data) => {
-        let stepMap = getSteps(data);  
-        console.log(stepMap)
-        let coords = { startCoords: window.startCoords, endCoords: window.endCoords }
-        console.log(coords)
-        getObstructions(stepMap, coords, function(myObstructions) {
-          console.log('hello there')
-          console.log(myObstructions)
-          console.log('those are my obs')
-          let obstructionHTML = createHTML(myObstructions, window.startCoords, window.endCoords);
-          console.log('here')
-          console.log(obstructionHTML)
-          document.querySelector('.obstructions-major').innerHTML = obstructionHTML;
-        });
-      });  
-    }
-  }
 }
 
 addListeners();
@@ -82,11 +56,11 @@ async function readDestination() {
   let myPlace = document.querySelector('#geocoder input').value;
   let endCoords = await getLatLon(myPlace);
   let errorSelector = document.querySelector('.error1');
+  errorSelector.style.display = 'none';
   if(endCoords.status != '200') {
     errorSelector.innerHTML = endCoords.message;
     errorSelector.style.display = 'block'
   } else {
-    hideErrors()
     window.endCoords = endCoords.center;
     document.querySelector('#geocoder input').value = endCoords.place_name;
     if(!isThatInCali(window.endCoords)) {
@@ -97,10 +71,6 @@ async function readDestination() {
   return 'done';
 }
 
-function hideErrors() {
-  document.querySelector('.error1').style.display = 'none';
-  document.querySelector('.error2').style.display = 'none';
-}
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWFyb25oYW5zIiwiYSI6ImNqNGs4cms1ZzBocXkyd3FzZGs3a3VtamYifQ.HQjFfVzwwxwCmGr2nvnvSA';
 var map = new mapboxgl.Map({
   container: 'map',
@@ -112,11 +82,17 @@ var map = new mapboxgl.Map({
 window.geocoder = new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
   placeholder: ' ',
-  bbox: [-124.409591, 32.534156, -114.131211, 42.009518],
+  // bbox: [-124.409591, 32.534156, -114.131211, 42.009518],
+  bbox: [-124.7844079, 24.7433195, -66.9513812, 49.3457868],
   mapboxgl: mapboxgl
 }).on('result',async function(item) {
   window.endCoords = item.result.center;
-  hideErrors()
+  let errorSelector = document.querySelector('.error1');
+  errorSelector.style.display = 'none';
+  if(!isThatInCali(window.endCoords)) {
+    errorSelector.innerHTML = "Hella too far, sorry we can only show road conditions in California";
+    errorSelector.style.display = 'block'
+  }
   if(window.startCoords) {
     displayObs();
   } else {
@@ -129,30 +105,35 @@ document.getElementById('geocoder').appendChild(window.geocoder.onAdd(map));
 window.geocoderStart = new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
   placeholder: ' ',
-  bbox: [-124.409591, 32.534156, -114.131211, 42.009518],
+  bbox: [-124.7844079, 24.7433195, -66.9513812, 49.3457868],
   mapboxgl: mapboxgl
 }).on('result',async function(item) {
   let findDest = await readDestination();
   console.log(findDest)
   window.startCoords = item.result.center;
-  hideErrors()
+  let errorSelector = document.querySelector('.error2');
+  errorSelector.style.display = 'none';
+  if(!isThatInCali(window.startCoords)) {
+    errorSelector.innerHTML = "Hella too far, sorry we can only show road conditions in California";
+    errorSelector.style.display = 'block'
+  }
   displayObs();
 })
 
 document.getElementById('geocoderStart').appendChild(window.geocoderStart.onAdd(map));
 
 function displayObs() {
-  getDirections(`coordinates=${window.startCoords};${window.endCoords}&steps=true&banner_instructions=true`)
-  .then((data) => {
-    let stepMap = getSteps(data);
-
-    console.log('steps received are')
-    console.log(stepMap)
-
-    getObstructions(stepMap, { startCoords: window.startCoords, endCoords: window.endCoords }, function(myObstructions) {
-      console.log('obstructions are:')
-      console.log(myObstructions)
-      document.querySelector('.obstructions-major').innerHTML = createHTML(myObstructions, window.startCoords, window.endCoords);
-    });
-  });
+  if(window.endCoords && window.startCoords) {
+    console.log('got spots')
+    if(isThatInCali(window.startCoords) && isThatInCali(window.endCoords)) {
+      console.log('in Cali')
+      getDirections(`coordinates=${window.startCoords};${window.endCoords}&steps=true&banner_instructions=true`)
+      .then((data) => {
+        let stepMap = getSteps(data);
+        getObstructions(stepMap, { startCoords: window.startCoords, endCoords: window.endCoords }, function(myObstructions) {
+          document.querySelector('.obstructions-major').innerHTML = createHTML(myObstructions, window.startCoords, window.endCoords);
+        });
+      });
+    }
+  }
 }
