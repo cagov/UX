@@ -72,9 +72,9 @@ export default function createHTML(myObstructions, startCoords, endCoords) {
     }
   }
 
-  let directionsUrl = `${mapsSelector()}/maps/dir/?api=1&origin=${startCoords[1]},${startCoords[0]}&destination=${endCoords[1]},${endCoords[0]}`;
+  let directionsUrl = `${mapsSelector()}/maps/dir/?api=1&origin=${document.querySelector('#geocoderStart input').value}&destination=${document.querySelector('#geocoder input').value}`;
   majorhtml += `<p>
-    <a href="${directionsUrl}" class="btn btn-primary">Get Directions</a>
+    <a href="${directionsUrl}" target="_new" class="btn btn-primary">Get Directions</a>
   </p>`;
 
   console.log('foun major and returning '+foundMajor)
