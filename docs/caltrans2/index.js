@@ -25,7 +25,7 @@ export default function addListeners() {
       window.startCoords = startCoords.center;
       document.querySelector('#geocoderStart input').value = startCoords.place_name;
       if(!isThatInCali(window.startCoords)) {
-        errorSelector.innerHTML = "Location not found in California";
+        errorSelector.innerHTML = "Sorry, we can't find that location. Please enter a valid location in California.";
         errorSelector.style.display = 'block'
       }
     }
@@ -64,7 +64,7 @@ async function readDestination() {
     window.endCoords = endCoords.center;
     document.querySelector('#geocoder input').value = endCoords.place_name;
     if(!isThatInCali(window.endCoords)) {
-      errorSelector.innerHTML = "Location not found in California";
+      errorSelector.innerHTML = "Sorry, we can't find that location. Please enter a valid location in California.";
       errorSelector.style.display = 'block'
     }
   }
