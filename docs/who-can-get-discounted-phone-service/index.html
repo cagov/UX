@@ -32,6 +32,10 @@
 	
 <style>
 	
+.d-none {
+	display: none;
+}
+
 .tooltip-container {
   position: relative;
   display: inline-block;
@@ -135,7 +139,7 @@ li.list-group-item.unstyled {
   <nav class="navbar navbar-inverse">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand navbar-left" href="/UX/">CA.gov <sup>(ALPHA)</sup></a>
+        <a class="navbar-brand navbar-left" href="/">CA.gov <sup>(ALPHA)</sup></a>
       </div>
     </div>
   </nav>
@@ -157,60 +161,174 @@ li.list-group-item.unstyled {
 
   <div class="container">
     <div class="row">
-      <div class="col-lg-8">
-		  	<p class="lead">					
+      <div class="col-lg-8" >
+				<div id="div-checkform">
+		  	<h2>					
 					Do you or someone in your <button class="tooltip-button" data-tooltip-content="For most people, a household includes you as well as your spouse and dependents, if you have them.">household</button>
-					get support from any of these programs? Please check all that apply. </p>
-				<form>
+					get support from any of these programs? </h2><p> Please check all that apply.</p>
+				<form onsubmit="return false" >
   					<div class="form-group">
 						<ul class="list-group custom-control custom-checkbox pb-5 pt-3">
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-1" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')">
-								<label for="check-1" class="custom-control-label">I’m not sure</label></li>
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-2" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
-								<label for="check-2" class="custom-control-label">No</label></li>
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-3" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-not-sure" autofocus>
+								<label for="check-not-sure" class="custom-control-label">I’m not sure</label></li>
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-no">
+								<label for="check-no" class="custom-control-label">No</label></li>
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-3">
 								<label for="check-3" class="custom-control-label">Medicaid/Medi-Cal</label></li>
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-4" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-4">
 								<label for="check-4" class="custom-control-label">CalFresh, Food Stamps or Supplemental Nutrition Assistance Program (SNAP)</label></li>
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-5" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-5">
 								<label for="check-5" class="custom-control-label">Low Income Home Energy Assistance Program (LIHEAP)</label></li>  
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-6" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-6">
 								<label for="check-6" class="custom-control-label">Supplemental Security Income (SSI)</label></li>
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-7" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-7">
 								<label for="check-7" class="custom-control-label">Federal Public Housing Assistance or Section 8</label></li>				
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-8" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-8">
 								<label for="check-8" class="custom-control-label">Women, Infants and Children Program (WIC)</label></li>
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-9" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-9">
 								<label for="check-9" class="custom-control-label">National School Lunch Program (NSL)</label></li>				
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-10" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-10">
 								<label for="check-10" class="custom-control-label">Temporary Assistance for Needy Families (TANF)</label></li>
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-11" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-11">
 								<label for="check-11" class="custom-control-label">California Work Opportunity and Responsibility to Kids (CalWORKs)</label></li>				
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-12" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-12">
 								<label for="check-12" class="custom-control-label">Stanislaus County Work Opportunity and Responsibility to Kids (StanWORKs)</label></li>
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-13" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-13">
 								<label for="check-13" class="custom-control-label">Welfare-to-Work (WTW)</label></li>
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-14" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-14">
 								<label for="check-14" class="custom-control-label">Greater Avenues for Independence (GAIN)</label></li>
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-15" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-15">
 								<label for="check-15" class="custom-control-label">Tribal TANF</label></li>
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-16" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-16">
 								<label for="check-16" class="custom-control-label">Bureau of Indian Affairs General Assistance</label></li>
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-17" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-17">
 								<label for="check-17" class="custom-control-label">Head Start Income Eligible (Tribal Only)</label></li>
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-18" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-18">
 								<label for="check-18" class="custom-control-label">Food Distribution Program on Indian Reservations</label></li>
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-19" aria-labelledby="check-1" onclick="this.parentNode.classList.toggle('active')" >
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-19">
 								<label for="check-19" class="custom-control-label">Federal Veterans and Survivors Pension Benefit Program</label></li>	
 						</ul>	
-					  <p><a class="btn btn-secondary btn-sm" href="#" target="_self">Next</a></p>
+						<p>
+						<input class="btn btn-secondary btn-sm" type="submit" value="Next" id="btn-next">
+						</p>
 					</div>
 				</form>
+				</div>
 
+
+
+
+			<div class="container d-none" id="div-qualified">
+				<div class="row">
+					<div class="col-lg-8">	
+					<h2>You can get a discounted phone service!</h2>
+						<p>Next, you’ll want to find an official document to prove you get support from:</p>
+						<ul id="ul-programs"></ul>
+						<p>Have it nearby as you <a href="#" target="_self">finish your application</a>. Here are examples of documents that could prove you qualify: </p>
+						<ul>
+						<li>ID card </li>
+						<li>Decision letter </li>
+						<li>Statement of benefits</li>
+						<li>Other official documents </li>
+						</ul>  
+					</div>
+				</div>
       </div>
+
+			<div class="container d-none" id="div-no-not-sure">
+				<div class="row">
+					<div class="col-lg-8">	
+					<h2>How many people are in your household?</h2>
+						<p>For most people, a household includes you as well as your spouse and dependents, if you have them.</p>
+						<form onsubmit="return false">
+							<div class="form-group">
+							<input type="number" required="required" min="1" max="999" class="form-control form-control-lg col-lg-6" id="lst-household-size" name="data">
+
+							<p><input class="btn btn-secondary btn-sm mt-3" type="submit" value="Select" id="btn-select-people">
+								<button class="btn btn-secondary btn-sm mt-3" type="button" onclick="show('div-checkform')">Back</button></p>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="container d-none" id="div-total-income">
+				<div class="row">
+					<div class="col-lg-8">
+						<h2>Is your household’s total income below $<span id="spn-income-cap"></span>?</h2>
+						<p><button type="button" class="btn btn-secondary btn-sm"  id="btn-yes">Yes</button>
+						<button type="button" class="btn btn-secondary btn-sm ml-2" id="btn-no">No</button>
+						<button class="btn btn-secondary btn-sm ml-2" type="button" onclick="show('div-no-not-sure')">Back</p>
+					</div>
+				</div>
+			</div>
+	
+			<div class="container d-none" id="div-qualified-income">
+				<div class="row">
+					<div class="col-lg-8">	
+					<h2>You can get a discounted phone service!</h2>
+						<p>Next, you’ll want to find one of the following documents:</p>
+						<ul>
+						<li>The front page of your state, federal, or tribal tax return from last year</li>
+						<li>Or income statements or paycheck stubs for three months in a row. Those three months should be within the past 12 months.</li>			  
+						</ul>
+						<p>The document will help you prove that you can get a discounted phone service. Have it nearby as you <a href="#" target="_self">finish your application</a>. </p>
+					</div>
+				</div>
+			</div>
+
+			<div class="container d-none" id="div-not-sure-qualified">
+				<div class="row">
+					<div class="col-lg-8">	
+					<h2>Ask a caseworker or counselor if you can get California LifeLine. Or you can contact us:</h2>
+						<p><strong>Monday–Friday</strong><br>
+						7 a.m.–7 p.m.</p>
+						
+						<p><strong>General number</strong> 1-866-272-0357<br>
+						<strong>English</strong> 1-866-272-0349<br>
+						<strong>Spanish</strong> 1-866-272-0350<br>
+						<strong>Lao/Hmong</strong> 1-866-272-0351<br>
+						<strong>Khmer (Cambodian)</strong> 1-866-272-0352<br>
+						<strong>Tagalog</strong> 1-866-272-0353<br>
+						<strong>Korean</strong> 1-866-272-0354<br>
+						<strong>Vietnamese</strong> 1-866-272-0355 <br>
+						<strong>Chinese</strong> (Mandarin/Cantonese)1-866-272-0356<br>
+						<strong>Japanese</strong> 1-866-296-0860<br>
+						<strong>TTY Number</strong> 866-272-0358<br>
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="container d-none" id="div-not-qualified">
+				<div class="row">
+					<div class="col-lg-8">	
+						<h2>Sorry, you may not be able to get a discounted phone service. </h2>
+						 <p>To be sure, talk to your caseworker or counselor about the California LifeLine Program. Or you can contact us:</p>
+							<p><strong>Monday–Friday</strong><br>
+							7 a.m.–7 p.m.</p>
+							
+							<p><strong>General number</strong> 1-866-272-0357<br>
+							<strong>English</strong> 1-866-272-0349<br>
+							<strong>Spanish</strong> 1-866-272-0350<br>
+							<strong>Lao/Hmong</strong> 1-866-272-0351<br>
+							<strong>Khmer (Cambodian)</strong> 1-866-272-0352<br>
+							<strong>Tagalog</strong> 1-866-272-0353<br>
+							<strong>Korean</strong> 1-866-272-0354<br>
+							<strong>Vietnamese</strong> 1-866-272-0355 <br>
+							<strong>Chinese</strong> (Mandarin/Cantonese)1-866-272-0356<br>
+							<strong>Japanese</strong> 1-866-296-0860<br>
+							<strong>TTY Number</strong> 866-272-0358<br>
+							</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="col-lg-4 mt-n2">
 			<div class="aside"><span class="display-5">Steps to apply for a discounted phone service</span>
-			  	<div class="list-group">
+			  <div class="list-group">
 					<ul class="list-group list-group-flush pl-1 pb-3 pt-2">
 						<li class="list-group-item unstyled bold"><span class="list-number">1</span>Check if you can get a discount</li>
 						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">2</span>Choose a phone company that offers discounts</li>
@@ -218,131 +336,18 @@ li.list-group-item.unstyled {
 						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">4</span>Read our pink letter in the mail</li>
 						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">5</span>Apply online or by mail</li>
 						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">6</span>Read our decision in the mail</li>
-					  </ul>			  
+					</ul>
 				</div>
 				<p><strong>Back to:</strong> <a href="/apply-discounted-phone-service/" target="_self">Apply for a discounted phone service</a></p>
     	</div>
-  </div>
- </div>	
-</div>	
-<hr class="mt-5">
-  <div class="container" id="qualified">
-	<div class="row">
-	  <div class="col-lg-8">	
-		<h2>You can get a discounted phone service!</h2>
-		  <p>Next, you’ll want to find an official document to prove you get support from [Dynamic: MediCal or CalFresh]. Have it nearby as you <a href="#" target="_self">finish your application</a>.</p>
-		  <p>Here are examples of documents from [Dynamic: MediCal or CalFresh] that could prove you qualify: </p>
-		  <ul>
-			<li>ID card </li>
-			<li>Decision letter </li>
-			<li>Statement of benefits</li>
-			<li>Other official documents </li>
-		  </ul>  
-	  </div>
-	</div>
-  </div>
-		<hr class="mt-5">
-	<div class="container" id="no-not-sure">
-		<div class="row">
-		  <div class="col-lg-8">	
-			<h2>How many people are in your household?</h2>
-			  <p>For most people, a household includes you as well as your spouse and dependents, if you have them.</p>
-			  <form>
-				  <select class="form-control form-control-lg col-lg-6">
-					  <option>1 Person</option>
-					  <option>2 People</option>
-					  <option>3 People</option>
-					  <option>4 People</option>
-					  <option>5 People</option>
-					  <option>6 People</option>
-					  <option>7 People</option>
-					  <option>8 People</option>
-					  <option>9 People</option>
-					  <option>10 People</option>
-					  <option>11 People</option>
-					  <option>12 People</option>
-					  <option>13 People</option>
-					  <option>14 People</option>
-					  <option>15 People</option>
-					  <option>16 People</option>
-					  <option>17 People</option>
-					  <option>18 or more People</option>
-				  </select>
-			  </form>  
-			  <p><a class="btn btn-secondary btn-sm mt-3" href="#" target="_self">Select</a></p>
-			  <h2>Is your household’s total income below $[dynamic number based on the household size]?</h2>
-			  	<p><a class="btn btn-secondary btn-sm mt-3" href="#" target="_self">Yes</a>
-				<a class="btn btn-secondary btn-sm mt-3 ml-2" href="#" target="_self">No</a></p>
-		  </div>
 		</div>
 	</div>
-	
-<div class="container" id="qualified-income">
-	<div class="row">
-	  <div class="col-lg-8">	
-		<h2>You can get a discounted phone service!</h2>
-		  <p>Next, you’ll want to find one of the following documents:</p>
-		  <p>Here are examples of documents from [Dynamic: MediCal or CalFresh] that could prove you qualify: </p>
-		  <ul>
-			<li>The front page of your state, federal, or tribal tax return from last year</li>
-			<li>Or income statements or paycheck stubs for three months in a row. Those three months should be within the past 12 months.</li>			  
-		  </ul>
-		  <p>The document will help you prove that you can get a discounted phone service. Have it nearby as you <a href="#" target="_self">finish your application</a>. </p>
-	  </div>
+
+	<div class="col-md-8 pt-3">
+		<hr>
+		<p class="mt-3">Return to the beginning: <a href=".">Check if you can get a discount</a></p>
 	</div>
 </div>
-	<hr class="mt-5">
-	
-	<div class="container" id="not-sure-qualified">
-	<div class="row">
-	  <div class="col-lg-8">	
-		<h2>Ask a caseworker or counselor if you can get California LifeLine. Or you can contact us:</h2>
-		  <p><strong>Monday–Friday</strong><br>
-		  7 a.m.–7 p.m.</p>
-		  
-		  <p><strong>General number</strong> 1-866-272-0357<br>
-			<strong>English</strong> 1-866-272-0349<br>
-			<strong>Spanish</strong> 1-866-272-0350<br>
-			<strong>Lao/Hmong</strong> 1-866-272-0351<br>
-			<strong>Khmer (Cambodian)</strong> 1-866-272-0352<br>
-			<strong>Tagalog</strong> 1-866-272-0353<br>
-			<strong>Korean</strong> 1-866-272-0354<br>
-			<strong>Vietnamese</strong> 1-866-272-0355 <br>
-			<strong>Chinese</strong> (Mandarin/Cantonese)1-866-272-0356<br>
-			<strong>Japanese</strong> 1-866-296-0860<br>
-			<strong>TTY Number</strong> 866-272-0358<br>
-		  </p>
-	  </div>
-	</div>
-	</div>
-	
-		<hr class="mt-5">
-	
-	
-	<div class="container" id="not-qualified">
-	<div class="row">
-	 <div class="col-lg-8">	
-		<h2>Sorry, you may not be able to get a discounted phone service. </h2>
-		 <p>To be sure, talk to your caseworker or counselor about the California LifeLine Program. Or you can contact us:</p>
-		  <p><strong>Monday–Friday</strong><br>
-		  7 a.m.–7 p.m.</p>
-		  
-		  <p><strong>General number</strong> 1-866-272-0357<br>
-			<strong>English</strong> 1-866-272-0349<br>
-			<strong>Spanish</strong> 1-866-272-0350<br>
-			<strong>Lao/Hmong</strong> 1-866-272-0351<br>
-			<strong>Khmer (Cambodian)</strong> 1-866-272-0352<br>
-			<strong>Tagalog</strong> 1-866-272-0353<br>
-			<strong>Korean</strong> 1-866-272-0354<br>
-			<strong>Vietnamese</strong> 1-866-272-0355 <br>
-			<strong>Chinese</strong> (Mandarin/Cantonese)1-866-272-0356<br>
-			<strong>Japanese</strong> 1-866-296-0860<br>
-			<strong>TTY Number</strong> 866-272-0358<br>
-		  </p>
-	  </div>
-	</div>
-	</div>
-
 <div class="footer alpha-footer">
   <div class="container">
     <div class="row">
@@ -366,68 +371,150 @@ li.list-group-item.unstyled {
   <script src="https://cagov.github.io/UX/dist/main.js" defer async></script>
 </body>
 
-	<script type="text/javascript">
+<script type="text/javascript">
+	function html5formvalid(input) {
+		return !input.form.checkValidity || input.form.checkValidity()
+	}
+
+	function hide(id) {document.getElementById(id).classList.add('d-none')}
+	function hideall() {
+		hide('div-checkform')
+		hide('div-no-not-sure')
+		hide('div-qualified')
+		hide('div-total-income')
+		hide('div-qualified-income')
+	}
+
+	function show(id) {
+		hideall()
+		window.scrollTo(0,0)
+		updateSelections()
+		document.getElementById(id).classList.remove('d-none')
+	}
+
+	function updateSelections() {
+		const ul_programs = document.getElementById('ul-programs')
+		while (ul_programs.firstChild) ul_programs.removeChild(ul_programs.firstChild);
+
+		document.querySelectorAll('li.active label').forEach(x=> { const li = document.createElement("li"); li.innerText=x.innerText; ul_programs.appendChild(li)})
+	}
 
 (function() {
+	document.getElementById('btn-next').addEventListener('click', function() {
+		if(document.querySelector('li.active #check-not-sure')||document.querySelector('li.active #check-no'))
+		{	
+			show('div-no-not-sure') 
+			document.getElementById('lst-household-size').focus()
+		}	else {
+			updateSelections()
+			show('div-qualified')
+		}
+	})
+
+
+	document.getElementById('btn-select-people').addEventListener('click', function() {
+		if(html5formvalid(this)) {
+			const people = Number(document.getElementById('lst-household-size').value || 0)
+
+			let bucks = 0
+			switch (people) {
+				case 1:
+				case 2:
+					bucks = 27500
+					break
+				case 3:
+					bucks = 31900
+					break
+				default:
+					bucks = 38800+6900*(people-3)
+			}
+
+			document.getElementById('spn-income-cap').innerText = bucks.toLocaleString()
+
+			show('div-total-income')
+		}
+	})
+
+	document.getElementById('btn-yes').addEventListener('click', function() {
+		show('div-qualified-income')
+})
+
+	document.getElementById('btn-no').addEventListener('click', function() {
+		if(document.querySelector('li.active #check-no'))
+			show('div-not-qualified')
+		else
+			show('div-not-sure-qualified')
+	})
+
+	function itemclick(o) {
+		o.addEventListener('click', function() {
+			this.parentNode.classList.toggle('active')
+
+			//X-able the next button based on selections
+			const button = document.querySelector('#btn-next')
+			if (document.querySelector('.list-group li.active')) {
+				button.setAttribute('aria-disabled', 'false')
+				button.removeAttribute('disabled')
+
+			} else {
+				button.setAttribute('aria-disabled', 'true')
+				button.setAttribute('disabled', '')
+			}
+
+			updateSelections()
+		})
+	}
+
+	//Add click event to every checkbox listitem
+	Array.prototype.forEach.call(document.querySelectorAll('.list-group-item input'), itemclick)
+
+	//Tooltip support
 	Array.prototype.forEach.call(document.querySelectorAll('.tooltip-button'), function(toggletip) {
-    toggletip.setAttribute('type', 'button');
-    toggletip.setAttribute('aria-label', 'Word Definition');
+    toggletip.setAttribute('type', 'button')
+    toggletip.setAttribute('aria-label', 'Word Definition')
 
 		//wrap a container around the button
-		var container = document.createElement('span');
-		container.setAttribute('class', 'tooltip-container');
-		toggletip.parentNode.insertBefore(container,toggletip);
+		var container = document.createElement('span')
+		container.setAttribute('class', 'tooltip-container')
+		toggletip.parentNode.insertBefore(container,toggletip)
 		container.appendChild(toggletip)
 
 		// Create the live region
-		var liveRegion = document.createElement('span');
-    liveRegion.setAttribute('role', 'status');
+		var liveRegion = document.createElement('span')
+    liveRegion.setAttribute('role', 'status')
     
     // Place the live region in the container
-		container.appendChild(liveRegion);
+		container.appendChild(liveRegion)
 		
 		// Get the message from the data-content element
-		var message = toggletip.getAttribute('data-tooltip-content');
+		var message = toggletip.getAttribute('data-tooltip-content')
 		
 		   // Toggle the message
 			 toggletip.addEventListener('click', function() {
-        liveRegion.innerHTML = '';
+        liveRegion.innerHTML = ''
         window.setTimeout(function() {
-          liveRegion.innerHTML = '<span class="tooltip-bubble">'+ message +'</span>';
-        }, 100);
+          liveRegion.innerHTML = '<span class="tooltip-bubble">'+ message +'</span>'
+        }, 100)
     });
 
     // Close on outside click
     document.addEventListener('click', function (e) {
       if (toggletip !== e.target) {
-        liveRegion.innerHTML = '';
+        liveRegion.innerHTML = ''
       }
     });
 
     // Remove toggletip on ESC
     toggletip.addEventListener('keydown', function(e) {
       if ((e.keyCode || e.which) === 27)
-      liveRegion.innerHTML = '';
+      liveRegion.innerHTML = ''
     });
     
     // Remove on blur
     toggletip.addEventListener('blur', function (e) {
-      liveRegion.innerHTML = '';
-    });
-  });
-}());	
-		
-	function maybeThanks() {
-	  let thanksDisplayed = document.querySelector('.js-thanks-for-applying').classList.contains('d-none');
-	  if (document.querySelector('.js-gpa-submit').checked && document.querySelector('.js-apply-aid').checked) {
-		document.querySelector('.js-thanks-for-applying').classList.remove('d-none');
-	  } else {
-		if (!thanksDisplayed) {
-		  document.querySelector('.js-thanks-for-applying').classList.add('d-none');
-		}
-	  }
-	}
+      liveRegion.innerHTML = ''
+    })
+  })
+}())
 </script>
-
-
 </html>
