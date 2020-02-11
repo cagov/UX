@@ -11,8 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@cagov/accordion": "^1.0.2",
-    "@cagov/step-list": "^1.0.1"
+    "@cagov/accordion": "^1.0.4",
+    "@cagov/step-list": "^1.0.5"
   },
   "devDependencies": {
     "webpack": "^4.41.5",
