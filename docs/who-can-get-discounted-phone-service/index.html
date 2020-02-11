@@ -166,10 +166,10 @@ li.list-group-item.unstyled {
 		  	<h2>					
 					Do you or someone in your <button class="tooltip-button" data-tooltip-content="For most people, a household includes you as well as your spouse and dependents, if you have them.">household</button>
 					get support from any of these programs? </h2><p> Please check all that apply.</p>
-				<form>
+				<form onsubmit="return false" >
   					<div class="form-group">
 						<ul class="list-group custom-control custom-checkbox pb-5 pt-3">
-							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-not-sure">
+							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-not-sure" autofocus>
 								<label for="check-not-sure" class="custom-control-label">I’m not sure</label></li>
 							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-no">
 								<label for="check-no" class="custom-control-label">No</label></li>
@@ -208,10 +208,14 @@ li.list-group-item.unstyled {
 							<li class="list-group-item list-group-item-action"><input type="checkbox" id="check-19">
 								<label for="check-19" class="custom-control-label">Federal Veterans and Survivors Pension Benefit Program</label></li>	
 						</ul>	
-					  <p><button type="button" class="btn btn-secondary btn-sm" id="btn-next" aria-disabled="true" disabled>Next</button></p>
+						<p>
+						<input class="btn btn-secondary btn-sm" type="submit" value="Next" id="btn-next">
+						</p>
 					</div>
 				</form>
 				</div>
+
+
 
 
 			<div class="container d-none" id="div-qualified">
@@ -219,9 +223,7 @@ li.list-group-item.unstyled {
 					<div class="col-lg-8">	
 					<h2>You can get a discounted phone service!</h2>
 						<p>Next, you’ll want to find an official document to prove you get support from:</p>
-						<ul>
-							<li>[Dynamic]</li>
-						</ul>
+						<ul id="ul-programs"></ul>
 						<p>Have it nearby as you <a href="#" target="_self">finish your application</a>. Here are examples of documents that could prove you qualify: </p>
 						<ul>
 						<li>ID card </li>
@@ -238,10 +240,15 @@ li.list-group-item.unstyled {
 					<div class="col-lg-8">	
 					<h2>How many people are in your household?</h2>
 						<p>For most people, a household includes you as well as your spouse and dependents, if you have them.</p>
-						<form>
-							<input type="number" min="1" max="999" class="form-control form-control-lg col-lg-6" id="lst-household-size">
+						<form onsubmit="return false">
+							<div class="form-group">
+							<input type="number" required="required" min="1" max="999" class="form-control form-control-lg col-lg-6" id="lst-household-size" name="data">
+
+							<p><input class="btn btn-secondary btn-sm mt-3" type="submit" value="Select" id="btn-select-people">
+								<button class="btn btn-secondary btn-sm mt-3" type="button" onclick="show('div-checkform')">Back</button></p>
+							</div>
 						</form>
-						<p><button class="btn btn-secondary btn-sm mt-3" type="button" id="btn-select-people">Select</button></p>
+
 					</div>
 				</div>
 			</div>
@@ -250,8 +257,9 @@ li.list-group-item.unstyled {
 				<div class="row">
 					<div class="col-lg-8">
 						<h2>Is your household’s total income below $<span id="spn-income-cap"></span>?</h2>
-						<p><button type="button" class="btn btn-secondary btn-sm mt-3" id="btn-yes">Yes</button>
-						<button type="button" class="btn btn-secondary btn-sm mt-3 ml-2" id="btn-no">No</button></p>
+						<p><button type="button" class="btn btn-secondary btn-sm"  id="btn-yes">Yes</button>
+						<button type="button" class="btn btn-secondary btn-sm ml-2" id="btn-no">No</button>
+						<button class="btn btn-secondary btn-sm ml-2" type="button" onclick="show('div-no-not-sure')">Back</p>
 					</div>
 				</div>
 			</div>
@@ -364,51 +372,74 @@ li.list-group-item.unstyled {
 </body>
 
 <script type="text/javascript">
+	function html5formvalid(input) {
+		return !input.form.checkValidity || input.form.checkValidity()
+	}
+
+	function hide(id) {document.getElementById(id).classList.add('d-none')}
+	function hideall() {
+		hide('div-checkform')
+		hide('div-no-not-sure')
+		hide('div-qualified')
+		hide('div-total-income')
+		hide('div-qualified-income')
+	}
+
+	function show(id) {
+		hideall()
+		window.scrollTo(0,0)
+		updateSelections()
+		document.getElementById(id).classList.remove('d-none')
+	}
+
+	function updateSelections() {
+		const ul_programs = document.getElementById('ul-programs')
+		while (ul_programs.firstChild) ul_programs.removeChild(ul_programs.firstChild);
+
+		document.querySelectorAll('li.active label').forEach(x=> { const li = document.createElement("li"); li.innerText=x.innerText; ul_programs.appendChild(li)})
+	}
 
 (function() {
-	function show(id) {document.getElementById(id).classList.remove('d-none');window.scrollTo(0, 0);}
-	function hide(id) {document.getElementById(id).classList.add('d-none')}
-
 	document.getElementById('btn-next').addEventListener('click', function() {
-		hide('div-checkform')
-
 		if(document.querySelector('li.active #check-not-sure')||document.querySelector('li.active #check-no'))
-			show('div-no-not-sure')
-		else 
+		{	
+			show('div-no-not-sure') 
+			document.getElementById('lst-household-size').focus()
+		}	else {
+			updateSelections()
 			show('div-qualified')
-		
+		}
 	})
 
+
 	document.getElementById('btn-select-people').addEventListener('click', function() {
-		const people = Number(document.getElementById('lst-household-size').value)
+		if(html5formvalid(this)) {
+			const people = Number(document.getElementById('lst-household-size').value || 0)
 
-		let bucks = 0
-		switch (people) {
-			case 1:
-			case 2:
-				bucks = 27500
-				break
-			case 3:
-				bucks = 31900
-				break
-			default:
-				bucks = 38800+6900*(people-3)
+			let bucks = 0
+			switch (people) {
+				case 1:
+				case 2:
+					bucks = 27500
+					break
+				case 3:
+					bucks = 31900
+					break
+				default:
+					bucks = 38800+6900*(people-3)
+			}
+
+			document.getElementById('spn-income-cap').innerText = bucks.toLocaleString()
+
+			show('div-total-income')
 		}
-
-		document.getElementById('spn-income-cap').innerText = bucks.toLocaleString()
-
-		hide('div-no-not-sure')
-		show('div-total-income')
 	})
 
 	document.getElementById('btn-yes').addEventListener('click', function() {
-		hide('div-total-income')
 		show('div-qualified-income')
 })
 
 	document.getElementById('btn-no').addEventListener('click', function() {
-		hide('div-total-income')
-
 		if(document.querySelector('li.active #check-no'))
 			show('div-not-qualified')
 		else
@@ -429,6 +460,8 @@ li.list-group-item.unstyled {
 				button.setAttribute('aria-disabled', 'true')
 				button.setAttribute('disabled', '')
 			}
+
+			updateSelections()
 		})
 	}
 
