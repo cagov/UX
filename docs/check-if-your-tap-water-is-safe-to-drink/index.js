@@ -1,0 +1,103 @@
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWFyb25oYW5zIiwiYSI6ImNqNGs4cms1ZzBocXkyd3FzZGs3a3VtamYifQ.HQjFfVzwwxwCmGr2nvnvSA';
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/streets-v11',
+  center: [-79.4512, 43.6568],
+  zoom: 13
+});
+
+window.geocoder = new MapboxGeocoder({
+  accessToken: mapboxgl.accessToken,
+  placeholder: ' ',
+  bbox: [-124.409591, 32.534156, -114.131211, 42.009518],
+  mapboxgl: mapboxgl
+}).on('result',async function(item) {
+  console.log(item.result.center);
+
+  let waterButton = document.querySelector('.js-water-lookup');
+  
+  waterButton.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  Loading...`;
+
+
+  // make call to endpoint to find system
+  fetch(`https://api.alpha.ca.gov/WaterSystem?lat=${item.result.center[1]}&lon=${item.result.center[0]}`)
+  .then((response) => {
+    return response.json();
+  })
+  .then((systemData) => {
+    console.log(systemData);
+    let system = systemData[0];
+    if(systemData.length > 0) {
+      if(systemData.length > 1) {
+        system = systemData[systemData.length - 1]
+      }
+
+      let systemId = system.properties.pwsid;
+      let website_blurb = '';
+      let website_blurb_1 = '';
+      if(system.properties.systemData && system.properties.systemData.meta && system.properties.systemData.meta.website) {
+        let website = system.properties.systemData.meta.website;
+        if(website.indexOf('http') < 0) {
+          website = 'http://'+website;
+        }
+        website_blurb_1 = `<a href="${website}" target="_self">Visit your water system online</a> to learn more about your
+        water quality. `;
+        website_blurb = `To learn more about your water quality, <a href="${website}" target="_self">visit your water system online</a>.`;
+      }
+      let systemInfo = `<h3 class="card-title">Where your water comes from:</h3>
+        <h4 class="card-subtitle mb-2">${system.properties.name}</h4>
+        <p class="card-text">${website_blurb_1}Water systems share Consumer Confidence Reports with information about the health, look,
+          taste, and smell of your water. </p>
+        <h4 class="card-subtitle mb-2">${system.properties.systemData['State Water System Type']}</h4>
+        <p class="card-text">You belong to a ${system.properties.systemData['State Water System Type']} water system. These are city, county, regulated utilities,
+          regional water systems, and small water companies and districts where people live. </p>
+        <!--<p>Water source: ${system.properties.systemData['Primary Water Source Type']}</p>-->
+        <p>Population served: ${system.properties.d_population_count.toLocaleString()}</p>`;
+      document.querySelector('.system-info').innerHTML = systemInfo;
+  
+      fetch(`https://api.alpha.ca.gov/WaterSystemHistory?systemId=${systemId}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((history) => {
+        document.querySelector('.system-status').innerHTML = `<h1>NOT SAFE</h1>`
+        console.log(history)
+        cleanup();
+      })
+      .catch((error) => {
+        console.error('Error 2:', error);
+        document.querySelector('.system-status').innerHTML = `<h2>Safe to drink</h2>
+        <p>Your tap water meets California safety standards. We check your water when it leaves your treatment system,
+          but not after it goes through pipes to get to you. ${website_blurb}</p>
+        <h3>What we track in your water </h3>
+        <i class="ca-gov-icon-medical-heart text-danger lead float-left pr-2"></i>
+        <h4>Health</h4>
+        <p>Our scientists watch out for chemicals and bacteria that could be harmful to human health. Public water
+          systems must publish their water reports monthly. </p>
+        <i class="ca-gov-icon-eye text-success float-left pr-2 align-text-top h2 m-0 p-0 mt-n1"></i>
+        <h4>Taste, look, and smell</h4>
+        <p>We also track chemicals and bacteria that could change the way your water tastes, looks, or smells. </p>`
+        cleanup();
+      });
+    
+    } else {
+      document.querySelector('.system-status').innerHTML = `Sorry, we couldn't find a water system whose service area encompasses ${item.result.center[1]},${item.result.center[0]}`;
+      document.querySelector('.system-info').innerHTML = '';
+      cleanup();
+    }
+
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+    cleanup();
+  });
+
+  function cleanup() {
+    waterButton.innerHTML = `Check your water quality`;  
+  }
+
+})
+
+document.getElementById('geocoder').appendChild(window.geocoder.onAdd(map));
+
