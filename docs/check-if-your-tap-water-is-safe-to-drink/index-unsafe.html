@@ -28,6 +28,29 @@
   <meta name="theme-color" content="#000000">
 
 </head>
+	
+	<style>
+		.water-label {
+			padding-left:0;
+			padding-right:2%;
+			padding-top:1%;
+			width: 66%;
+		}
+		
+		@media (max-width: 767.98px) {
+		
+			.water-label {
+				padding-left: 10%;
+				padding-top: 0;
+				margin-top: -2%;
+				width: 90%;
+				text-align: center;
+				padding-bottom: 2%;
+			}
+		}
+	
+	
+	</style>
 
 <body>
   <link href="https://california.azureedge.net/cdt/statetemplate/6.0.0/css/cagov.font-only.min.css" rel="stylesheet" />
@@ -82,9 +105,86 @@
 		  
 <div class="container pb-5">
 	<div class="row">
-  		<div class="col-lg-7">	
-			<h2>Safe to drink</h2>
-			<p>Your tap water meets California safety standards. We check your water when it leaves your treatment system, but not after it goes through pipes to get to you. To learn more about your water quality, <a href="#" target="_self">visit your water system online</a>.</p>
+  		<div class="col-lg-8">	
+			<h2>Not safe to drink</h2>
+			<p>Your water does not meet California’s safety standards. We found these contaminants in your water: </p>
+	
+				<div class="card border-dark mb-3">
+				  <div class="card-body row">
+					  	<div class="col flex">
+						<div class="bold display-4 text-center">153<sup>%</sup></div>
+							<p class="font-weight-light text-center">over the legal limit</p>
+						</div>
+						<div class="water-label">
+						<h5 class="card-title display-5">Trichloropropane</h5>
+						  <div class="progress">
+							  <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated w-100" aria-hidden="true"></div>
+							</div>
+					  	</div>
+				  	</div>
+				   </div>
+		
+				<div class="card border-dark mb-3">
+				  <div class="card-body row">
+					  	<div class="col flex">
+						<div class="bold display-4 text-center">93<sup>%</sup></div>
+								<p class="font-weight-light text-center">over the legal limit</p>
+						</div>
+						<div class="water-label">
+						<h5 class="card-title display-5">Nitrate</h5>
+						  <div class="progress">
+							  <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated w-100" aria-hidden="true"></div>
+							</div>
+					  	</div>
+				  	</div>
+				   </div>
+
+				<div class="card border-dark mb-3">
+				  <div class="card-body row">
+					  	<div class="col flex">
+						<div class="bold display-4 text-center">13<sup>%</sup></div>
+								<p class="font-weight-light text-center">over the legal limit</p>
+						</div>
+						<div class="water-label">
+						<h5 class="card-title display-5">Arsenic</h5>
+						  <div class="progress">
+							  <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated w-100" aria-hidden="true"></div>
+							</div>
+					  	</div>
+				  	</div>
+				   </div>
+			
+				<div class="card border-dark mb-3">
+				  <div class="card-body row">
+					  	<div class="col flex pr-3">
+							<div class="bold display-4 text-center"><span class="ca-gov-icon-biohazard display-4"></span></div>
+							<p class="font-weight-light text-center"></p>
+						</div>
+						<div class="water-label">
+						<h5 class="card-title display-5">Microbial pathogens</h5>
+						  <div class="progress">
+							  <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated w-100" aria-hidden="true"></div>
+							</div>
+					  	</div>
+				  	</div>
+				   </div>
+
+
+				<div class="card border-dark mb-3">
+				  <div class="card-body row">
+					  	<div class="col flex pr-3">
+							<div class="bold display-4 text-center"><span class="ca-gov-icon-eye display-3"></span></div>
+						</div>
+						<div class="water-label">
+						<h5 class="card-title display-5">Particles that make the water look cloudy or hazy</h5>
+						  <div class="progress">
+							  <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated w-100" aria-hidden="true"></div>
+							</div>
+					  	</div>
+				  	</div>
+				   </div>
+
+			<p>To learn more about your water quality, <a href="#" target="_self">visit your water system online</a>. </p>
 			<h3>What we track in your water </h3>
 			<i class="ca-gov-icon-medical-heart text-danger lead float-left pr-2"></i>
 			<h4>Health</h4>
@@ -93,8 +193,11 @@
 			<h4>Taste, look, and smell</h4>
 			<p>We also track chemicals and bacteria that could change the way your water tastes, looks, or smells. </p>
 
+	
+		
 		</div>
-		<div class="col-lg-5 pt-1">	
+		
+		<div class="col-lg-4">	
 			
 			<div class="card bg-light">
 			  <div class="card-body">
@@ -129,7 +232,7 @@
 
   <div class="alphabar">
     <div class="container">
-      <p>This is an alpha project and a work in progress (<a href="https://medium.com/cadotgov">Details</a>)</p>
+      <p>This website is a <a href="https://medium.com/cadotgov">work in progress</a>.</p>
     </div>
   </div>
   <script src="https://cagov.github.io/UX/dist/main.js" defer async></script>
