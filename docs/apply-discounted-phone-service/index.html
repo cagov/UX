@@ -69,11 +69,11 @@
 			<li>Or have an income below a certain amount</li> 
 	      </ul>
 	      </p>
-	<h2>Steps to apply for California LifeLine</h2>
+	<h2>Steps to apply</h2>
 	      <p>If you need help, <a href="https://www.californialifeline.com/en/contact">contact us</a>.</p>
   
-        <a href="#" class="expand-contract">Expand All</a>
-        <a href="#" class="expand-contract d-none">Contract All</a>
+        <a href="#" class="show-all">Show all</a>
+        <a href="#" class="show-all d-none">Close all</a>
         
         <cwds-step-list>
           <ul class="list-group list-group-flush">
@@ -113,7 +113,6 @@
               <div class="details"><span class="step-interior">
                 <br>
                   <p>Ask your phone company to start your application for the California LifeLine program. They should tell you if you can get a discount and start the application process for you. Then, we'll send you a letter in the mail. </p>
-		      <p>You can ask to get personal help through the rest of the application or letters with braille, if you need it.</p>
                    
                 </span></div>
             </li>
@@ -135,7 +134,6 @@
                  Apply online or by mail
               </button><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details"><span class="step-interior"><br>
-                  <p>Have your PIN number with you. Then you can:</p>
 				  <ul class="unstyled pt-2 pl-0">
                 <li class="list-group-item unstyled no-border"><a class="action-link" href="/UX/apply-online-discounted-phone-service/">Apply online </a></li><br>
 				    <span class="nested-and-or">or</span>
@@ -149,17 +147,16 @@
                  Get our decision in the mail
               </button><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details"><span class="step-interior"><br>
-                  <p>We’ll send you a letter to let you know if you’re approved for a discounted phone service.</p>
-		  <p>If you're approved, you’ll start getting a monthly discount from your phone company automatically.</p>
+                  <p>We’ll send you a letter to let you know if you’re approved. If so, you’ll start getting a monthly discount from your phone company automatically.</p>
                 </span></div>
             </li>
 		  <li class="list-group-item lead unstyled list-group-item-action">
               <button class="step-description">
                 <span class="list-number">7</span>
-                 Renew in one year to continue your discount
+                 Renew in one year
               </button><span class="show">Show</span><span class="hide">Hide</span>
               <div class="details"><span class="step-interior"><br>
-		 <p>One year from your start date, we'll send you another pink letter in the mail asking you to renew your discount. Then, you can use it to renew by mail or <a href="/UX/apply-online-discounted-phone-service/">online</a>.</p> 
+		 <p>One year from your start date, we'll send you another pink letter in the mail asking you to renew your discount. Then, you can use your letter to renew by mail or <a href="/UX/apply-online-discounted-phone-service/">online</a>.</p> 
                 </span></div>
             </li>
 
@@ -196,24 +193,17 @@
 
   <script>
     (function() {
-      document.querySelector('.expand-contract:not(.d-none)')
-        .addEventListener('click', () => {
+      document.querySelectorAll('.show-all').forEach(x=>{
+        const is_close_button = x.classList.contains('d-none')
+
+        x.addEventListener('click',()=>{
           let wait = 0
-          const listitems = document.querySelectorAll('.list-group-item-action:not(.list-open)')
-          listitems.forEach(x=> setTimeout(() => x.click(), 100 * wait++))
+          document.querySelectorAll(`.list-group-item-action${is_close_button?'.list-open':':not(.list-open)'}`)
+            .forEach(x=>setTimeout(()=>x.click(),50*wait++))
 
-          document.querySelectorAll('.expand-contract').forEach(y=>y.classList.toggle('d-none'))
+          document.querySelectorAll('.show-all').forEach(y=>y.classList.toggle('d-none'))
         })
-
-      document.querySelector('.expand-contract.d-none')
-        .addEventListener('click', () => {
-          let wait = 0
-          const listitems = document.querySelectorAll('.list-group-item-action.list-open')
-          listitems.forEach(x=> setTimeout(() => x.click(), 100 * wait++))
-
-          document.querySelectorAll('.expand-contract').forEach(y=>y.classList.toggle('d-none'))
-        })
-      
+      })
     })()
   </script>
 </body>
