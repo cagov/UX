@@ -120,6 +120,12 @@ li.list-group-item.unstyled {
     font-family: "Public Sans Bold", sans-serif;
 }
 	
+	.btn-primary.disabled, .btn-primary:disabled {
+    color: #fff;
+    background-color: #2d2d2d;
+    border-color: #2d2d2d;
+}
+	
 
 
 </style>
@@ -247,10 +253,11 @@ not related to each other).</p>
 							<input type="number" required="required" min="1" max="999" class="form-control form-control-md col-lg-6" id="lst-household-size" name="data">
 
 							<p><input class="btn btn-primary mt-3" type="submit" value="Select" id="btn-select-people">
-								<button class="btn btn-primary mt-3 ml-2" type="button" onclick="show('div-checkform')">Back</button></p>
+								</p>
 							</div>
 						</form>
-
+						<hr>
+						<a href class="" onclick="show('div-checkform')">Back to previous step</a>
 					</div>
 				</div>
 			</div>
@@ -505,12 +512,12 @@ not related to each other).</p>
 		// Get the message from the data-content element
 		var message = toggletip.getAttribute('data-tooltip-content')
 		
-		   // Toggle the message
-			 toggletip.addEventListener('click', function() {
-        liveRegion.innerHTML = ''
-        window.setTimeout(function() {
-          liveRegion.innerHTML = '<span class="tooltip-bubble">'+ message +'</span>'
-        }, 100)
+	   // Toggle the message
+		 toggletip.addEventListener('click', function() {
+	liveRegion.innerHTML = ''
+	window.setTimeout(function() {
+	  liveRegion.innerHTML = '<span class="tooltip-bubble">'+ message +'</span>'
+	}, 100)
     });
 
     // Close on outside click
