@@ -332,10 +332,12 @@ li.list-group-item.unstyled {
 					<ul class="list-group list-group-flush pl-1 pb-3 pt-2">
 						<li class="list-group-item unstyled bold"><span class="list-number">1</span>Check if you can get a discount</li>
 						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">2</span>Choose a phone company that offers discounts</li>
-						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">3</span>Call your phone company</li>
+						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">3</span>Contact your phone company</li>
 						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">4</span>Read our pink letter in the mail</li>
 						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">5</span>Apply online or by mail</li>
-						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">6</span>Read our decision in the mail</li>
+						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">6</span>Get our decision in the mail</li>
+						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">7</span>Renew in one year to continue your discount</li>
+
 					</ul>
 				</div>
 				<p><strong>Back to:</strong> <a href="/UX/apply-discounted-phone-service/" target="_self">Apply for a discounted phone service</a></p>
@@ -365,7 +367,7 @@ li.list-group-item.unstyled {
 <script nomodule src="/js/es5.js?cache=false" ></script>
   <div class="alphabar">
     <div class="container">
-      <p>This is an alpha project and a work in progress (<a href="https://medium.com/cadotgov">Details</a>)</p>
+      <p>This website is a <a href="https://medium.com/cadotgov">work in progress</a>.</p>
     </div>
   </div>
   <script src="https://cagov.github.io/UX/dist/main.js" defer async></script>
@@ -400,17 +402,21 @@ li.list-group-item.unstyled {
 	}
 
 (function() {
-	document.getElementById('btn-next').addEventListener('click', function() {
-		if(document.querySelector('li.active #check-not-sure')||document.querySelector('li.active #check-no'))
+	document.querySelectorAll('#check-not-sure,#check-no').forEach(x=>x.addEventListener('click', () => setTimeout(noclick, 1000)))
+	document.querySelector('#btn-next').addEventListener('click', nextclick)
+
+	function nextclick() {
+		updateSelections()
+		show('div-qualified')
+	}
+
+	function noclick() {
+		if(document.querySelector('li.active #check-not-sure,li.active #check-no'))
 		{	
 			show('div-no-not-sure') 
 			document.getElementById('lst-household-size').focus()
-		}	else {
-			updateSelections()
-			show('div-qualified')
-		}
-	})
-
+		}	
+	}
 
 	document.getElementById('btn-select-people').addEventListener('click', function() {
 		if(html5formvalid(this)) {
@@ -462,6 +468,8 @@ li.list-group-item.unstyled {
 			}
 
 			updateSelections()
+
+
 		})
 	}
 
