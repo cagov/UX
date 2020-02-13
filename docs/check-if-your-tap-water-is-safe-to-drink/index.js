@@ -18,7 +18,7 @@ window.geocoder = new MapboxGeocoder({
   
   waterButton.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
   Loading...`;
-
+  document.querySelector('.system-data').style.display = 'none';
 
   // make call to endpoint to find system
   fetch(`https://api.alpha.ca.gov/WaterSystem?lat=${item.result.center[1]}&lon=${item.result.center[0]}`)
@@ -45,15 +45,14 @@ window.geocoder = new MapboxGeocoder({
         water quality. `;
         website_blurb = `To learn more about your water quality, <a href="${website}" target="_self">visit your water system online</a>.`;
       }
-      let systemInfo = `<h3 class="card-title">Where your water comes from:</h3>
-        <h4 class="card-subtitle mb-2">${system.properties.name}</h4>
-        <p class="card-text">${website_blurb_1}Water systems share Consumer Confidence Reports with information about the health, look,
-          taste, and smell of your water. </p>
-        <h4 class="card-subtitle mb-2">${system.properties.systemData['State Water System Type']}</h4>
-        <p class="card-text">You belong to a ${system.properties.systemData['State Water System Type']} water system. These are city, county, regulated utilities,
-          regional water systems, and small water companies and districts where people live. </p>
-        <!--<p>Water source: ${system.properties.systemData['Primary Water Source Type']}</p>-->
-        <p>Population served: ${system.properties.d_population_count.toLocaleString()}</p>`;
+      let systemInfo = `<h3>What we track in your water </h3>
+      <i class="ca-gov-icon-medical-heart text-danger lead float-left pr-2"></i>
+      <h4>Health</h4>
+      <p>Our scientists watch out for chemicals and bacteria that could be harmful to human health. Public water
+        systems must publish their water reports monthly. </p>
+      <i class="ca-gov-icon-eye text-success float-left pr-2 align-text-top h2 m-0 p-0 mt-n1"></i>
+      <h4>Taste, look, and smell</h4>
+      <p>We also track chemicals and bacteria that could change the way your water tastes, looks, or smells. </p>`;
       document.querySelector('.system-info').innerHTML = systemInfo;
   
       fetch(`https://api.alpha.ca.gov/WaterSystemHistory?systemId=${systemId}`)
@@ -61,8 +60,43 @@ window.geocoder = new MapboxGeocoder({
         return response.json();
       })
       .then((history) => {
-        document.querySelector('.system-status').innerHTML = `<h1>NOT SAFE</h1>`
+        // create map of latest violation for 
+        let analyteMap = new Map();
+        history.forEach( (violation) => {
+          let lastMatch = analyteMap.get(violation.ANALYTE_NAME);
+          if(lastMatch) {
+            if(lastMatch.VIOL_END_DATE < violation.VIOL_END_DATE) {
+              analyteMap.set(violation.ANALYTE_NAME,violation);
+            }
+          } else {
+            analyteMap.set(violation.ANALYTE_NAME,violation)
+          }
+        })
+
+        resultsOutput = `<h2>Not safe to drink</h2>
+        <p>Your water does not meet California’s safety standards. We found these contaminants in your water: </p>`;
+        
+
         console.log(history)
+        analyteMap.forEach( (analyte) => {
+          console.log(analyte)
+          resultsOutput += `<div class="card border-dark mb-3">
+            <div class="card-body row">
+              <div class="col flex">
+                <div class="bold display-4 text-center">${(analyte.RESULT / analyte.MCL_VALUE) * 100}<sup>%</sup></div>
+                <p class="font-weight-light text-center">over the legal limit</p>
+              </div>
+              <div class="water-label">
+              <h5 class="card-title display-5">${analyte.ANALYTE_NAME}</h5>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated w-100" aria-hidden="true"></div>
+                </div>
+              </div>
+            </div>
+				  </div>`
+          // RESULT_UOM == MCL_UOM
+        })
+        document.querySelector('.system-status').innerHTML = resultsOutput;
         cleanup();
       })
       .catch((error) => {
@@ -70,19 +104,20 @@ window.geocoder = new MapboxGeocoder({
         document.querySelector('.system-status').innerHTML = `<h2>Safe to drink</h2>
         <p>Your tap water meets California safety standards. We check your water when it leaves your treatment system,
           but not after it goes through pipes to get to you. ${website_blurb}</p>
-        <h3>What we track in your water </h3>
-        <i class="ca-gov-icon-medical-heart text-danger lead float-left pr-2"></i>
-        <h4>Health</h4>
-        <p>Our scientists watch out for chemicals and bacteria that could be harmful to human health. Public water
-          systems must publish their water reports monthly. </p>
-        <i class="ca-gov-icon-eye text-success float-left pr-2 align-text-top h2 m-0 p-0 mt-n1"></i>
-        <h4>Taste, look, and smell</h4>
-        <p>We also track chemicals and bacteria that could change the way your water tastes, looks, or smells. </p>`
+          <h3 class="card-title">Where your water comes from</h3>
+          <h4 class="card-subtitle mb-2">${system.properties.name[0].toUpperCase()}${system.properties.name.substr(1,system.properties.name.length).toLowerCase()}</h4>
+          <p class="card-text">${website_blurb_1}Water systems share Consumer Confidence Reports with information about the health, look,
+            taste, and smell of your water. </p>
+          <h4 class="card-subtitle mb-2">${system.properties.systemData['State Water System Type']}</h4>
+          <p class="card-text">You belong to a ${system.properties.systemData['State Water System Type']} water system. These are city, county, regulated utilities,
+            regional water systems, and small water companies and districts where people live. </p>
+          <!--<p>Water source: ${system.properties.systemData['Primary Water Source Type']}</p>-->
+          <p>Population served: ${system.properties.d_population_count.toLocaleString()}</p>`
         cleanup();
       });
     
     } else {
-      document.querySelector('.system-status').innerHTML = `Sorry, we couldn't find a water system whose service area encompasses ${item.result.center[1]},${item.result.center[0]}`;
+      document.querySelector('.system-status').innerHTML = `<div class="invalid-feedback error1 alert alert-warning" style="display: block;">Sorry, we couldn't find a water system for that location</div>`;
       document.querySelector('.system-info').innerHTML = '';
       cleanup();
     }
@@ -94,7 +129,8 @@ window.geocoder = new MapboxGeocoder({
   });
 
   function cleanup() {
-    waterButton.innerHTML = `Check your water quality`;  
+    waterButton.innerHTML = `Check your water quality`;
+    document.querySelector('.system-data').style.display = 'block';
   }
 
 })
