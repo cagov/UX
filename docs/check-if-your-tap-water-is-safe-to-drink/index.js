@@ -6,6 +6,9 @@ var map = new mapboxgl.Map({
   zoom: 13
 });
 
+
+// look for pwsid in url, should also have location
+
 window.geocoder = new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
   placeholder: ' ',
@@ -46,13 +49,13 @@ window.geocoder = new MapboxGeocoder({
         website_blurb = `To learn more about your water quality, <a href="${website}" target="_self">visit your water system online</a>.`;
       }
       let systemInfo = `<h3>What we track in your water </h3>
-      <i class="ca-gov-icon-medical-heart text-danger lead float-left pr-2"></i>
-      <h4>Health</h4>
-      <p>Our scientists watch out for chemicals and bacteria that could be harmful to human health. Public water
-        systems must publish their water reports monthly. </p>
-      <i class="ca-gov-icon-eye text-success float-left pr-2 align-text-top h2 m-0 p-0 mt-n1"></i>
-      <h4>Taste, look, and smell</h4>
-      <p>We also track chemicals and bacteria that could change the way your water tastes, looks, or smells. </p>`;
+        <i class="ca-gov-icon-medical-heart text-danger lead float-left pr-2"></i>
+        <h4>Health</h4>
+        <p>Our scientists watch out for chemicals and bacteria that could be harmful to human health. Public water
+          systems must publish their water reports monthly. </p>
+        <i class="ca-gov-icon-eye text-warning float-left pr-2 align-text-top h2 m-0 p-0 mt-n1"></i>
+        <h4>Taste, look, and smell</h4>
+        <p>We also track chemicals and bacteria that could change the way your water tastes, looks, or smells. </p>`;
       document.querySelector('.system-info').innerHTML = systemInfo;
   
       fetch(`https://api.alpha.ca.gov/WaterSystemHistory?systemId=${systemId}`)
