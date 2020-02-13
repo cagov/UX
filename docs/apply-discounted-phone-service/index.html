@@ -72,7 +72,9 @@
 	<h2>Steps to apply for California LifeLine</h2>
 	      <p>If you need help, <a href="https://www.californialifeline.com/en/contact">contact us</a>.</p>
   
-
+        <a href="#" class="expand-contract">Expand All</a>
+        <a href="#" class="expand-contract d-none">Contract All</a>
+        
         <cwds-step-list>
           <ul class="list-group list-group-flush">
             <li class="list-group-item lead unstyled list-group-item-action">
@@ -113,7 +115,7 @@
                   <p>Ask your phone company to start your application for the California LifeLine program. They should tell you if you can get a discount and start the application process for you. Then, we'll send you a letter in the mail. </p>
 		      <p>You can ask to get personal help through the rest of the application or letters with braille, if you need it.</p>
                    
-                </span><span class="show">Show</span><span class="hide">Hide</span></div>
+                </span></div>
             </li>
             <li class="list-group-item lead unstyled list-group-item-action">
               <button class="step-description">
@@ -125,7 +127,7 @@
                   <p>In three weeks, you should get a pink letter in the mail. Open it to find your PIN number. You’ll need your PIN to complete your application. </p>
 		  <p>If you contacted your phone company but still haven’t gotten your application form in the mail, please <a href="https://www.californialifeline.com/en/contact" target="_self">contact us</a>. </p>
                  
-                </span><span class="show">Show</span><span class="hide">Hide</span></div>
+                </span></div>
             </li>
             <li class="list-group-item lead unstyled list-group-item-action">
               <button class="step-description">
@@ -191,6 +193,21 @@
     </div>
   </div>
   <script src="https://cagov.github.io/UX/dist/main.js" defer async></script>
+
+
+  <script>
+    (function() {
+      document.querySelectorAll('.expand-contract').forEach(x=>
+        x.addEventListener('click', () => {
+          let wait = 0
+          const listitems = document.querySelectorAll('.list-group-item-action')
+          listitems.forEach(x=> setTimeout(() => x.click(), 100 * wait++))
+
+          document.querySelectorAll('.expand-contract').forEach(y=>y.classList.toggle('d-none'))
+        })
+      )
+    })()
+  </script>
 </body>
 
 </html>
