@@ -61,57 +61,80 @@ window.geocoder = new MapboxGeocoder({
         return response.json();
       })
       .then((history) => {
-        // create map of latest violation for 
-        let analyteMap = new Map();
-        history.forEach( (violation) => {
-          let lastMatch = analyteMap.get(violation.ANALYTE_NAME);
-          if(lastMatch) {
-            if(lastMatch.VIOL_END_DATE < violation.VIOL_END_DATE) {
-              analyteMap.set(violation.ANALYTE_NAME,violation);
+        if(history.length==0) {
+          displaySafe(website_blurb, system)
+        } else {
+          // create map of latest violation for 
+          let analyteMap = new Map();
+          history.forEach( (violation) => {
+            let lastMatch = analyteMap.get(violation.ANALYTE_NAME);
+            if(lastMatch) {
+              if(lastMatch.VIOL_END_DATE < violation.VIOL_END_DATE) {
+                analyteMap.set(violation.ANALYTE_NAME,violation);
+              }
+            } else {
+              analyteMap.set(violation.ANALYTE_NAME,violation)
             }
-          } else {
-            analyteMap.set(violation.ANALYTE_NAME,violation)
-          }
-        })
+          })
 
-        resultsOutput = `<h2>Not safe to drink</h2>
-        <p>Your water does not meet California’s safety standards. We found these contaminants in your water: </p>`;
-        
-
-        console.log(history)
-        analyteMap.forEach( (analyte) => {
-          console.log(analyte)
-          resultsOutput += `<div class="card border-dark mb-3">
-            <div class="card-body row">
-              <div class="col flex">
-                <div class="bold display-4 text-center">${(analyte.RESULT / analyte.MCL_VALUE) * 100}<sup>%</sup></div>
-                <p class="font-weight-light text-center">over the legal limit</p>
+          resultsOutput = `<h2>Not safe to drink</h2>
+          <p>Your water does not meet California’s safety standards. We found these contaminants in your water: </p>`;
+          
+          console.log(history)
+          analyteMap.forEach( (analyte) => {
+            console.log(analyte)
+            resultsOutput += `<div class="card border-dark mb-3">
+              <div class="card-body row">
+                ${(function() {
+                  if(analyte.ANALYTE_NAME == 'GROUNDWATER RULE' || analyte.ANALYTE_NAME == 'SURFACEWATER RULE') {
+                    return `<div class="col flex pr-3">
+                      <div class="bold display-4 text-center">
+                        <span class="ca-gov-icon-biohazard display-4" aria-hidden="true"></span>
+                      </div>
+                      <p class="font-weight-light text-center"></p>
+                    </div>
+                    <div class="water-label">
+                      <h5 class="card-title display-5">Microbial pathogens</h5>
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated w-100" aria-hidden="true"></div>
+                      </div>
+                    </div>`
+                  } else if(analyte.ANALYTE_NAME == 'TURBIDITY') {
+                      return `<div class="col flex pr-3">
+                        <div class="bold display-4 text-center">
+                          <span class="ca-gov-icon-biohazard display-4" aria-hidden="true"></span>
+                        </div>
+                        <p class="font-weight-light text-center"></p>
+                      </div>
+                      <div class="water-label">
+                        <h5 class="card-title display-5">Particles that make the water look cloudy or hazy</h5>
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated w-100" aria-hidden="true"></div>
+                        </div>
+                      </div>` 
+                  } else {
+                    return `<div class="col flex">
+                      <div class="bold display-4 text-center">${(analyte.RESULT / analyte.MCL_VALUE) * 100}<sup>%</sup></div>
+                      <p class="font-weight-light text-center">over the legal limit</p>
+                    </div>
+                    <div class="water-label">
+                      <h5 class="card-title display-5">${analyte.ANALYTE_NAME}</h5>
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated w-100" aria-hidden="true"></div>
+                      </div>
+                    </div>`
+                  }
+                })()}
               </div>
-              <div class="water-label">
-              <h5 class="card-title display-5">${analyte.ANALYTE_NAME}</h5>
-                <div class="progress">
-                  <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated w-100" aria-hidden="true"></div>
-                </div>
-              </div>
-            </div>
-				  </div>`
-          // RESULT_UOM == MCL_UOM
-        })
-        document.querySelector('.system-status').innerHTML = resultsOutput;
-        cleanup();
+            </div>`
+          })
+          document.querySelector('.system-status').innerHTML = resultsOutput;
+          cleanup();
+        }
       })
       .catch((error) => {
         console.error('Error 2:', error);
-
-        document.querySelector('.system-status').innerHTML = `<h2>Safe to drink</h2>
-        <p>Your tap water meets California safety standards. We check your water when it leaves your treatment system,
-          but not after it goes through pipes to get to you. ${website_blurb}</p>
-          <h3 class="card-title">Where your water comes from</h3>
-          <h4 class="card-subtitle mb-2">${system.properties.name[0].toUpperCase()}${system.properties.name.substr(1,system.properties.name.length).toLowerCase()}</h4>
-          <p class="card-text">Your water system keeps the most detailed information about your water quality. ${website_blurb} </p>
-          <h4 class="card-subtitle mb-2">${system.properties.systemData['State Water System Type']}</h4>
-          <p class="card-text">You belong to a ${system.properties.systemData['State Water System Type']} water system. These are city, county, regulated utilities,
-            regional water systems, and small water companies and districts where people live. </p>`;
+        displaySafe(website_blurb, system)
         cleanup();
       });
     } else {
@@ -126,14 +149,23 @@ window.geocoder = new MapboxGeocoder({
   });
 
   function cleanup() {
-    waterButton.innerHTML = `Check 
-
-
-quality`;
+    waterButton.innerHTML = `Check quality`;
     document.querySelector('.system-data').style.display = 'block';
   }
 
 })
 
 document.getElementById('geocoder').appendChild(window.geocoder.onAdd(map));
+
+function displaySafe(website_blurb, system) {
+  document.querySelector('.system-status').innerHTML = `<h2>Safe to drink</h2>
+        <p>Your tap water meets California safety standards. We check your water when it leaves your treatment system,
+          but not after it goes through pipes to get to you. ${website_blurb}</p>
+          <h3 class="card-title">Where your water comes from</h3>
+          <h4 class="card-subtitle mb-2">${system.properties.name[0].toUpperCase()}${system.properties.name.substr(1,system.properties.name.length).toLowerCase()}</h4>
+          <p class="card-text">Your water system keeps the most detailed information about your water quality. ${website_blurb} </p>
+          <h4 class="card-subtitle mb-2">${system.properties.systemData['State Water System Type']}</h4>
+          <p class="card-text">You belong to a ${system.properties.systemData['State Water System Type']} water system. These are city, county, regulated utilities,
+            regional water systems, and small water companies and districts where people live. </p>`;
+}
 
