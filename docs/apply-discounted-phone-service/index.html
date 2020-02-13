@@ -72,8 +72,8 @@
 	<h2>Steps to apply</h2>
 	      <p>If you need help, <a href="https://www.californialifeline.com/en/contact">contact us</a>.</p>
   
-        <a href="#" class="expand-contract">Expand All</a>
-        <a href="#" class="expand-contract d-none">Contract All</a>
+        <a href="#" class="show-all">Show all</a>
+        <a href="#" class="show-all d-none">Close all</a>
         
         <cwds-step-list>
           <ul class="list-group list-group-flush">
@@ -193,15 +193,15 @@
 
   <script>
     (function() {
-      document.querySelectorAll('.expand-contract').forEach(x=>{
-        const is_contract = x.classList.contains('d-none')
+      document.querySelectorAll('.show-all').forEach(x=>{
+        const is_close_button = x.classList.contains('d-none')
 
         x.addEventListener('click',()=>{
           let wait = 0
-          document.querySelectorAll(`.list-group-item-action${is_contract?'.list-open':':not(.list-open)'}`)
+          document.querySelectorAll(`.list-group-item-action${is_close_button?'.list-open':':not(.list-open)'}`)
             .forEach(x=>setTimeout(()=>x.click(),50*wait++))
 
-          document.querySelectorAll('.expand-contract').forEach(y=>y.classList.toggle('d-none'))
+          document.querySelectorAll('.show-all').forEach(y=>y.classList.toggle('d-none'))
         })
       })
     })()
