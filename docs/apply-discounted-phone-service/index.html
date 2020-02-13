@@ -196,15 +196,24 @@
 
   <script>
     (function() {
-      document.querySelectorAll('.expand-contract').forEach(x=>
-        x.addEventListener('click', () => {
+      document.querySelector('.expand-contract:not(.d-none)')
+        .addEventListener('click', () => {
           let wait = 0
-          const listitems = document.querySelectorAll('.list-group-item-action')
+          const listitems = document.querySelectorAll('.list-group-item-action:not(.list-open)')
           listitems.forEach(x=> setTimeout(() => x.click(), 100 * wait++))
 
           document.querySelectorAll('.expand-contract').forEach(y=>y.classList.toggle('d-none'))
         })
-      )
+
+      document.querySelector('.expand-contract.d-none')
+        .addEventListener('click', () => {
+          let wait = 0
+          const listitems = document.querySelectorAll('.list-group-item-action.list-open')
+          listitems.forEach(x=> setTimeout(() => x.click(), 100 * wait++))
+
+          document.querySelectorAll('.expand-contract').forEach(y=>y.classList.toggle('d-none'))
+        })
+      
     })()
   </script>
 </body>
