@@ -41,15 +41,12 @@ window.geocoder = new MapboxGeocoder({
         if(website.indexOf('http') < 0) {
           website = 'http://'+website;
         }
-        website_blurb_1 = `<a href="${website}" target="_self">Visit your water system online</a> to learn more about your
-        water quality. `;
-        website_blurb = `To learn more about your water quality, <a href="${website}" target="_self">visit your water system online</a>.`;
+        website_blurb_1 = ` Your water system has the most detailed information about your water quality. <a href="${website}" target="_self">Visit your water system</a>`;
       }
-      let systemInfo = `<h3>What we track in your water </h3>
+      let systemInfo = `<h3>How we decide if your water is safe</h3>
       <i class="ca-gov-icon-medical-heart text-danger lead float-left pr-2"></i>
       <h4>Health</h4>
-      <p>Our scientists watch out for chemicals and bacteria that could be harmful to human health. Public water
-        systems must publish their water reports monthly. </p>
+      <p>Our scientists watch out for chemicals and bacteria that could be harmful to human health.</p>
       <i class="ca-gov-icon-eye text-success float-left pr-2 align-text-top h2 m-0 p-0 mt-n1"></i>
       <h4>Taste, look, and smell</h4>
       <p>We also track chemicals and bacteria that could change the way your water tastes, looks, or smells. </p>`;
@@ -106,8 +103,7 @@ window.geocoder = new MapboxGeocoder({
           but not after it goes through pipes to get to you. ${website_blurb}</p>
           <h3 class="card-title">Where your water comes from</h3>
           <h4 class="card-subtitle mb-2">${system.properties.name[0].toUpperCase()}${system.properties.name.substr(1,system.properties.name.length).toLowerCase()}</h4>
-          <p class="card-text">${website_blurb_1}Water systems share Consumer Confidence Reports with information about the health, look,
-            taste, and smell of your water. </p>
+       
           <h4 class="card-subtitle mb-2">${system.properties.systemData['State Water System Type']}</h4>
           <p class="card-text">You belong to a ${system.properties.systemData['State Water System Type']} water system. These are city, county, regulated utilities,
             regional water systems, and small water companies and districts where people live. </p>
