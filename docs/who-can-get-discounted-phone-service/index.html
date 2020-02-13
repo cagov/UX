@@ -345,7 +345,7 @@ li.list-group-item.unstyled {
 		</div>
 	</div>
 
-	<div class="col-lg-8 pt-3 ml-0 pl-0">
+	<div class="col-lg-8 pt-3 ml-0 pl-0 d-none" id="div-return">
 		<hr>
 		<p class="mt-3">Return to the beginning: <a href=".">Check if you can get a discount</a></p>
 	</div>
@@ -391,6 +391,10 @@ li.list-group-item.unstyled {
 		hideall()
 		window.scrollTo(0,0)
 		updateSelections()
+		showone(id)
+	}
+
+	function showone(id) {
 		document.getElementById(id).classList.remove('d-none')
 	}
 
@@ -408,12 +412,14 @@ li.list-group-item.unstyled {
 	function nextclick() {
 		updateSelections()
 		show('div-qualified')
+		showone('div-return')
 	}
 
 	function noclick() {
 		if(document.querySelector('li.active #check-not-sure,li.active #check-no'))
 		{	
 			show('div-no-not-sure') 
+			showone('div-return')
 			document.getElementById('lst-household-size').focus()
 		}	
 	}
