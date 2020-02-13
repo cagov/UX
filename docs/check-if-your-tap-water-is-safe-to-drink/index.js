@@ -103,7 +103,7 @@ window.geocoder = new MapboxGeocoder({
           but not after it goes through pipes to get to you. ${website_blurb}</p>
           <h3 class="card-title">Where your water comes from</h3>
           <h4 class="card-subtitle mb-2">${system.properties.name[0].toUpperCase()}${system.properties.name.substr(1,system.properties.name.length).toLowerCase()}</h4>
-       
+       <p class="card-text">Your water system keeps the most detailed information about your water quality. <a href="${website}" target="_self">Visit your water system</a> </p>
           <h4 class="card-subtitle mb-2">${system.properties.systemData['State Water System Type']}</h4>
           <p class="card-text">You belong to a ${system.properties.systemData['State Water System Type']} water system. These are city, county, regulated utilities,
             regional water systems, and small water companies and districts where people live. </p>
@@ -125,7 +125,10 @@ window.geocoder = new MapboxGeocoder({
   });
 
   function cleanup() {
-    waterButton.innerHTML = `Check your water quality`;
+    waterButton.innerHTML = `Check 
+
+
+quality`;
     document.querySelector('.system-data').style.display = 'block';
   }
 
