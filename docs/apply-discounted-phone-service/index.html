@@ -146,7 +146,7 @@ label.custom-control-label {
 	<h2>Steps to apply</h2>
   
         <a href="#" class="show-all">Show all</a>
-        <a href="#" class="show-all d-none">Close all</a>
+        <a href="#" class="show-all d-none">Hide all</a>
         
         <cwds-step-list>
           <ul class="list-group list-group-flush">
@@ -274,7 +274,10 @@ label.custom-control-label {
 				document.querySelectorAll('.list-group-item-action')
 					.forEach((x,i)=>{if (i==1) setTimeout(()=>x.click(),500)})
 			
-		
+			  
+		if  (window.location.href.endsWith('#4') )
+				document.querySelectorAll('.list-group-item-action')
+					.forEach((x,i)=>{if (i==3) setTimeout(()=>x.click(),500)})
 
 		
       document.querySelectorAll('.show-all').forEach(x=>{
