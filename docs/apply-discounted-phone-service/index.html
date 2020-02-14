@@ -29,6 +29,76 @@
   <link href="https://california.azureedge.net/cdt/statetemplate/6.0.0/css/cagov.font-only.min.css" rel="stylesheet" />
 
 </head>
+	
+<style>
+	
+.d-none {
+	display: none;
+}
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* the bubble element, added inside the toggletip live region */
+
+.tooltip-bubble {
+  display: inline-block;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  width: 10em;
+  padding: 0.5rem;
+  background: #000;
+  color: #fff;
+  z-index: 10;
+  font-size: 1.2rem;
+  font-family: "Public Sans", sans-serif;
+}
+
+.tooltip-button {
+	background: none;
+	border:0; 
+	padding:0; 
+	color: #0071bc;
+	text-decoration: underline;
+	background: #fff;
+}
+
+	
+label {
+    margin-bottom: auto;
+    vertical-align: middle;
+}
+	
+label.custom-control-label {
+	text-indent: 0px;
+	width: 100%;
+	padding-left: 30px;
+    text-indent: 0;
+
+}
+	
+
+	
+}
+
+
+	
+	
+
+	
+	.btn-primary.disabled, .btn-primary:disabled {
+    color: #fff;
+    background-color: #2d2d2d;
+    border-color: #2d2d2d;
+}
+	
+
+
+</style>
+
 
 <body>
   <link href="https://california.azureedge.net/cdt/statetemplate/6.0.0/css/cagov.font-only.min.css" rel="stylesheet" />
@@ -63,14 +133,14 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-9">
-	     <p class="lead">California LifeLine lowers the cost of your monthly bill for your cell or landline phone. This discount is for households that:
+	     <p class="lead">California LifeLine lowers the cost of your monthly bill for your cell or landline phone. This discount is for <button class="tooltip-button" data-tooltip-content="A household is a group of people who live together and share income and expenses (even if they are
+not related to each other).">households</button> that:
 		<ul>
 			<li>Get public assistance</li>
 			<li>Or have an income below a certain amount</li> 
 	      </ul>
 	      </p>
 	<h2>Steps to apply</h2>
-	      <p>If you need help, <a href="https://www.californialifeline.com/en/contact">contact us</a>.</p>
   
         <a href="#" class="show-all">Show all</a>
         <a href="#" class="show-all d-none">Close all</a>
@@ -162,6 +232,9 @@
 
           </ul>
         </cwds-step-list>
+	
+	    <h3>Help</h3> 
+	<p>If you need help, <a href="https://www.californialifeline.com/en/contact">contact us</a>.</p>
 
       </div>
 
@@ -206,6 +279,165 @@
       })
     })()
   </script>
+	
+	<script type="text/javascript">
+	function html5formvalid(input) {
+		return !input.form.checkValidity || input.form.checkValidity()
+	}
+
+	function hide(id) {document.getElementById(id).classList.add('d-none')}
+	function hideall() {
+		hide('div-checkform')
+		hide('div-no-not-sure')
+		hide('div-qualified')
+		hide('div-total-income')
+		hide('div-qualified-income')
+	}
+
+	function show(id) {
+		hideall()
+		window.scrollTo(0,0)
+		updateSelections()
+		showone(id)
+	}
+
+	function showone(id) {
+		document.getElementById(id).classList.remove('d-none')
+	}
+
+	function updateSelections() {
+		const ul_programs = document.getElementById('ul-programs')
+		while (ul_programs.firstChild) ul_programs.removeChild(ul_programs.firstChild);
+
+		document.querySelectorAll('li.active label').forEach(x=> { const li = document.createElement("li"); li.innerText=x.innerText; ul_programs.appendChild(li)})
+	}
+
+(function() {
+	document.querySelectorAll('#check-not-sure,#check-no').forEach(x=>x.addEventListener('click', () => setTimeout(noclick, 1000)))
+	document.querySelector('#btn-next').addEventListener('click', nextclick)
+
+	function nextclick() {
+		updateSelections()
+		show('div-qualified')
+		showone('div-return')
+	}
+
+	function noclick() {
+		if(document.querySelector('li.active #check-not-sure,li.active #check-no'))
+		{	
+			show('div-no-not-sure') 
+			showone('div-return')
+			document.getElementById('lst-household-size').focus()
+		}	
+	}
+
+	document.getElementById('btn-select-people').addEventListener('click', function() {
+		if(html5formvalid(this)) {
+			const people = Number(document.getElementById('lst-household-size').value || 0)
+
+			let bucks = 0
+			switch (people) {
+				case 1:
+				case 2:
+					bucks = 27500
+					break
+				case 3:
+					bucks = 31900
+					break
+				default:
+					bucks = 38800+6900*(people-3)
+			}
+
+			document.getElementById('spn-income-cap').innerText = bucks.toLocaleString()
+
+			show('div-total-income')
+		}
+	})
+
+	document.getElementById('btn-yes').addEventListener('click', function() {
+		show('div-qualified-income')
+})
+
+	document.getElementById('btn-no').addEventListener('click', function() {
+		if(document.querySelector('li.active #check-no'))
+			show('div-not-qualified')
+		else
+			show('div-not-sure-qualified')
+	})
+
+	function itemclick(o) {
+		o.addEventListener('click', function() {
+			this.parentNode.classList.toggle('active')
+
+			//X-able the next button based on selections
+			const button = document.querySelector('#btn-next')
+			if (document.querySelector('.list-group li.active')) {
+				button.setAttribute('aria-disabled', 'false')
+				button.removeAttribute('disabled')
+
+			} else {
+				button.setAttribute('aria-disabled', 'true')
+				button.setAttribute('disabled', '')
+			}
+
+			updateSelections()
+
+
+		})
+	}
+
+	//Add click event to every checkbox listitem
+	Array.prototype.forEach.call(document.querySelectorAll('.list-group-item input'), itemclick)
+
+	//Tooltip support
+	Array.prototype.forEach.call(document.querySelectorAll('.tooltip-button'), function(toggletip) {
+    toggletip.setAttribute('type', 'button')
+    toggletip.setAttribute('aria-label', 'Word Definition')
+
+		//wrap a container around the button
+		var container = document.createElement('span')
+		container.setAttribute('class', 'tooltip-container')
+		toggletip.parentNode.insertBefore(container,toggletip)
+		container.appendChild(toggletip)
+
+		// Create the live region
+		var liveRegion = document.createElement('span')
+    liveRegion.setAttribute('role', 'status')
+    
+    // Place the live region in the container
+		container.appendChild(liveRegion)
+		
+		// Get the message from the data-content element
+		var message = toggletip.getAttribute('data-tooltip-content')
+		
+	   // Toggle the message
+		 toggletip.addEventListener('click', function() {
+	liveRegion.innerHTML = ''
+	window.setTimeout(function() {
+	  liveRegion.innerHTML = '<span class="tooltip-bubble">'+ message +'</span>'
+	}, 100)
+    });
+
+    // Close on outside click
+    document.addEventListener('click', function (e) {
+      if (toggletip !== e.target) {
+        liveRegion.innerHTML = ''
+      }
+    });
+
+    // Remove toggletip on ESC
+    toggletip.addEventListener('keydown', function(e) {
+      if ((e.keyCode || e.which) === 27)
+      liveRegion.innerHTML = ''
+    });
+    
+    // Remove on blur
+    toggletip.addEventListener('blur', function (e) {
+      liveRegion.innerHTML = ''
+    })
+  })
+}())
+</script>
 </body>
 
 </html>
