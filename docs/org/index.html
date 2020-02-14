@@ -232,7 +232,10 @@ var alphaListingResults = [];
  function buildList(idOfDivToFill, lang, agencyLandingPage) {
 
         if (lang === "") { lang = "en"; }
-	var apiLocation = "https://as-go-alph-d-002.azurewebsites.net/";
+	//var apiLocation = "https://as-go-alph-d-002.azurewebsites.net/";
+	 
+	var apiLocation = "https://api.stateentityprofile.ca.gov/";
+	 
         var builtApiUrl = apiLocation + "api/Agencies/Get?page=0&pageSize=0&lang=" + lang;
 
         var loadFlag = false;
