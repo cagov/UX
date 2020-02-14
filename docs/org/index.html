@@ -271,8 +271,8 @@ var alphaListingResults = [];
                     var displayText = "";
 
                     for (var i = 0; i < arrayLength; i++) {
-                        var agencyNameToPass = processJsonData.processPassedItem('Out', result[i].FriendlyName);
-                        displayText += "<p><a aria-label=\"View Agency Details for " + result[i].FriendlyName + "\" href=\"" + agencyLandingPage + "?item=" + agencyNameToPass + "\">" + result[i].FriendlyName + "</a></p>";
+                        var agencyNameToPass = processPassedItem('Out', result[i].FriendlyName);
+                        displayText += "<p><a aria-label=\"View Contact Information for " + result[i].FriendlyName + "\" href=\"" + agencyLandingPage + "?item=" + agencyNameToPass + "\">" + result[i].FriendlyName + "</a></p>";
                     }
 
                     document.getElementById(idOfDivToFill).innerHTML = displayText;
