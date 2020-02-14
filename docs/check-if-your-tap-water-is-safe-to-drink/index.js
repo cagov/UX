@@ -40,7 +40,6 @@ window.geocoder = new MapboxGeocoder({
 
         let systemId = system.properties.pwsid;
         let website_blurb = "";
-        let website_blurb_1 = "";
         if (
           system.properties.systemData &&
           system.properties.systemData.meta &&
@@ -48,15 +47,13 @@ window.geocoder = new MapboxGeocoder({
         ) {
           let website = system.properties.systemData.meta.website;
           if (website.indexOf("http") < 0) {
-            website = "http://" + website;
+            website_blurb = `<p><a class="action-link" href="http://${website}">Visit your water system</a></p>`;
           }
           website_blurb_1 = ` Your water system has the most detailed information about your water quality. <a href="${website}" target="_self">Visit your water system</a>`;
         }
         let systemInfo = `<h3>How we check your water safety</h3>
-        <i class="ca-gov-icon-medical-heart text-danger lead float-left pr-2"></i>
         <h4>Health</h4>
         <p>Our scientists watch out for chemicals and bacteria that could be harmful to human health.</p>
-        <i class="ca-gov-icon-eye text-warning float-left pr-2 align-text-top h2 m-0 p-0 mt-n1"></i>
         <h4>Taste, look, and smell</h4>
         <p>We also track chemicals and bacteria that could change the way your water tastes, looks, or smells. </p>`;
         document.querySelector(".system-info").innerHTML = systemInfo;
@@ -97,7 +94,7 @@ window.geocoder = new MapboxGeocoder({
                 ${(function() {
                   if (
                     analyte.ANALYTE_NAME == "GROUNDWATER RULE" ||
-                    analyte.ANALYTE_NAME == "SURFACEWATER RULE"
+                    analyte.ANALYTE_NAME == "SWTR"
                   ) {
                     return `<div class="col flex pr-3">
                       <div class="bold display-4 text-center">
@@ -129,14 +126,18 @@ window.geocoder = new MapboxGeocoder({
                       <div class="bold display-4 text-center">${(analyte.RESULT /
                         analyte.MCL_VALUE) *
                         100}<sup>%</sup></div>
-                      <p class="font-weight-light text-center">over the legal limit</p>
+                      <p class="font-weight-light text-center">of the legal limit</p>
                     </div>
                     <div class="water-label">
                       <h5 class="card-title display-5">${
                         analyte.ANALYTE_NAME
                       }</h5>
                       <div class="progress">
-                        <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated w-100" aria-hidden="true"></div>
+                        <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" aria-hidden="true" aria-valuenow="${(analyte.RESULT /
+                          analyte.MCL_VALUE) *
+                          10}" style="width: ${(analyte.RESULT /
+                            analyte.MCL_VALUE) *
+                            10}%" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>`;
                   }
@@ -169,7 +170,7 @@ window.geocoder = new MapboxGeocoder({
     });
 
   function cleanup() {
-    waterButton.innerHTML = `Check your water quality`;
+    waterButton.innerHTML = `Check your water`;
     document.querySelector(".system-data").style.display = "block";
   }
 });
@@ -181,7 +182,7 @@ function displaySafe(website_blurb, system) {
 
   let html = `<h2>Safe to drink</h2>
   <p>Your tap water meets California safety standards. We check your water when it leaves your treatment system,
-    but not after it goes through pipes to get to you. ${website_blurb}</p>
+    but not after it goes through pipes to get to you.</p>
     ${getSystemHTML(website_blurb, system)}`;
 
   document.querySelector(".system-status").innerHTML = html;
@@ -192,12 +193,5 @@ function getSystemHTML(website_blurb, system) {
     <h4 class="card-subtitle mb-2">${system.properties.name[0].toUpperCase()}${system.properties.name
     .substr(1, system.properties.name.length)
     .toLowerCase()}</h4>
-    <p class="card-text">Your water system keeps the most detailed information about your water quality. ${website_blurb} </p>
-    <h4 class="card-subtitle mb-2">${
-      system.properties.systemData["State Water System Type"]
-    }</h4>
-    <p class="card-text">You belong to a ${
-      system.properties.systemData["State Water System Type"]
-    } water system. These are city, county, regulated utilities,
-      regional water systems, and small water companies and districts where people live. </p>`;
+    <p class="card-text">Your water system keeps the most detailed information about your water quality. ${website_blurb} </p>`;
 }
