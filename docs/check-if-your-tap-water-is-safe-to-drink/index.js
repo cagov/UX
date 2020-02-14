@@ -104,7 +104,7 @@ window.geocoder = new MapboxGeocoder({
                     </div>
                     <div class="water-label">
                       <h5 class="card-title display-5">Microbial pathogens</h5>
-                      <div class="progress">
+                      <div class="progress" style="height: 40px;">
                         <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated w-100" aria-hidden="true"></div>
                       </div>
                     </div>`;
@@ -117,7 +117,7 @@ window.geocoder = new MapboxGeocoder({
                       </div>
                       <div class="water-label">
                         <h5 class="card-title display-5">Particles that make the water look cloudy or hazy</h5>
-                        <div class="progress">                        
+                        <div class="progress" style="height: 40px;">                        
                           <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated w-100" aria-hidden="true"></div>
                         </div>
                       </div>`;
@@ -132,10 +132,10 @@ window.geocoder = new MapboxGeocoder({
                       <h5 class="card-title display-5">${
                         analyte.ANALYTE_NAME
                       }</h5>
-                      <div class="progress">
-                        <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" aria-hidden="true" aria-valuenow="10" style="width: ${(100 / (analyte.RESULT /
+                      <div class="progress" style="height: 40px;">
+                        <div class="progress-bar bg-dark" aria-hidden="true" aria-valuenow="10" style="width: ${(100 / (analyte.RESULT /
                             analyte.MCL_VALUE))}%"></div>
-                        <div class="progress-bar progress-bar-striped bg-dark progress-bar-animated" aria-hidden="true" style="width: 1%;"><span class="limit">legal limit</span></div>
+                        <div class="progress-bar  bg-white" aria-hidden="true" style="width: 1%;"><span class="limit">legal limit</span></div>
                         <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" aria-hidden="true" style="width: ${(((analyte.RESULT /
                               analyte.MCL_VALUE) *
                               100) - 100) / ((analyte.RESULT /
