@@ -126,6 +126,13 @@ li.list-group-item.unstyled {
     border-color: #2d2d2d;
 }
 	
+	.more {
+	margin-top: 3rem;
+    border-top: 2px #ccc solid;
+    padding-top: 1rem;
+}
+
+	
 
 
 </style>
@@ -154,7 +161,7 @@ li.list-group-item.unstyled {
     <div class="container">
 		<nav aria-label="breadcrumb">
 		  <ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="/UX/apply-discounted-phone-service/">Apply for a discounted phone service</a></li>
+			<li class="breadcrumb-item"><span class="ca-gov-icon-arrow-prev pr-1 smaller"></span><a href="/UX/apply-discounted-phone-service/">Apply for a discounted phone service</a></li>
 		  </ol>
 		</nav>
       <div class="row">
@@ -165,13 +172,12 @@ li.list-group-item.unstyled {
     </div>
   </div>
 
-  <div class="container">
+<div class="container">
     <div class="row">
       <div class="col-lg-8" >
 				<div id="div-checkform">
 		  	<h2>					
-					Do you or someone in your <button class="tooltip-button" data-tooltip-content="A household is a group of people who live together and share income and expenses (even if they are
-not related to each other).">household</button>
+					Do you or someone in your <button class="tooltip-button" data-tooltip-content="A household is a group of people who live together and share income and expenses (even if they are not related to each other).">household</button>
 					get support from any of these programs? </h2><p> Please check all that apply.</p>
 				<form onsubmit="return false" >
   					<div class="form-group">
@@ -240,14 +246,13 @@ not related to each other).">household</button>
 						</ul>  
 					</div>
 				</div>
-      </div>
+      		</div>
 
 			<div class="container d-none" id="div-no-not-sure">
 				<div class="row">
 					<div class="col-lg-8 pl-0">	
 					<h2>How many people are in your household?</h2>
-						<p>A household is a group of people who live together and share income and expenses (even if they are
-not related to each other).</p>
+						<p>A household is a group of people who live together and share income and expenses (even if they are not related to each other).</p>
 						<form onsubmit="return false">
 							<div class="form-group">
 							<input type="number" required="required" min="1" max="999" class="form-control form-control-md col-lg-6" id="lst-household-size" name="data">
@@ -256,19 +261,21 @@ not related to each other).</p>
 								</p>
 							</div>
 						</form>
-						<hr>
+						<div class="more">
 						<a href class="" onclick="show('div-checkform')">Back to last question</a>
-					</div>
+						</div>
 				</div>
 			</div>
-
+		</div>
 			<div class="container d-none" id="div-total-income">
 				<div class="row">
 					<div class="col-lg-8">
 						<h2>Is your household’s total income below $<span id="spn-income-cap"></span>?</h2>
-						<p><button type="button" class="btn btn-primary"  id="btn-yes">Yes</button>
+						<button type="button" class="btn btn-primary"  id="btn-yes">Yes</button>
 						<button type="button" class="btn btn-primary ml-2" id="btn-no">No</button>
-						<button class="btn btn-primary ml-2" type="button" onclick="show('div-no-not-sure')">Back</button></p>
+						<div class="more">
+						<a href class="" onclick="show('div-checkform')">Back to last question</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -282,7 +289,7 @@ not related to each other).</p>
 						<li>The front page of your state, federal, or tribal tax return from last year.</li>
 						<li>Or income statements or paycheck stubs for three months in a row. Those three months should be within the past 12 months.</li>			  
 						</ul>
-						<p>Have the document with you as you <a href="/UX/apply-discounted-phone-service/" target="_self">continue to step two</a>. </p>
+						<p>Have the document with you as you <a href="/UX/apply-discounted-phone-service/#2" target="_self">continue to step two</a>. </p>
 					</div>
 				</div>
 			</div>
@@ -333,9 +340,14 @@ not related to each other).</p>
 					</div>
 				</div>
 			</div>
+	
+		  
+		  
 		</div>
+	</div>
+</div>		  
 
-		<div class="col-lg-4 mt-n3">
+	<!--	<div class="col-lg-4 mt-n3">
 			<div class="aside"><span class="display-5">Steps to apply for a discounted phone service</span>
 			  <div class="list-group">
 					<ul class="list-group list-group-flush pl-1 pb-3 pt-2">
@@ -351,14 +363,12 @@ not related to each other).</p>
 				</div>
 				<p><strong>Back to:</strong> <a href="/UX/apply-discounted-phone-service/" target="_self">Apply for a discounted phone service</a></p>
     	</div>
-		</div>
-	</div>
+		</div>-->
 
-	<div class="col-lg-8 pt-3 ml-0 pl-0 d-none" id="div-return">
-		<hr>
-		<p class="mt-3">Return to the beginning: <a href=".">Check if you can get a discounted phone service</a></p>
-	</div>
-</div>
+
+
+
+
 <div class="footer alpha-footer">
   <div class="container">
     <div class="row">
@@ -490,6 +500,7 @@ not related to each other).</p>
 
 	//Add click event to every checkbox listitem
 	Array.prototype.forEach.call(document.querySelectorAll('.list-group-item input'), itemclick)
+	
 
 	//Tooltip support
 	Array.prototype.forEach.call(document.querySelectorAll('.tooltip-button'), function(toggletip) {
