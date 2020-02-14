@@ -117,7 +117,7 @@ window.geocoder = new MapboxGeocoder({
                       </div>
                       <div class="water-label">
                         <h5 class="card-title display-5">Particles that make the water look cloudy or hazy</h5>
-                        <div class="progress">
+                        <div class="progress">                        
                           <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated w-100" aria-hidden="true"></div>
                         </div>
                       </div>`;
@@ -133,11 +133,11 @@ window.geocoder = new MapboxGeocoder({
                         analyte.ANALYTE_NAME
                       }</h5>
                       <div class="progress">
-                        <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" aria-hidden="true" aria-valuenow="${(analyte.RESULT /
-                          analyte.MCL_VALUE) *
-                          10}" style="width: ${(analyte.RESULT /
-                            analyte.MCL_VALUE) *
-                            10}%" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" aria-hidden="true" aria-valuenow="10" style="width: 10%"></div>
+                        <div class="progress-bar progress-bar-striped bg-dark progress-bar-animated" aria-hidden="true" style="width: 1%;"><span class="limit">legal limit</span></div>
+                        <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" aria-hidden="true" style="width: ${(analyte.RESULT /
+                              analyte.MCL_VALUE) *
+                              10 - 10}%" ></div>
                       </div>
                     </div>`;
                   }
