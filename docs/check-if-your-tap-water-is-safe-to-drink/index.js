@@ -133,11 +133,14 @@ window.geocoder = new MapboxGeocoder({
                         analyte.ANALYTE_NAME
                       }</h5>
                       <div class="progress">
-                        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" aria-hidden="true" aria-valuenow="10" style="width: 10%"></div>
+                        <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" aria-hidden="true" aria-valuenow="10" style="width: ${(100 / (analyte.RESULT /
+                            analyte.MCL_VALUE))}%"></div>
                         <div class="progress-bar progress-bar-striped bg-dark progress-bar-animated" aria-hidden="true" style="width: 1%;"><span class="limit">legal limit</span></div>
-                        <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" aria-hidden="true" style="width: ${(analyte.RESULT /
+                        <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" aria-hidden="true" style="width: ${(((analyte.RESULT /
                               analyte.MCL_VALUE) *
-                              10 - 10}%" ></div>
+                              100) - 100) / ((analyte.RESULT /
+                                analyte.MCL_VALUE) *
+                                100) * 100}%" ></div>
                       </div>
                     </div>`;
                   }

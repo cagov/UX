@@ -191,11 +191,104 @@ form.form-inline input[type=text] {
 
         <p class="h6 text-right"><a href="#" class="back-to-top">Back to top <span class="ca-gov-icon-arrow-fill-up"></span></a></p>
 
+	<div id="agencyGroup" class="group" style="border: 3px solid #000000;"></div>
+	
+	      <script>
+ function processPassedItem (linkOutgoingOrIncomming, nameAgencyOrService) {
+        var passedName = nameAgencyOrService.toLowerCase();
+        if (linkOutgoingOrIncomming === 'Out') {
+            passedName = passedName.replace(/^[ ]+|[ ]+$/g, '');
+            passedName = passedName.replace("-", "dashline");
+            passedName = encodeURIComponent(passedName);
+            var i = 0, strPassedNameLengthOut = passedName.length;
+            for (i; i < strPassedNameLengthOut; i++) {
+                passedName = passedName.replace("%20", "-");
+            }
+
+			if (passedName.indexOf("'") !== -1) {
+				passedName = passedName.replace("'", "%27");
+			}
+			
+            //--- BEGIN --- Code Mod to support stange proccesing of job training links  ----
+            passedName = passedName.replace("get-job-training-in-", "job-training-in-");
+            //--- END --- Code Mod to support stange proccesing of job training links  ----
+        }
+        else {
+            passedName = decodeURIComponent(passedName);
+            var j = 0, strPassedNameLength = passedName.length;
+            for (j; j < strPassedNameLength; j++) {
+                passedName = passedName.replace("-", " ");
+            }
+            passedName = passedName.replace("dashline", "-");
+        }
+        return passedName;
+    }		      
+		      
+		      
+ function buildList(idOfDivToFill, lang, agencyLandingPage) {
+
+        if (lang === "") { lang = "en"; }
+	var apiLocation = "https://api.stateentityprofile.ca.gov/";
+        var builtApiUrl = apiLocation + "api/Agencies/Get?page=0&pageSize=0&lang=" + lang;
+
+        var loadFlag = false;
+        var loadCount = 0;
+
+        function loadResults() {
+            if (loadCount === 0) {
+                var putApiRequest = new XMLHttpRequest();
+                putApiRequest.open("POST", builtApiUrl, true);
+                putApiRequest.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        alphaListingResults.push(this.responseText);
+                    }
+                    if (this.readyState === 4 && this.status === 404) {
+                        alphaListingResults.push("NONEXISTS");
+                    }
+                };
+                putApiRequest.setRequestHeader('Content-Type', 'application/json');
+                putApiRequest.withCredentials = false;
+                putApiRequest.send(null);
+            }
+            loadCount += 1;
+            if (loadFlag === false) {
+                if (typeof alphaListingResults[0] !== "undefined") {
+                    if (alphaListingResults[0].length > 10) {
+                        loadFlag = true;
+                    }
+                }
+                if (loadCount >= 50) {
+                    loadFlag = true;
+                }
+                window.setTimeout(loadResults, 100); /* this checks the flag every 100 milliseconds*/
+            }
+            else {
+                if (loadCount < 50) {
+                    var result = JSON.parse(alphaListingResults[0]).Data;
+                    var arrayLength = result.length;
+                    var displayText = "";
+
+                    for (var i = 0; i < arrayLength; i++) {
+                        var agencyNameToPass = processJsonData.processPassedItem('Out', result[i].FriendlyName);
+                        displayText += "<p><a aria-label=\"View Agency Details for " + result[i].FriendlyName + "\" href=\"" + agencyLandingPage + "?item=" + agencyNameToPass + "\">" + result[i].FriendlyName + "</a></p>";
+                    }
+
+                    document.getElementById(idOfDivToFill).innerHTML = displayText;
+                }
+            }
+        }
+        loadResults();
+    }
+		      buildList('agencyGroup','en','home.html');
+		      
+	      </script>
+	      
       </div>
 
   </div>
  </div>	
 </div>	
+	
 
 <div class="footer alpha-footer">
   <div class="container">
