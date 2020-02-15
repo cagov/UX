@@ -191,6 +191,8 @@ form.form-inline input[type=text] {
 
         <p class="h6 text-right"><a href="#" class="back-to-top">Back to top <span class="ca-gov-icon-arrow-fill-up"></span></a></p>
 
+	<div id="agencyNav" style="border: 1px solid #000000;"></div>
+	      
 	<div id="agencyGroup" class="group" style="border: 3px solid #000000;"></div>
 	
 	      <script>
@@ -230,7 +232,10 @@ var alphaListingResults = [];
  function buildList(idOfDivToFill, lang, agencyLandingPage) {
 
         if (lang === "") { lang = "en"; }
+	//var apiLocation = "https://as-go-alph-d-002.azurewebsites.net/";
+	 
 	var apiLocation = "https://api.stateentityprofile.ca.gov/";
+	 
         var builtApiUrl = apiLocation + "api/Agencies/Get?page=0&pageSize=0&lang=" + lang;
 
         var loadFlag = false;
@@ -269,12 +274,34 @@ var alphaListingResults = [];
                     var result = JSON.parse(alphaListingResults[0]).Data;
                     var arrayLength = result.length;
                     var displayText = "";
+		    var recordCount= 0;
+		    var previousNavCharacter = "A";
+		    var currentNavCharacter = "";
+		    var navText = "";
 
                     for (var i = 0; i < arrayLength; i++) {
+			    
+			var currentNavCharacter = result[i].FriendlyName.charAt(0);
+			if (!(currentNavCharacter == previousNavCharacter)) {
+			   navText += "[" + previousNavCharacter + "]";
+			   previousNavCharacter = currentNavCharacter;
+			    displayText += "<p class=\"h6 text-right\"><a href=\"#\" class=\"back-to-top\">Back to top <span class=\"ca-gov-icon-arrow-fill-up\"></span></a></p>";
+			    displayText += "<h3>" + currentNavCharacter +"</h3>";
+			}
+			else {
+			    if (recordCount < 1) {
+  			        displayText += "<h3>" + previousNavCharacter +"</h3>";
+				recordCount += 1;
+			    }
+			}
+			
+			    
+			    
                         var agencyNameToPass = processPassedItem('Out', result[i].FriendlyName);
                         displayText += "<p><a aria-label=\"View Contact Information for " + result[i].FriendlyName + "\" href=\"" + agencyLandingPage + "?item=" + agencyNameToPass + "\">" + result[i].FriendlyName + "</a></p>";
                     }
-
+		    navText += "[" + previousNavCharacter + "]";
+			
                     document.getElementById(idOfDivToFill).innerHTML = displayText;
                 }
             }
