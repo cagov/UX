@@ -125,7 +125,7 @@ window.geocoder = new MapboxGeocoder({
                     return `<div class="col flex">
                       <div class="bold display-4 text-center">${(analyte.RESULT /
                         analyte.MCL_VALUE).toFixed(1) }x</div>
-                      <p class="font-weight-light text-center">of the legal limit</p>
+                      <p class="font-weight-light text-center">the legal limit</p>
                     </div>
                     <div class="water-label">
                       <h5 class="card-title display-5">${
