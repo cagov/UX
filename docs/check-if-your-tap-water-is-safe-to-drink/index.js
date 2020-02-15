@@ -47,7 +47,7 @@ window.geocoder = new MapboxGeocoder({
         ) {
           let website = system.properties.systemData.meta.website;
           if (website.indexOf("http") < 0) {
-            website_blurb = `<p><a class="action-link" href="http://${website}">Visit your water system</a></p>`;
+            website_blurb = `<p class="mb-5"><a class="action-link" href="http://${website}">Visit your water system</a></p>`;
           }
           website_blurb_1 = ` Your water system has the most detailed information about your water quality. <a href="${website}" target="_self">Visit your water system</a>`;
         }
@@ -124,8 +124,7 @@ window.geocoder = new MapboxGeocoder({
                   } else {
                     return `<div class="col flex">
                       <div class="bold display-4 text-center">${(analyte.RESULT /
-                        analyte.MCL_VALUE) *
-                        100}<sup>%</sup></div>
+                        analyte.MCL_VALUE).toFixed(1) }<sup>x</sup></div>
                       <p class="font-weight-light text-center">of the legal limit</p>
                     </div>
                     <div class="water-label">
