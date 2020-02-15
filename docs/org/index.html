@@ -103,7 +103,7 @@ form.form-inline input[type=text] {
         </div>
 
         <h2>Agencies</h2>
-
+<!--
         <nav aria-label="Page navigation example">
           <ul class="pagination flex-wrap">
             <li class="page-item"><a class="page-link" href="#">A</a></li>
@@ -190,12 +190,14 @@ form.form-inline input[type=text] {
         </ul>
 
         <p class="h6 text-right"><a href="#" class="back-to-top">Back to top <span class="ca-gov-icon-arrow-fill-up"></span></a></p>
+-->
 
 	<nav aria-label="Page navigation example">
-		<ul class="pagination flex-wrap" id="agencyNav"></ul>      
+		<ul class="pagination flex-wrap" id="agencyNav"></ul>
+        </nav>      
 	
 	      
-	<div id="agencyGroup" class="group" style="border: 3px solid #000000;"></div>
+	<div id="agencyGroup" class="group"></div>
 	
 	      <script>
 var alphaListingResults = [];
@@ -285,14 +287,15 @@ var alphaListingResults = [];
 			    
 			var currentNavCharacter = result[i].AgencyName.charAt(0);
 			if (!(currentNavCharacter == previousNavCharacter)) {
-			   navText += "<li class=\"page-item\"><a class=\"page-link\" href=\"#" + previousNavCharacter +"\">" + previousNavCharacter + "</a></li>";
-			   previousNavCharacter = currentNavCharacter;
+			   navText += "<li class=\"page-item\"><a class=\"page-link\" href=\"#" + previousNavCharacter.toLowerCase() +"\">" + previousNavCharacter + "</a></li>";
+			   
 			    displayText += "<p class=\"h6 text-right\"><a href=\"#\" class=\"back-to-top\">Back to top <span class=\"ca-gov-icon-arrow-fill-up\"></span></a></p>";
-			    displayText += "<h3>" + currentNavCharacter +"</h3>";
+			    displayText += "<a name=\""+ currentNavCharacter.toLowerCase() +"\"><h3>" + currentNavCharacter +"</h3>";
+  			    previousNavCharacter = currentNavCharacter;
 			}
 			else {
 			    if (recordCount < 1) {
-  			        displayText += "<a name=\""+ previousNavCharacter +"\">&nbsp;</a><h3>" + previousNavCharacter +"</h3>";
+  			        displayText += "<a name=\""+ previousNavCharacter.toLowerCase() +"\">&nbsp;</a><h3>" + previousNavCharacter +"</h3>";
 				recordCount += 1;
 			    }
 			}
@@ -301,7 +304,7 @@ var alphaListingResults = [];
                         displayText += "<p><a aria-label=\"View Contact Information for " + result[i].FriendlyName + "\" href=\"" + agencyLandingPage + "?item=" + agencyNameToPass + "\">" + result[i].FriendlyName + "</a></p>";
                     }
 
-		    navText += "<li class=\"page-item\"><a class=\"page-link\" href=\"#" + previousNavCharacter +"\">" + previousNavCharacter + "</a></li>";			
+		    navText += "<li class=\"page-item\"><a class=\"page-link\" href=\"#" + previousNavCharacter.toLowerCase() +"\">" + previousNavCharacter + "</a></li>";			
 		    displayText += "<p class=\"h6 text-right\"><a href=\"#\" class=\"back-to-top\">Back to top <span class=\"ca-gov-icon-arrow-fill-up\"></span></a></p>";
                     document.getElementById("agencyNav").innerHTML = navText;
 			
