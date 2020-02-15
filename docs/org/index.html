@@ -304,7 +304,7 @@ var alphaListingResults = [];
                         displayText += "<p><a aria-label=\"View Contact Information for " + result[i].FriendlyName + "\" href=\"" + agencyLandingPage + "?item=" + agencyNameToPass + "\">" + result[i].FriendlyName + "</a></p>";
                     }
 
-		    navText += "<li class=\"page-item\"><a class=\"page-link\" href=\"#" + previousNavCharacter +"\">" + previousNavCharacter + "</a></li>";			
+		    navText += "<li class=\"page-item\"><a class=\"page-link\" href=\"#" + previousNavCharacter.toLowerCase() +"\">" + previousNavCharacter + "</a></li>";			
 		    displayText += "<p class=\"h6 text-right\"><a href=\"#\" class=\"back-to-top\">Back to top <span class=\"ca-gov-icon-arrow-fill-up\"></span></a></p>";
                     document.getElementById("agencyNav").innerHTML = navText;
 			
