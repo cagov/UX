@@ -24,7 +24,7 @@ new Awesomplete("input[data-multiple]", {
     var finalval = before + text;
     this.input.value = finalval;
     // let templateString = document.querySelector("#card-template").innerHTML;
-    document.querySelector(".js-county-alert").innerHTML = templateHTML(finalval);
+    templateHTML(finalval);
   }
 });
 
