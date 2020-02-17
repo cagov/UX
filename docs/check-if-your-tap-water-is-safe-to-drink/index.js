@@ -145,11 +145,11 @@ window.geocoder = new MapboxGeocoder({
                   }
                 })()}
               </div>
-            </div>${getSystemHTML(website_blurb, system)}`;
+            </div>`;
               });
               document.querySelector(
                 ".system-status"
-              ).innerHTML = resultsOutput;
+              ).innerHTML = resultsOutput + `${getSystemHTML(website_blurb, system)}`;
               cleanup();
             }
           })
