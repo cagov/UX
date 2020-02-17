@@ -23,53 +23,41 @@ new Awesomplete("input[data-multiple]", {
     var before = this.input.value.match(/^.+,\s*|/)[0];
     var finalval = before + text;
     this.input.value = finalval;
-    let templateString = document.querySelector("#card-template").innerHTML;
-
-    function templateHTML() {
-      let chosenCounty;
-      counties.forEach(county => {
-        if (county.name.toLowerCase() == finalval.toLowerCase()) {
-          chosenCounty = county;
-        }
-      });
-      let county = chosenCounty.name;
-      let url = chosenCounty.url;
-
-      return     templateString = `<li class="card mb-20  border-0">
-        <div class="card-body bg-light">
-          <a class="action-link" href="${url}">
-            ${county}
-          </a>
-        </div>
-      </li>`;;
-    }
-    document.querySelector(".js-county-alert").innerHTML = templateHTML();
+    // let templateString = document.querySelector("#card-template").innerHTML;
+    document.querySelector(".js-county-alert").innerHTML = templateHTML(finalval);
   }
 });
 
 document
-  .querySelector(".js-food-lookup")
+  .querySelector(".js-alert-lookup")
   .addEventListener("submit", function(event) {
     event.preventDefault();
     document.querySelector(".invalid-feedback").style.display = "none";
-    var val = this.querySelector("input").value;
-    var cabb = "-124.409591,32.534156,-114.131211,42.009518";
-    var url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${val}.json?bbox=${cabb}&access_token=${mapboxgl.accessToken}`;
-    fetch(url)
-      .then(function(resp) {
-        return resp.json();
-      })
-      .then(function(data) {
-        document.querySelector(".js-location-display").innerHTML =
-          "Food banks near " + val;
-        if (data.features.length > 0) {
-          reorient(data.features[0].center);
-        } else {
-          document.querySelector(".invalid-feedback").style.display = "block";
-        }
-      });
+    var finalval = this.querySelector("input").value;
+
+    templateHTML(finalval);
   });
 
-// trigger card display on selection
-// on submit also do lookup
-// display error if not found
+function templateHTML(inputval) {
+  console.log('hi '+inputval)
+  let chosenCounty;
+  counties.forEach(county => {
+    if (county.name.toLowerCase() == inputval.toLowerCase()) {
+      chosenCounty = county;
+    }
+  });
+  console.log(chosenCounty)
+  if(!chosenCounty) {
+    document.querySelector(".invalid-feedback").style.display = "block";
+  } else {
+    let county = chosenCounty.name;
+    let url = chosenCounty.url;
+    document.querySelector(".js-county-alert").innerHTML = `<li class="card mb-20  border-0">
+    <div class="card-body bg-light">
+      <a class="action-link" href="${url}">
+        ${county}
+      </a>
+    </div>
+  </li>`;
+  }
+}

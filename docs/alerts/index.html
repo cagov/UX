@@ -57,7 +57,7 @@
 
     <link rel="stylesheet" href="../libs/awesomplete.css" />
     <script type="text/javascript" src="../libs/awesomplete.min.js"></script>
-  
+
     <style>
       .mt-20 {
         margin-top: 20px;
@@ -127,27 +127,22 @@
     <div class="container pb-5">
       <div class="row">
         <div class="col-md-8">
-          <div class="form-group">
-            <form class="form-inline mb-20 js-food-lookup">
-              <label for="city-input" class="mr-10">
-                Please enter your county:
-              </label>
+          <form class="js-alert-lookup">
+            <div class="form-group wage-city-search">
+              <label for="location-query">Please enter your county:</label
+              ><br />
               <div class="awesomplete">
                 <input
-                  class="form-control city-search"
-                  id="city-input"
+                  class="city-search form-control"
                   data-multiple=""
+                  id="location-query"
+                  data-list=""
                   autocomplete="off"
+                  aria-expanded="false"
                   aria-owns="awesomplete_list_1"
-                  role="textbox"
+                  role="combobox"
                 />
-                <ul
-                  hidden=""
-                  role="listbox"
-                  id="awesomplete_list_1"
-                  aria-hidden="true"
-                  aria-label="autosuggest"
-                ></ul>
+                <ul hidden="" role="listbox" id="awesomplete_list_1"></ul>
                 <span
                   class="visually-hidden"
                   role="status"
@@ -156,14 +151,14 @@
                   >Type 2 or more characters for results.</span
                 >
               </div>
-              <button type="submit" class="btn btn-primary ml-10">
-                Search
-              </button>
               <div class="invalid-feedback">
                 Please enter a county in California.
               </div>
-            </form>
-          </div>
+            </div>
+            <button type="submit" class="btn btn-primary js-wage-lookup mt-3">
+              Find your emergency alert details
+            </button>
+          </form>
 
           <div class="js-county-alert">
             <ul class="card-set"></ul>
@@ -182,31 +177,17 @@
       </li>
     </template>
 
-    <div class="footer alpha-footer">
+    <div class="footer">
       <div class="container">
         <div class="row">
-          <div class="col-md-12 ml-0 pl-0">
-            <ul
-              class="list-group list list-group-horizontal-lg flex-fill list-group-flush"
-            >
-              <li class="list-group-item alpha-footer border-0">
-                State of California
-              </li>
-              <li class="list-group-item alpha-footer">
-                <a href="/about/">About</a>
-              </li>
-              <li class="list-group-item alpha-footer">
-                <a href="https://news.alpha.ca.gov/">News</a>
-              </li>
-              <li class="list-group-item alpha-footer">
-                <a href="/feedback/">Feedback</a>
-              </li>
-            </ul>
+          <div class="col-md-12">
+            <p>
+              &copy; 2019 State of California
+            </p>
           </div>
         </div>
       </div>
     </div>
-
     <div class="alphabar">
       <div class="container">
         <p>
@@ -215,6 +196,7 @@
         </p>
       </div>
     </div>
+
     <script type="module" src="index.js" defer async></script>
   </body>
 </html>
