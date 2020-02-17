@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Check if your tap water is safe to drink. Find out the name of your water system and where your water comes from."
+    />
+    <meta name="author" content="Bootstrap, alpha.ca.gov team" />
+    <meta name="generator" content="Hugo 0.61.0" />
+    <title>Sign up for Emergency Alerts - Alpha.CA.gov</title>
+
+    <!-- Bootstrap core CSS -->
+    <link
+      href="https://cwds.dev/docs/4.3/dist/css/bootstrap.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cwds.dev/docs/4.3/assets/css/docs.css"
+      rel="stylesheet"
+    />
+
+    <!-- Favicons -->
+    <link
+      rel="apple-touch-icon"
+      href="https://cwds.dev/docs/4.3/assets/img/favicons/apple-touch-icon.png"
+      sizes="180x180"
+    />
+    <link
+      rel="icon"
+      href="https://cwds.dev/docs/4.3/assets/img/favicons/favicon-32x32.png"
+      sizes="32x32"
+      type="image/png"
+    />
+    <link
+      rel="icon"
+      href="https://cwds.dev/docs/4.3/assets/img/favicons/favicon-16x16.png"
+      sizes="16x16"
+      type="image/png"
+    />
+
+    <link
+      rel="mask-icon"
+      href="https://cwds.dev/docs/4.3/assets/img/favicons/safari-pinned-tab.svg"
+      color="#1d1a16"
+    />
+    <link
+      rel="icon"
+      href="https://cwds.dev/docs/4.3/assets/img/favicons/favicon.ico"
+    />
+    <meta
+      name="msapplication-config"
+      content="https://cwds.dev/docs/4.3/assets/img/favicons/browserconfig.xml"
+    />
+    <meta name="theme-color" content="#000000" />
+
+    <link rel="stylesheet" href="../libs/awesomplete.css" />
+    <script type="text/javascript" src="../libs/awesomplete.min.js"></script>
+  
+    <style>
+      .mt-20 {
+        margin-top: 20px;
+      }
+      .mt-10 {
+        margin: 0 0 10px 0;
+      }
+      .water-label {
+        padding-left: 0;
+        padding-right: 2%;
+        padding-top: 1%;
+        width: 66%;
+      }
+      .chill-d-none {
+        display: none;
+      }
+      .mr-10 {
+        margin-right: 10px;
+      }
+      @media (max-width: 767.98px) {
+        .water-label {
+          padding-left: 10%;
+          padding-top: 0;
+          margin-top: -2%;
+          width: 90%;
+          text-align: center;
+          padding-bottom: 7%;
+        }
+      }
+    </style>
+    <link
+      href="https://california.azureedge.net/cdt/statetemplate/6.0.0/css/cagov.font-only.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="official">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>State of California</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand navbar-left" href="/UX/"
+            >CA.gov <sup>(ALPHA)</sup></a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid jumbotron">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Sign up for emergency alerts</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pb-5">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group">
+            <form class="form-inline mb-20 js-food-lookup">
+              <label for="city-input" class="mr-10">
+                Please enter your county:
+              </label>
+              <div class="awesomplete">
+                <input
+                  class="form-control city-search"
+                  id="city-input"
+                  data-multiple=""
+                  autocomplete="off"
+                  aria-owns="awesomplete_list_1"
+                  role="textbox"
+                />
+                <ul
+                  hidden=""
+                  role="listbox"
+                  id="awesomplete_list_1"
+                  aria-hidden="true"
+                  aria-label="autosuggest"
+                ></ul>
+                <span
+                  class="visually-hidden"
+                  role="status"
+                  aria-live="assertive"
+                  aria-atomic="true"
+                  >Type 2 or more characters for results.</span
+                >
+              </div>
+              <button type="submit" class="btn btn-primary ml-10">
+                Search
+              </button>
+              <div class="invalid-feedback">
+                Please enter a county in California.
+              </div>
+            </form>
+          </div>
+
+          <div class="js-county-alert">
+            <ul class="card-set"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <template id="card-template">
+      <li class="card mb-20  border-0">
+        <div class="card-body bg-light">
+          <a class="action-link" href="${url}">
+            ${county}
+          </a>
+        </div>
+      </li>
+    </template>
+
+    <div class="footer alpha-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 ml-0 pl-0">
+            <ul
+              class="list-group list list-group-horizontal-lg flex-fill list-group-flush"
+            >
+              <li class="list-group-item alpha-footer border-0">
+                State of California
+              </li>
+              <li class="list-group-item alpha-footer">
+                <a href="/about/">About</a>
+              </li>
+              <li class="list-group-item alpha-footer">
+                <a href="https://news.alpha.ca.gov/">News</a>
+              </li>
+              <li class="list-group-item alpha-footer">
+                <a href="/feedback/">Feedback</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alphabar">
+      <div class="container">
+        <p>
+          This website is a
+          <a href="https://medium.com/cadotgov">work in progress</a>.
+        </p>
+      </div>
+    </div>
+    <script type="module" src="index.js" defer async></script>
+  </body>
+</html>
