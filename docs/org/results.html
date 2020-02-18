@@ -233,9 +233,20 @@ form.form-inline input[type=text] {
     }
 
     var searchTerm = cleanInputItem(getQueryStringValue(window.location.href, 'item'));
-
+   
     document.getElementById('searchTeamHolder').innerHTML = searchTerm;
-     
+  
+    searchTerm = searchTerm.replace(/California /gi,"");
+    searchTerm = searchTerm.replace(/Department of /gi,"");
+    searchTerm = searchTerm.replace(/California/gi,"");
+    searchTerm = searchTerm.replace(/Board of /gi,"");
+    searchTerm = searchTerm.replace(/ board/gi,"");
+    searchTerm = searchTerm.replace(/ commission/gi,"");
+    searchTerm = searchTerm.replace(/commission /gi,"");
+    searchTerm = searchTerm.replace(/Bureau of /gi,"");
+    searchTerm = searchTerm.replace(/ Bureau/gi,"");
+    console.log(searchTerm);
+
     buildList(searchTerm,'agencyGroup','en','home.html');
 
       </script>
