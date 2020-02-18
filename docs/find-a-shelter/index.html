@@ -122,6 +122,7 @@ if(selectedcity) {
 
   const results = document.getElementById("results")
 
+
   // Result sample
   //{
   //  "name": "Community Action Of Napa Valley - Samaritan Family Shelter",
@@ -154,10 +155,12 @@ if(selectedcity) {
         externallink.innerHTML = "<br/>(more)"
         name.appendChild(externallink)
 
-        const link = document.createElement("a")
-        link.href = `https://maps.google.com/?q=${addresscombo}`
-        link.innerHTML = addresscombo
-        results.appendChild(link)
+        const address = document.createElement("span")
+        address.innerHTML = addresscombo
+        results.appendChild(address)
+
+        const link = createmaplink(addresscombo,"map")   
+        address.appendChild(link)
 
         const description = document.createElement("p")
         description.innerHTML = row.description
@@ -173,13 +176,31 @@ if(selectedcity) {
 
 
 
-function getParameterByName(name) {
-   name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-   var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(location.search);
-   return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
+
+
 
 }())
+
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]")
+    const regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search)
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "))
+}
+
+function createmaplink(address, text) {
+  const googlemap = document.createElement("a")
+  googlemap.href=`https://maps.google.com/?q=${address}`
+
+  const applemap = document.createElement("a")
+  applemap.href=`https://maps.apple.com/?q=${address}`
+  applemap.innerText = text
+
+  googlemap.appendChild(applemap)
+
+  return googlemap
+}
+
 </script>
 </html>
