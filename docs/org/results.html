@@ -146,11 +146,6 @@ form.form-inline input[type=text] {
             "sortDirection": "Ascending"
         });
 
-        console.log("=====");
-        console.log(data);
-        console.log("-----");
-
-
       //var apiLocation = "https://as-go-alph-d-002.azurewebsites.net/";
       var apiLocation = "https://api.stateentityprofile.ca.gov/";
       
@@ -195,9 +190,6 @@ form.form-inline input[type=text] {
             var displayText = "";
             var recordCount= 0;
   
-            console.log("=====");
-        console.log(arrayLength);
-        console.log("-----");
 
             if (arrayLength === 0) {
               displayText = "<div class=\"alert alert-warning\" role=\"alert\">No results returned for information submitted.</div>";
@@ -223,7 +215,6 @@ form.form-inline input[type=text] {
       temp.textContent = itemSubmitted;
       itemSubmitted =  temp.innerHTML;
       itemSubmitted = itemSubmitted.split('+').join(' ')
-      console.log("cleaned :" + itemSubmitted);
 
       return itemSubmitted;
     }
@@ -245,7 +236,7 @@ form.form-inline input[type=text] {
     searchTerm = searchTerm.replace(/commission /gi,"");
     searchTerm = searchTerm.replace(/Bureau of /gi,"");
     searchTerm = searchTerm.replace(/ Bureau/gi,"");
-    console.log(searchTerm);
+    
 
     buildList(searchTerm,'agencyGroup','en','home.html');
 

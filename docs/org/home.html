@@ -7,7 +7,7 @@
   <meta name="description" content="Find out if you’re eligible for the California LifeLine Program, a discounted phone service.">
   <meta name="author" content="Bootstrap, alpha.ca.gov team">
   <meta name="generator" content="Hugo 0.61.0">
-  <title>Office of Digital Innovation - Alpha.CA.gov</title>
+  <title>Agency Contact Information - Alpha.CA.gov</title>
 
   <!-- Bootstrap core CSS -->
   <link href="https://cwds.dev/docs/4.3/dist/css/bootstrap.css" rel="stylesheet">
@@ -81,7 +81,7 @@ form.form-inline input[type=text] {
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1>Office of Digital Innovation</h1>
+          <h1><span id="orgNameHolder"></span></h1>
         </div>
       </div>
     </div>
@@ -104,44 +104,179 @@ form.form-inline input[type=text] {
         </div>
 -->
 
-      <p class="lead">The Office of Digital Innovation innovates digital.</p>
+      <p class="lead" id="orgDescriptionHolder"></p>
 
       <h2>Contact</h2>
-
-      <ul class="list-unstyled">
-        <li><strong>General Information:</strong> <a href="#">800-777-0133</a></li>
-        <li><strong>Hearing Impaired:</strong> <a href="#">800-368-4327</a></li>
-        <li><strong>Phone Hours of Availability:</strong> Monday, Tuesday, Thursday, Friday 8:00 a.m. to 5:00 p.m. / Wednesday 9:00 a.m. to 5:00 p.m.</li>
-        <li><a href="#">Agency contact page</a></li>
-        <li><a href="#">Website</a></li>
+      <ul class="list-unstyled" id="orgContactInfo"> 
      </ul>
 
       </div>
 
-    <div class="col-lg-4">
-
-      <h2>Connect</h2>
-
-        <div class="list-group-flush">
-          <a href="#" class="list-group-item list-group-item-action"><span class="ca-gov-icon-twitter"></span>&nbsp;&nbsp;Twitter</a>
-          <a href="#" class="list-group-item list-group-item-action"><span class="ca-gov-icon-facebook"></span>&nbsp;&nbsp;Facebook</a>
-          <a href="#" class="list-group-item list-group-item-action"><span class="ca-gov-icon-youtube"></span>&nbsp;&nbsp;YouTube</a>
-        </div>
-
-<!--
-        <ul>
-          <li><a href="#">Twitter</a></li>
-          <li><a href="#">Facebook</a></li>
-          <li><a href="#">YouTube</a></li>
-        </ul>
--->
+    <div class="col-lg-4" id="orgSocialMedia">
 
     </div>
 
   </div>
  </div>	
-	
+  <script>
+    var agencyDetailsResults = [];
 
+    function processPassedItem (linkOutgoingOrIncomming, nameAgencyOrService) {
+
+    var passedName = nameAgencyOrService.toLowerCase();
+
+    if (linkOutgoingOrIncomming === 'Out') {
+      passedName = passedName.replace(/^[ ]+|[ ]+$/g, '');
+      passedName = passedName.replace("-", "dashline");
+      passedName = encodeURIComponent(passedName);
+
+      var i = 0, strPassedNameLengthOut = passedName.length;
+
+      for (i; i < strPassedNameLengthOut; i++) {
+        passedName = passedName.replace("%20", "-");
+      }
+
+      if (passedName.indexOf("'") !== -1) {
+        passedName = passedName.replace("'", "%27");
+      }
+        
+      //--- BEGIN --- Code Mod to support stange proccesing of job training links  ----
+      passedName = passedName.replace("get-job-training-in-", "job-training-in-");
+      //--- END --- Code Mod to support stange proccesing of job training links  ----
+    }
+    else {
+      passedName = decodeURIComponent(passedName);
+      var j = 0, strPassedNameLength = passedName.length;
+      for (j; j < strPassedNameLength; j++) {
+          passedName = passedName.replace("-", " ");
+      }
+      passedName = passedName.replace("dashline", "-");
+    }
+    return passedName;
+    }	
+
+    function showAgencyDetails (searchvalue, lang) {
+
+      var agencyNamePassed = processPassedItem('In', searchvalue);
+
+      if (lang === "") { lang = "en"; }
+
+      //var apiLocation = "https://as-go-alph-d-002.azurewebsites.net/";
+      var apiLocation = "https://api.stateentityprofile.ca.gov/";
+
+      var builtApiUrl = apiLocation + "api/Agencies/FindAgenciesByName/" + agencyNamePassed + "/" + lang;
+
+      var loadFlag = false;
+      var loadCount = 0;
+
+      function loadResults() {
+        if (loadCount === 0) {
+            var getApiRequest = new XMLHttpRequest();
+            getApiRequest.open("GET", builtApiUrl, true);
+            getApiRequest.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    agencyDetailsResults.push(this.responseText);
+                }
+                if (this.readyState === 4 && this.status === 404) {
+                    agencyDetailsResults.push("NONEXISTS");
+                }
+            };
+            getApiRequest.setRequestHeader('Content-Type', 'application/json');
+            getApiRequest.withCredentials = false;
+            getApiRequest.send();
+        }
+        loadCount += 1;
+        if (loadFlag === false) {
+            if (typeof agencyDetailsResults[0] !== "undefined") {
+                if (agencyDetailsResults[0].length > 10) {
+                    loadFlag = true;
+                }
+            }
+            if (loadCount >= 1000) {
+                loadFlag = true;
+            }
+            window.setTimeout(loadResults, 100); /* this checks the flag every 100 milliseconds*/
+        }
+        else {
+          if (loadCount < 1000) {
+
+            var result = JSON.parse(agencyDetailsResults[0]);
+
+            this.apiData = result;
+
+            var r = 0;
+            var agencyArrayLength = this.apiData.length;
+            if (agencyArrayLength > 0) {
+              document.getElementById("orgNameHolder").innerHTML = this.apiData[r].FriendlyName
+
+
+              document.title = "Agency Contact Information for " + this.apiData[r].FriendlyName + " - Alpha.CA.gov";
+         
+              document.getElementById("orgDescriptionHolder").innerHTML = this.apiData[r].Description
+              var contactInfo ="";
+              if (this.apiData[r].ContactPhone) {
+                contactInfo += "<li><strong>General Information: </strong> <a href=\"tel:" + this.apiData[r].ContactPhone + "\">" + this.apiData[r].ContactPhone + "</a></li>";
+              }
+              if (this.apiData[r].HearingImpairedPhone) {
+                contactInfo += "<li><strong>Hearing Impaired: </strong> <a href=\"tel:" + this.apiData[r].HearingImpairedPhone + "\">" + this.apiData[r].HearingImpairedPhone + "</a></li>";
+              }
+              if (this.apiData[r].PhoneHours) {
+                contactInfo += "<li><strong>Phone Hours of Availability: </strong>" + this.apiData[r].PhoneHours + "</li>";
+              }
+              contactInfo += "<li><a href=\"" + this.apiData[r].ContactURL + "\">Agency contact page</a></li>";
+              contactInfo += "<li><a href=\"" + this.apiData[r].WebsiteURL + "\">Website</a></li>";
+
+              document.getElementById("orgContactInfo").innerHTML = contactInfo;
+
+              if((this.apiData[r].TwitterAccount)||(this.apiData[r].Facebook)||(this.apiData[r].YouTube)){
+                var socialMediaInfo = "<h2>Connect</h2><div class=\"list-group-flush\">";
+
+                if (this.apiData[r].TwitterAccount) {
+                  var twitterItem = this.apiData[r].TwitterAccount;
+                  twitterItem = twitterItem.replace("https://", "");
+                  twitterItem = twitterItem.replace("http://", "");
+                  twitterItem = twitterItem.replace("www.twitter.com/", "");
+                  socialMediaInfo += "<a href=\"https://twitter.com/" + twitterItem + "\" class=\"list-group-item list-group-item-action\"><span class=\"ca-gov-icon-twitter\"></span>&nbsp;&nbsp;Twitter</a>";
+                }
+                if (this.apiData[r].Facebook) {
+                  var facebookItem = this.apiData[r].Facebook;
+                  facebookItem = facebookItem.replace("https://", "");
+                  facebookItem = facebookItem.replace("http://", "");
+                  facebookItem = facebookItem.replace("www.facebook.com/", "");
+                  socialMediaInfo += "<a href=\"https://www.facebook.com/" + facebookItem + "\" class=\"list-group-item list-group-item-action\"><span class=\"ca-gov-icon-facebook\"></span>&nbsp;&nbsp;Facebook</a>";
+
+                if (this.apiData[r].YouTube) {
+                  var youTubeItem = this.apiData[r].YouTube;
+                  youTubeItem = youTubeItem.replace("https://", "");
+                  youTubeItem = youTubeItem.replace("http://", "");
+                  youTubeItem = youTubeItem.replace("www.youtube.com/", "");
+                  socialMediaInfo += "<a href=\"https://www.youtube.com/" +  youTubeItem + "\" class=\"list-group-item list-group-item-action\"><span class=\"ca-gov-icon-youtube\"></span>&nbsp;&nbsp;YouTube</a>";
+                }
+
+                document.getElementById("orgSocialMedia").innerHTML = socialMediaInfo +"</div>";
+              }
+            }
+          }
+        }
+      }
+    }
+      loadResults();
+    }
+
+
+    function getQueryStringValue (uri, key) {
+      return decodeURIComponent(uri.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
+    }
+ 
+    var agencyToGet = getQueryStringValue(window.location.href, 'item');
+  
+    agencyToGet = agencyToGet.replace(/\s+$/, '')
+  
+    showAgencyDetails(agencyToGet,'');
+  </script>
+
+  
+  
 <div class="footer alpha-footer">
   <div class="container">
     <div class="row">
@@ -157,96 +292,4 @@ form.form-inline input[type=text] {
   </div>
   <script src="https://cagov.github.io/UX/dist/main.js" defer async></script>
 </body>
-
-	<script type="text/javascript">
-(function() {
-  // Get all the toggletip buttons
-  var toggletipTexts = document.querySelectorAll('[data-toggletip]');
-
-  // Iterate over them
-  Array.prototype.forEach.call(toggletipTexts, function(toggletipText) {
-    // Create the container element
-    var container = document.createElement('span');
-    container.setAttribute('class', 'toggletip-container');
-    
-    // Put it before the original element in the DOM
-    toggletipText.parentNode.insertBefore(container, toggletipText);
-    
-    // Create the button element
-    var toggletip = document.createElement('button');
-    toggletip.setAttribute('type', 'button');
-    toggletip.setAttribute('aria-label', 'more info');
-    toggletip.setAttribute('data-toggletip-content', toggletipText.textContent);
-	toggletip.setAttribute('style', 'border:0; padding:0; color: #0071bc;text-decoration: underline;background: #fff;');
-    toggletip.textContent = 'household';
-
-    
-    // Place the button element in the contai"n"er
-    container.appendChild(toggletip);
-    
-    // Create the live region
-    var liveRegion = document.createElement('span');
-    liveRegion.setAttribute('role', 'status');
-    
-    // Place the live region in the container
-    container.appendChild(liveRegion);
-    
-    // Remove the original element
-    toggletipText.parentNode.removeChild(toggletipText);
-    
-    // Build `data-tooltip-content` 
-    var message = toggletip.getAttribute('data-toggletip-content');
-    toggletip.setAttribute('data-toggletip-content', message);
-    toggletip.removeAttribute('title');
-    
-    // Get the message from the data-content element
-    var message = toggletip.getAttribute('data-toggletip-content');
-
-    // Get the live region element
-    var liveRegion = toggletip.nextElementSibling;
-
-    // Toggle the message
-    toggletip.addEventListener('click', function() {
-        liveRegion.innerHTML = '';
-        window.setTimeout(function() {
-          liveRegion.innerHTML = '<span class="toggletip-bubble">'+ message +'</span>';
-        }, 100);
-    });
-
-    // Close on outside click
-    document.addEventListener('click', function (e) {
-      if (toggletip !== e.target) {
-        liveRegion.innerHTML = '';
-      }                        
-    });
-
-    // Remove toggletip on ESC
-    toggletip.addEventListener('keydown', function(e) {
-      if ((e.keyCode || e.which) === 27)
-      liveRegion.innerHTML = '';
-    });
-    
-    // Remove on blur
-    toggletip.addEventListener('blur', function (e) {
-      liveRegion.innerHTML = '';
-    });
-  });
-}());	
- 
-		
-</script>
-	
-<script>
-	function maybeThanks() {
-	  let thanksDisplayed = document.querySelector('.js-thanks-for-applying').classList.contains('d-none');
-	  if (document.querySelector('.js-gpa-submit').checked && document.querySelector('.js-apply-aid').checked) {
-		document.querySelector('.js-thanks-for-applying').classList.remove('d-none');
-	  } else {
-		if (!thanksDisplayed) {
-		  document.querySelector('.js-thanks-for-applying').classList.add('d-none');
-		}
-	  }
-</script>
-
-
 </html>
