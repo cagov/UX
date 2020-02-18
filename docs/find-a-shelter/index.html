@@ -58,7 +58,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1>Find a shelter near you</h1>
+          <h1>Find shelters near you</h1>
         </div>
       </div>
     </div>
@@ -67,14 +67,14 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-9">
-       <p class="lead">select a city to find a shelter</p>
+       <p class="lead">Please select a city to find shelters there.</p>
        <form method="GET">
         <select name="city" required>
           <option value=""></option>
         </select>
         <p>
-          <input type="submit" value="Go">
-          <a href=".">Start Over</a>
+          <input type="submit" value="Enter">
+          <a href=".">Clear</a>
         </p>
         
         </form>
@@ -85,7 +85,7 @@
   <div class="container d-none" id="div-results">
     <div class="row">
       <div class="col-lg-9">
-        <p class="lead">Shelters in <span id="selected-city"></span></p>
+        <h2>Now showing shelters in <span id="selected-city"></span></h2>
         <div id="results"></div>
         <div id="result-template">
           <h2 class="data-name"></h2>
