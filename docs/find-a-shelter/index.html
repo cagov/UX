@@ -82,11 +82,30 @@
     </div> 
   </div> 
 
-  <div class="container d-none">
+  <div class="container d-none" id="div-results">
     <div class="row">
       <div class="col-lg-9">
         <p class="lead">Shelters in <span id="selected-city"></span></p>
         <div id="results"></div>
+        <div id="result-template">
+          <h2 class="data-name"></h2>
+          <p>
+            <span class="data-address"></span>
+            <a class="data-map-google">
+              <a class="data-map-apple">
+                Open map
+              </a>
+            </a>
+          </p>
+          <p>
+            <a class="data-phone"></a>
+          </p>
+          <p class="data-description"></p>
+
+          <p>
+            <a class="data-more">More Info</a>
+          </p>
+        </div>
       </div> 
     </div> 
   </div> 
@@ -100,8 +119,6 @@
   const selectedcity = getParameterByName("city")
 
   const citylist = document.querySelector('select')
-
-
 
   citylistjson().forEach(x=>{
       var option = document.createElement("option");
@@ -118,10 +135,12 @@
   )
   
 if(selectedcity) {
-  document.querySelector('.d-none').classList.toggle("d-none")
 
+  //note: woodland_hills has issues
+  document.getElementById("div-results").classList.remove("d-none")
   const results = document.getElementById("results")
-
+  const template = document.getElementById("result-template")
+  template.classList.add("d-none") //hide template
 
   // Result sample
   //{
@@ -138,46 +157,33 @@ if(selectedcity) {
   fetch(`https://api.alpha.ca.gov/HomelessShelters/${selectedcity}`)
     .then(response => response.json())
     .then(data => {
+      
       for (const row of data) {
         const addresscombo = `${row.address}, ${row.city}, ${row.state} ${row.zipcode}`
 
-        const name = document.createElement("p")
-        name.innerHTML = row.name
-        results.appendChild(name)
+        document.querySelector("#result-template .data-name").innerText=row.name
+        document.querySelector("#result-template .data-address").innerText=addresscombo
+        document.querySelector("#result-template .data-description").innerText=row.description
 
-        const phone = document.createElement("a")
-        phone.href = `tel:${row.phone}`
-        phone.innerHTML = "<br/>"+row.phone
-        name.appendChild(phone)
+        const phone = document.querySelector("#result-template .data-phone")
+        phone.href=`tel:${row.phone}`
+        phone.innerText=row.phone
 
-        const externallink = document.createElement("a")
-        externallink.href = row.url
-        externallink.innerHTML = "<br/>(more)"
-        name.appendChild(externallink)
+        document.querySelector("#result-template .data-more").href=row.url
+        document.querySelector("#result-template .data-map-google").href = `https://maps.google.com/?q=${addresscombo}`
+        document.querySelector("#result-template .data-map-apple").href = `https://maps.apple.com/?q=${addresscombo}`
+        template.classList.remove("d-none") //show template
+        let newnode = template.cloneNode(true)
+        newnode.id=""
+        template.classList.add("d-none") //hide template
 
-        const address = document.createElement("span")
-        address.innerHTML = addresscombo
-        results.appendChild(address)
-
-        const link = createmaplink(addresscombo,"map")   
-        address.appendChild(link)
-
-        const description = document.createElement("p")
-        description.innerHTML = row.description
-        results.appendChild(description)
-
-        const space = document.createElement("p")
-        space.innerHTML = "&nbsp;"
-        results.appendChild(space)
-        
+        results.appendChild(newnode)
       }
+      
   })
+  .catch(() => window.location.href=".")
+
 }
-
-
-
-
-
 
 }())
 
@@ -187,19 +193,6 @@ function getParameterByName(name) {
     const regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
     results = regex.exec(location.search)
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "))
-}
-
-function createmaplink(address, text) {
-  const googlemap = document.createElement("a")
-  googlemap.href=`https://maps.google.com/?q=${address}`
-
-  const applemap = document.createElement("a")
-  applemap.href=`https://maps.apple.com/?q=${address}`
-  applemap.innerText = text
-
-  googlemap.appendChild(applemap)
-
-  return googlemap
 }
 
 </script>
