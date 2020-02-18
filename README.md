@@ -11,6 +11,6 @@ To track and prototype our possible services for user needs and stories. The wor
 
 ### Run local server
 
-```npm run server```
+```npm run start```
 
 This will serve pages in the docs root at ```http://localhost:1338/``` so if you created a file at ```/docvs//birth-certificate/index.html``` then it will be viewable at: ```http://localhost:1338/birth-certificate/```
