@@ -7,7 +7,7 @@
   <meta name="description" content="Find out if you’re eligible for the California LifeLine Program, a discounted phone service.">
   <meta name="author" content="Bootstrap, alpha.ca.gov team">
   <meta name="generator" content="Hugo 0.61.0">
-  <title>Contact us - Alpha.CA.gov</title>
+  <title>Contact Search Results - Alpha.CA.gov</title>
 
   <!-- Bootstrap core CSS -->
   <link href="https://cwds.dev/docs/4.3/dist/css/bootstrap.css" rel="stylesheet">
@@ -92,32 +92,153 @@ form.form-inline input[type=text] {
 
       <div class="col-lg-8">
 
-        <p>Showing results for <strong>Office of Digital Innovation</strong>:</p>
+        <p>Showing results for <strong><span id="searchTeamHolder"></span></strong>:</p>
 
-        <ul class="list-unstyled">
-            <li><a href="home.html">California Board of Accountancy</a></li>
-            <li><a href="home.html">California Achieving a Better Life Experience</a></li>
-            <li><a href="home.html">Acupuncture Board</a></li>
-            <li><a href="home.html">Office of Administrative Hearings</a></li>
-            <li><a href="home.html">Office of Administrative Law</a></li>
-            <li><a href="home.html">California Commission on Aging</a></li>
-            <li><a href="home.html">Department of Aging</a></li>
-            <li><a href="home.html">Agricultural Labor Relations Board</a></li>
-            <li><a href="home.html">Air Resources Board</a></li>
-            <li><a href="home.html">Alcoholic Beverage Control Appeals Board</a></li>
-            <li><a href="home.html">Department of Alcoholic Beverage Control</a></li>
-            <li><a href="home.html">State Allocation Board</a></li>
-            <li><a href="home.html">California Alternative Energy and Advanced Transportation Financing Authority</a></li>
-            <li><a href="home.html">California Apprenticeship Council</a></li>
-            <li><a href="home.html">Arbitration Certification Program</a></li>
-            <li><a href="home.html">California Architects Board</a></li>
-            <li><a href="home.html">California Arts Council</a></li>
-            <li><a href="home.html">California State Assembly</a></li>
-            <li><a href="home.html">California State Athletic Commission</a></li>
-            <li><a href="home.html">California State Auditor</a></li>
-            <li><a href="home.html">Bureau of Automotive Repair</a></li>
-        </ul>
-        
+              
+	<div id="agencyGroup" class="group"></div>
+	
+  <script>
+    var alphaListingResults = [];
+              
+    function processPassedItem (linkOutgoingOrIncomming, nameAgencyOrService) {
+  
+      var passedName = nameAgencyOrService.toLowerCase();
+  
+      if (linkOutgoingOrIncomming === 'Out') {
+        passedName = passedName.replace(/^[ ]+|[ ]+$/g, '');
+        passedName = passedName.replace("-", "dashline");
+        passedName = encodeURIComponent(passedName);
+  
+        var i = 0, strPassedNameLengthOut = passedName.length;
+  
+        for (i; i < strPassedNameLengthOut; i++) {
+          passedName = passedName.replace("%20", "-");
+        }
+  
+        if (passedName.indexOf("'") !== -1) {
+          passedName = passedName.replace("'", "%27");
+        }
+          
+        //--- BEGIN --- Code Mod to support stange proccesing of job training links  ----
+        passedName = passedName.replace("get-job-training-in-", "job-training-in-");
+        //--- END --- Code Mod to support stange proccesing of job training links  ----
+      }
+      else {
+        passedName = decodeURIComponent(passedName);
+        var j = 0, strPassedNameLength = passedName.length;
+        for (j; j < strPassedNameLength; j++) {
+            passedName = passedName.replace("-", " ");
+        }
+        passedName = passedName.replace("dashline", "-");
+      }
+      return passedName;
+    }		      
+            
+            
+    function buildList(termToSearchFor, idOfDivToFill, lang, agencyLandingPage) {
+      if (lang === "") { lang = "en"; }
+
+      var data = JSON.stringify({
+            "lang": lang,
+            "name": termToSearchFor,
+            "page": 0,
+            "pageSize": 1000,
+            "sortDirection": "Ascending"
+        });
+
+        console.log("=====");
+        console.log(data);
+        console.log("-----");
+
+
+      //var apiLocation = "https://as-go-alph-d-002.azurewebsites.net/";
+      var apiLocation = "https://api.stateentityprofile.ca.gov/";
+      
+      var builtApiUrl = apiLocation + "api/Agencies/Query";
+      var loadFlag = false;
+      var loadCount = 0;
+  
+    function loadResults() {
+      if (loadCount === 0) {
+          var putApiRequest = new XMLHttpRequest();
+          putApiRequest.open("POST", builtApiUrl, true);
+          putApiRequest.onreadystatechange = function () {
+              if (this.readyState === 4 && this.status === 200) {
+                  alphaListingResults.push(this.responseText);
+              }
+              if (this.readyState === 4 && this.status === 404) {
+                  alphaListingResults.push("NONEXISTS");
+              }
+          };
+          putApiRequest.setRequestHeader('Content-Type', 'application/json');
+          putApiRequest.withCredentials = false;
+          putApiRequest.send(data);
+      }
+      loadCount += 1;
+      if (loadFlag === false) {
+          if (typeof alphaListingResults[0] !== "undefined") {
+              if (alphaListingResults[0].length > 10) {
+                  loadFlag = true;
+              }
+          }
+          if (loadCount >= 50) {
+              loadFlag = true;
+          }
+          window.setTimeout(loadResults, 100); /* this checks the flag every 100 milliseconds*/
+        }
+        else {
+          if (loadCount < 50) {
+            var theResults = JSON.parse(alphaListingResults[0]);
+            var resultsArray = theResults.Results
+
+            var arrayLength = resultsArray.length;
+            var displayText = "";
+            var recordCount= 0;
+  
+            console.log("=====");
+        console.log(arrayLength);
+        console.log("-----");
+
+            if (arrayLength === 0) {
+              displayText = "<div class=\"alert alert-warning\" role=\"alert\">No results returned for information submitted.</div>";
+            }
+            else {
+              for (var i = 0; i < arrayLength; i++) {
+                var agencyNameToPass = processPassedItem('Out', resultsArray[i].FriendlyName);
+                displayText += "<p><a aria-label=\"View Contact Information for " + resultsArray[i].FriendlyName + "\" href=\"" + agencyLandingPage + "?item=" + agencyNameToPass + "\">" + resultsArray[i].FriendlyName + "</a></p>";
+              }
+            }
+            document.getElementById(idOfDivToFill).innerHTML = displayText;
+         }
+        }
+    }
+      loadResults();
+    }
+  
+
+    function cleanInputItem(itemSubmitted) {
+      var punctuationless = decodeURIComponent(itemSubmitted).replace(/[.,\/#!$%\^"&\*;:{}=\-_`~()]/g,"");
+      itemSubmitted = punctuationless.replace(/\s{2,}/g," ")
+      var temp = document.createElement('div');
+      temp.textContent = itemSubmitted;
+      itemSubmitted =  temp.innerHTML;
+      itemSubmitted = itemSubmitted.split('+').join(' ')
+      console.log("cleaned :" + itemSubmitted);
+
+      return itemSubmitted;
+    }
+
+    function getQueryStringValue (uri, key) {
+    	return decodeURIComponent(uri.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
+    }
+
+    var searchTerm = cleanInputItem(getQueryStringValue(window.location.href, 'item'));
+
+    document.getElementById('searchTeamHolder').innerHTML = searchTerm;
+     
+    buildList(searchTerm,'agencyGroup','en','home.html');
+
+      </script>
       </div>
 
       <div class="col-lg-4">
@@ -127,9 +248,9 @@ form.form-inline input[type=text] {
         <p>Please enter the name of the agency you want to contact:</p>
 
         <div class="input-group md-form form-sm form-2">
-          <form class="form-inline">
-            <label class="sr-only" for="inlineFormInputName2">Name</label>
-            <input type="text" class="form-control" id="">
+          <form class="form-inline" action="results.html" method="get">
+            <label class="sr-only" for="mylist">Name</label>
+            <input type="text" class="form-control" id="itemList" name="item" placeholder="Name" />
             <button type="submit" class="btn btn-primary">Search</button>
           </form>
         </div>
@@ -156,95 +277,7 @@ form.form-inline input[type=text] {
   <script src="https://cagov.github.io/UX/dist/main.js" defer async></script>
 </body>
 
-	<script type="text/javascript">
-(function() {
-  // Get all the toggletip buttons
-  var toggletipTexts = document.querySelectorAll('[data-toggletip]');
-
-  // Iterate over them
-  Array.prototype.forEach.call(toggletipTexts, function(toggletipText) {
-    // Create the container element
-    var container = document.createElement('span');
-    container.setAttribute('class', 'toggletip-container');
-    
-    // Put it before the original element in the DOM
-    toggletipText.parentNode.insertBefore(container, toggletipText);
-    
-    // Create the button element
-    var toggletip = document.createElement('button');
-    toggletip.setAttribute('type', 'button');
-    toggletip.setAttribute('aria-label', 'more info');
-    toggletip.setAttribute('data-toggletip-content', toggletipText.textContent);
-	toggletip.setAttribute('style', 'border:0; padding:0; color: #0071bc;text-decoration: underline;background: #fff;');
-    toggletip.textContent = 'household';
-
-    
-    // Place the button element in the contai"n"er
-    container.appendChild(toggletip);
-    
-    // Create the live region
-    var liveRegion = document.createElement('span');
-    liveRegion.setAttribute('role', 'status');
-    
-    // Place the live region in the container
-    container.appendChild(liveRegion);
-    
-    // Remove the original element
-    toggletipText.parentNode.removeChild(toggletipText);
-    
-    // Build `data-tooltip-content` 
-    var message = toggletip.getAttribute('data-toggletip-content');
-    toggletip.setAttribute('data-toggletip-content', message);
-    toggletip.removeAttribute('title');
-    
-    // Get the message from the data-content element
-    var message = toggletip.getAttribute('data-toggletip-content');
-
-    // Get the live region element
-    var liveRegion = toggletip.nextElementSibling;
-
-    // Toggle the message
-    toggletip.addEventListener('click', function() {
-        liveRegion.innerHTML = '';
-        window.setTimeout(function() {
-          liveRegion.innerHTML = '<span class="toggletip-bubble">'+ message +'</span>';
-        }, 100);
-    });
-
-    // Close on outside click
-    document.addEventListener('click', function (e) {
-      if (toggletip !== e.target) {
-        liveRegion.innerHTML = '';
-      }                        
-    });
-
-    // Remove toggletip on ESC
-    toggletip.addEventListener('keydown', function(e) {
-      if ((e.keyCode || e.which) === 27)
-      liveRegion.innerHTML = '';
-    });
-    
-    // Remove on blur
-    toggletip.addEventListener('blur', function (e) {
-      liveRegion.innerHTML = '';
-    });
-  });
-}());	
- 
-		
-</script>
 	
-<script>
-	function maybeThanks() {
-	  let thanksDisplayed = document.querySelector('.js-thanks-for-applying').classList.contains('d-none');
-	  if (document.querySelector('.js-gpa-submit').checked && document.querySelector('.js-apply-aid').checked) {
-		document.querySelector('.js-thanks-for-applying').classList.remove('d-none');
-	  } else {
-		if (!thanksDisplayed) {
-		  document.querySelector('.js-thanks-for-applying').classList.add('d-none');
-		}
-	  }
-</script>
 
 
 </html>
