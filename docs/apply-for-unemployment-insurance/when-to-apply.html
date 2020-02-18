@@ -168,7 +168,7 @@ li.list-group-item.unstyled {
 						<li class="list-group-item unstyled bold"><span class="list-number">2</span>When to apply</li>
 						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">3</span><a href="what-you-need-before-you-apply.html" target="_self">What you need before you apply</a></li>
 						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">4</span><a href="how-to-apply.html" target="_self">How to apply</a></li>
-						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">5</span><a href="#" target="_self">After you apply</a></li>
+						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">5</span><a href="after-you-apply.html" target="_self">After you apply</a></li>
 						<li class="list-group-item unstyled"><span class="list-number list-number-inverse">6</span><a href="#" target="_self">Update us every two weeks</a></li>
 
 					</ul>
@@ -204,68 +204,7 @@ li.list-group-item.unstyled {
   <script src="https://cagov.github.io/UX/dist/main.js" defer async></script>
 </body>
 
-	<script type="text/javascript">
 
-(function() {
-	Array.prototype.forEach.call(document.querySelectorAll('.tooltip-button'), function(toggletip) {
-    toggletip.setAttribute('type', 'button');
-    toggletip.setAttribute('aria-label', 'Word Definition');
-
-		//wrap a container around the button
-		var container = document.createElement('span');
-		container.setAttribute('class', 'tooltip-container');
-		toggletip.parentNode.insertBefore(container,toggletip);
-		container.appendChild(toggletip)
-
-		// Create the live region
-		var liveRegion = document.createElement('span');
-    liveRegion.setAttribute('role', 'status');
-    
-    // Place the live region in the container
-		container.appendChild(liveRegion);
-		
-		// Get the message from the data-content element
-		var message = toggletip.getAttribute('data-tooltip-content');
-		
-		   // Toggle the message
-			 toggletip.addEventListener('click', function() {
-        liveRegion.innerHTML = '';
-        window.setTimeout(function() {
-          liveRegion.innerHTML = '<span class="tooltip-bubble">'+ message +'</span>';
-        }, 100);
-    });
-
-    // Close on outside click
-    document.addEventListener('click', function (e) {
-      if (toggletip !== e.target) {
-        liveRegion.innerHTML = '';
-      }
-    });
-
-    // Remove toggletip on ESC
-    toggletip.addEventListener('keydown', function(e) {
-      if ((e.keyCode || e.which) === 27)
-      liveRegion.innerHTML = '';
-    });
-    
-    // Remove on blur
-    toggletip.addEventListener('blur', function (e) {
-      liveRegion.innerHTML = '';
-    });
-  });
-}());	
-		
-	function maybeThanks() {
-	  let thanksDisplayed = document.querySelector('.js-thanks-for-applying').classList.contains('d-none');
-	  if (document.querySelector('.js-gpa-submit').checked && document.querySelector('.js-apply-aid').checked) {
-		document.querySelector('.js-thanks-for-applying').classList.remove('d-none');
-	  } else {
-		if (!thanksDisplayed) {
-		  document.querySelector('.js-thanks-for-applying').classList.add('d-none');
-		}
-	  }
-	}
-</script>
 
 
 </html>
