@@ -55,7 +55,7 @@ function templateHTML(inputval) {
     document.querySelector(".js-county-alert").innerHTML = `<li class="card mb-20  border-0">
     <div class="card-body bg-light">
       <a class="action-link" href="${url}">
-        ${county}
+        Sign up for ${county} alerts
       </a>
     </div>
   </li>`;

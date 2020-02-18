@@ -98,7 +98,7 @@ form.form-inline input[type=text] {
         <div  class="input-group md-form form-sm form-2">
           <form class="form-inline" action="results.html" method="get">
             <label class="sr-only" for="mylist">Name</label>
-            <input type="text" class="form-control" id="itemList" name="item" placeholder="Name" />
+            <input type="text" class="form-control" id="itemList" name="item" />
             <button type="submit" class="btn btn-primary">Search</button>
           </form>
         </div>
@@ -205,12 +205,12 @@ form.form-inline input[type=text] {
             if (!(currentNavCharacter == previousNavCharacter)) {
               navText += "<li class=\"page-item\"><a class=\"page-link\" href=\"#" + previousNavCharacter.toLowerCase() +"\">" + previousNavCharacter + "</a></li>";
               displayText += "<p class=\"h6 text-right\"><a href=\"#\" class=\"back-to-top\">Back to top <span class=\"ca-gov-icon-arrow-fill-up\"></span></a></p>";
-              displayText += "<a name=\""+ currentNavCharacter.toLowerCase() +"\"><h3>" + currentNavCharacter +"</h3>";
+              displayText += "<a name=\""+ currentNavCharacter.toLowerCase() +"\"><h3>" + currentNavCharacter +"</h3></a>";
               previousNavCharacter = currentNavCharacter;
             }
             else {
               if (recordCount < 1) {
-                displayText += "<a name=\""+ previousNavCharacter.toLowerCase() +"\">&nbsp;</a><h3>" + previousNavCharacter +"</h3>";
+                displayText += "<a name=\""+ previousNavCharacter.toLowerCase() +"\"><h3>" + previousNavCharacter +"</h3></a>";
                 recordCount += 1;
               }
             }

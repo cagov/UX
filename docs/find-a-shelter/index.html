@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Look for a sheter near you.">
+  <meta name="description" content="Search for shelters in every California county.">
   <meta name="author" content="alpha.ca.gov team">
-  <title>Find a Shelter - Alpha.CA.gov</title>
+  <title>Find shelters near you - Alpha.CA.gov</title>
 
   <!-- Bootstrap core CSS -->
   <link href="https://cwds.dev/docs/4.3/dist/css/bootstrap.css" rel="stylesheet">
@@ -67,14 +67,14 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-9">
-       <p class="lead">Please select a city to find shelters there.</p>
+      <label for="location-query">Please select a city:</label>
        <form method="GET">
         <select name="city" required>
           <option value=""></option>
         </select>
+	       <a href=".">Clear</a>
         <p>
-          <input type="submit" value="Enter">
-          <a href=".">Clear</a>
+          <input type="submit" value="Find shelters">
         </p>
         
         </form>
@@ -85,10 +85,10 @@
   <div class="container d-none" id="div-results">
     <div class="row">
       <div class="col-lg-9">
-        <h2>Now showing shelters in <span id="selected-city"></span></h2>
+        <h2>Shelters in <span id="selected-city"></span></h2>
         <div id="results"></div>
         <div id="result-template">
-          <h2 class="data-name"></h2>
+          <h3 class="data-name"></h3>
           <p>
             <span class="data-address"></span>
             <a class="data-map-google">
