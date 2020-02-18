@@ -1,3 +1,5 @@
+//Data from https://api.alpha.ca.gov/HomelessShelters
+
 function citylistjson()  { return [
   {
     "code": "adelanto",
