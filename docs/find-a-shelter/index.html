@@ -138,7 +138,7 @@ if(selectedcity) {
     .then(response => response.json())
     .then(data => {
       for (const row of data) {
-        const addresscombo = `${row.address} ${row.city}, ${row.state} ${row.zipcode}`
+        const addresscombo = `${row.address}, ${row.city}, ${row.state} ${row.zipcode}`
 
         const name = document.createElement("p")
         name.innerHTML = row.name
