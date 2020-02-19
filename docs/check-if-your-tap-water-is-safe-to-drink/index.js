@@ -179,7 +179,10 @@ function displaySafe(website_blurb, system) {
   console.log("here");
 
   let html = `<h2>Safe to drink</h2>
-  <p>Your tap water meets California safety standards. We check your water when it leaves your treatment system,
+  <p>Your tap water meets California safety standards. We check your water when it leaves your treatment system, 
+${system.properties.name[0].toUpperCase()}${system.properties.name
+    .substr(1, system.properties.name.length)
+    .toLowerCase()}, 
     but not after it goes through pipes to get to you.</p>
     ${getSystemHTML(website_blurb, system)}`;
 
