@@ -16,6 +16,7 @@ new Awesomplete("input[data-multiple]", {
 
   item: function(text, input) {
     document.querySelector(".invalid-feedback").style.display = "none";
+    document.querySelector('.city-search').classList.remove('is-invalid')
     return Awesomplete.ITEM(text, input.match(/[^,]*$/)[0]);
   },
 
@@ -33,6 +34,7 @@ document
   .addEventListener("submit", function(event) {
     event.preventDefault();
     document.querySelector(".invalid-feedback").style.display = "none";
+    document.querySelector('.city-search').classList.add('is-invalid')
     var finalval = this.querySelector("input").value;
 
     templateHTML(finalval);
