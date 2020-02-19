@@ -51,12 +51,8 @@ window.geocoder = new MapboxGeocoder({
           }
           website_blurb_1 = ` Your water system has the most detailed information about your water quality. <a href="${website}" target="_self">Visit your water system</a>`;
         }
-        let systemInfo = `<h3>How we check your water safety</h3>
-        <h4>Health</h4>
-        <p>The <a href="https://www.waterboards.ca.gov/">California Water Board</a> watches out for chemicals and bacteria that could be harmful to human health.</p>
-        <h4>Taste, look, and smell</h4>
-        <p>We also track chemicals and bacteria that could change the way your water tastes, looks, or smells. </p>`;
-        document.querySelector(".system-info").innerHTML = systemInfo;
+        
+        document.querySelector(".system-info").style.display = 'block';
 
         fetch(
           `https://api.alpha.ca.gov/WaterSystemHistory?systemId=${systemId}`
