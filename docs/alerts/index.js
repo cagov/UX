@@ -7,26 +7,34 @@ counties.forEach(county => {
   countyNames.push(county.name);
 });
 // put all county names on awesomplete
-document.querySelector(".city-search").dataset.list = countyNames;
+// document.querySelector(".city-search").dataset.list = countyNames;
 
-new Awesomplete("input[data-multiple]", {
-  filter: function(text, input) {
-    return Awesomplete.FILTER_CONTAINS(text, input.match(/[^,]*$/)[0]);
-  },
+fetch('json/unique-zips-slim.json')
+.then((response) => {
+  return response.json();
+})
+.then((uniqueZipJson) => {
+  let awesompleteList = [...countyNames, ...uniqueZipJson]
 
-  item: function(text, input) {
-    document.querySelector(".invalid-feedback").style.display = "none";
-    document.querySelector('.city-search').classList.remove('is-invalid')
-    return Awesomplete.ITEM(text, input.match(/[^,]*$/)[0]);
-  },
-
-  replace: function(text) {
-    var before = this.input.value.match(/^.+,\s*|/)[0];
-    var finalval = before + text;
-    this.input.value = finalval;
-    // let templateString = document.querySelector("#card-template").innerHTML;
-    templateHTML(finalval);
-  }
+  new Awesomplete("input[data-multiple]", {
+    list: awesompleteList,
+    filter: function(text, input) {
+      return Awesomplete.FILTER_CONTAINS(text, input.match(/[^,]*$/)[0]);
+    },
+  
+    item: function(text, input) {
+      document.querySelector(".invalid-feedback").style.display = "none";
+      document.querySelector('.city-search').classList.remove('is-invalid')
+      return Awesomplete.ITEM(text, input.match(/[^,]*$/)[0]);
+    },
+  
+    replace: function(text) {
+      var before = this.input.value.match(/^.+,\s*|/)[0];
+      var finalval = before + text;
+      this.input.value = finalval;
+      templateHTML(finalval);
+    }
+  });
 });
 
 document
@@ -41,7 +49,6 @@ document
   });
 
 function templateHTML(inputval) {
-  console.log('hi '+inputval)
   let chosenCounty;
   counties.forEach(county => {
     if (county.name.toLowerCase() == inputval.toLowerCase()) {
