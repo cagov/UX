@@ -53,7 +53,7 @@ window.geocoder = new MapboxGeocoder({
         }
         let systemInfo = `<h3>How we check your water safety</h3>
         <h4>Health</h4>
-        <p>Our scientists watch out for chemicals and bacteria that could be harmful to human health.</p>
+        <p>The <a href="https://www.waterboards.ca.gov/">California Water Board</a> watches out for chemicals and bacteria that could be harmful to human health.</p>
         <h4>Taste, look, and smell</h4>
         <p>We also track chemicals and bacteria that could change the way your water tastes, looks, or smells. </p>`;
         document.querySelector(".system-info").innerHTML = systemInfo;
