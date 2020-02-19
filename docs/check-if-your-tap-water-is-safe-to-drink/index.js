@@ -191,5 +191,5 @@ function getSystemHTML(website_blurb, system) {
     <h4 class="card-subtitle mb-2">${system.properties.name[0].toUpperCase()}${system.properties.name
     .substr(1, system.properties.name.length)
     .toLowerCase()}</h4>
-    <p class="card-text">Your water system keeps the most detailed information about your water quality. ${website_blurb} </p>`;
+    <p class="card-text">Your water treatment system keeps the most detailed information about your water quality. If your water is not safe to drink, they will have advice about what to do. ${website_blurb} </p>`;
 }
