@@ -32,6 +32,8 @@ fetch('json/unique-zips-slim.json')
       var before = this.input.value.match(/^.+,\s*|/)[0];
       var finalval = before + text;
       this.input.value = finalval;
+      console.log('hello')
+      console.log(finalval)
       templateHTML(finalval);
     }
   });
@@ -42,13 +44,36 @@ document
   .addEventListener("submit", function(event) {
     event.preventDefault();
     document.querySelector(".invalid-feedback").style.display = "none";
-    document.querySelector('.city-search').classList.add('is-invalid')
+    document.querySelector('.city-search').classList.remove('is-invalid')
     var finalval = this.querySelector("input").value;
-
+    console.log('hello 2')
+    console.log(finalval)
     templateHTML(finalval);
   });
 
 function templateHTML(inputval) {
+  console.log('here we are: '+inputval)
+  
+  if(inputval.match(/^\d+$/)) {
+    // we are dealing with a zip code
+    fetch('https://api.alpha.ca.gov/countyfromzip/'+inputval)
+    .then((response) => {
+      return response.json();
+    })
+    .then((myzip) => {
+      console.log(myzip)
+      console.log(myzip.county)
+      lookupSuccess(myzip.county)
+    })
+    .catch((e) => {
+      lookupFail();
+    });
+  } else {
+    lookupSuccess(inputval)
+  }
+}
+
+function lookupSuccess(inputval) {
   let chosenCounty;
   counties.forEach(county => {
     if (county.name.toLowerCase() == inputval.toLowerCase()) {
@@ -57,16 +82,20 @@ function templateHTML(inputval) {
   });
   console.log(chosenCounty)
   if(!chosenCounty) {
-    document.querySelector(".invalid-feedback").style.display = "block";
+    lookupFail()
   } else {
     let county = chosenCounty.name;
     let url = chosenCounty.url;
     document.querySelector(".js-county-alert").innerHTML = `<li class="card mb-20  border-0">
-    <div class="card-body bg-light">
-      <a class="action-link" href="${url}">
-        Sign up for ${county} alerts
-      </a>
-    </div>
-  </li>`;
+      <div class="card-body bg-light">
+        <a class="action-link" href="${url}">
+          Sign up for ${county} alerts
+        </a>
+      </div>
+    </li>`;
   }
+}
+
+function lookupFail() {
+  document.querySelector(".invalid-feedback").style.display = "block";
 }
