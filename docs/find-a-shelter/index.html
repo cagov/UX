@@ -84,6 +84,7 @@
     <div class="row">
       <div class="col-lg-9">
         <h2>Closest 10 Shelters</h2>
+        <p>From <span class="data-match"></span></p>
         <div id="results"></div>
         <div id="result-template">
           <h3 class="data-name"></h3>
@@ -109,6 +110,18 @@
     </div> 
   </div> 
 
+  <div class="container d-none" id="div-fail">
+    <div class="row">
+      <div class="col-lg-9">
+      <p>No matching results</p>
+       
+      </div> 
+    </div> 
+  </div> 
+
+
+
+
 <script type="text/javascript">
 	
 (function() {
@@ -121,12 +134,6 @@
   
 if(query) {
   inputbox.value = query
-
-  //note: woodland_hills has issues
-  document.getElementById("div-results").classList.remove("d-none")
-  const results = document.getElementById("results")
-  const template = document.getElementById("result-template")
-  template.classList.add("d-none") //hide template
 
   // Result sample
   //{
@@ -143,8 +150,14 @@ if(query) {
   fetch(`https://api.alpha.ca.gov/HomelessShelters/?q=${query}`)
     .then(response => response.json())
     .then(data => {
+      document.getElementById("div-results").classList.remove("d-none")
+      const results = document.getElementById("results")
+      const template = document.getElementById("result-template")
+      template.classList.add("d-none") //hide template
+      document.querySelector(".data-match").innerHTML=data.match.match
       
-      for (const row of data) {
+
+      for (const row of data.results) {
         const addresscombo = `${row.address}, ${row.city}, ${row.state} ${row.zipcode}`
 
         document.querySelector("#result-template .data-name").innerHTML=row.name
@@ -170,7 +183,7 @@ if(query) {
       }
       
   })
-  //.catch(() => window.location.href=".")
+  .catch(() => document.getElementById("div-fail").classList.remove("d-none"))
 
 }
 
