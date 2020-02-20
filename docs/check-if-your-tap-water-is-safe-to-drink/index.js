@@ -179,11 +179,7 @@ function displaySafe(website_blurb, system) {
   console.log("here");
 
   let html = `<h2>Safe to drink</h2>
-  <p>Your tap water meets California safety standards. Your water system 
-(${system.properties.name[0].toUpperCase()}${system.properties.name
-    .substr(1, system.properties.name.length) 
-    .toLowerCase()}) 
-    checks your water as it leaves their system, but not after it goes through pipes to get to you.</p>
+  <p>Your tap water meets California safety standards. </p>
     ${getSystemHTML(website_blurb, system)}`;
 
   document.querySelector(".system-status").innerHTML = html;
@@ -191,8 +187,9 @@ function displaySafe(website_blurb, system) {
 
 function getSystemHTML(website_blurb, system) {
   return `<h3 class="card-title">Where your water comes from</h3>
-    <h4 class="card-subtitle mb-2">${system.properties.name[0].toUpperCase()}${system.properties.name
-    .substr(1, system.properties.name.length)
-    .toLowerCase()}</h4>
-    <p class="card-text">Your water system keeps the most detailed information about your water. If it's not safe to drink, they will have advice about what to do. ${website_blurb} </p>`;
+    <p class="card-text">Your water system 
+is <strong>${system.properties.name[0].toUpperCase()}${system.properties.name
+    .substr(1, system.properties.name.length) 
+    .toLowerCase()}</strong>.
+    They test your water before it leaves their facilities. Your water system also keeps the most detailed information about your water quality. If it's not safe to drink, they will have advice about what to do. ${website_blurb} </p>`;
 }
