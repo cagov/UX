@@ -80,7 +80,7 @@ window.geocoder = new MapboxGeocoder({
               });
 
               resultsOutput = `<h2>Not safe to drink</h2>
-                <p>Your water does not meet California’s safety standards. We found these contaminants in your water: </p>`;
+                <p>Your water does not meet <a href="https://mywaterquality.ca.gov/safe_to_drink/">California’s safety standards</a>. We found these contaminants in your water: </p>`;
 
               console.log(history);
               analyteMap.forEach(analyte => {
@@ -179,7 +179,7 @@ function displaySafe(website_blurb, system) {
   console.log("here");
 
   let html = `<h2>Safe to drink</h2>
-  <p>Your tap water meets California safety standards. </p>
+  <p>Your tap water meets <a href="https://mywaterquality.ca.gov/safe_to_drink/">California safety standards</a>. </p>
     ${getSystemHTMLSafe(website_blurb, system)}`;
 
   document.querySelector(".system-status").innerHTML = html;
