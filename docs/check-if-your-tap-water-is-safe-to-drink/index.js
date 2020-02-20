@@ -200,5 +200,6 @@ function getSystemHTMLUnSafe(website_blurb, system) {
 is <strong>${system.properties.name[0].toUpperCase()}${system.properties.name
     .substr(1, system.properties.name.length) 
     .toLowerCase()}</strong>.
-    They test your water before it leaves their facilities. Your water system also keeps the most detailed information about your water quality. Now that your water is not safe to drink, they will have advice about what to do. ${website_blurb} </p>`;
+    They test your water before it leaves their facilities. Your water system also keeps the most detailed information about your water quality. </p> 
+    <p>Now that your water is not safe to drink, they will have advice about what to do. ${website_blurb}</p>`;
 }
