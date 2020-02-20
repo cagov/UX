@@ -140,7 +140,7 @@ if(query) {
   //  "description": "Family Shelter The Samaritan Family Center gives families without a home a place to  begin rebuilding their lives. There, those in need will find a room for  their family, as well as the help needed to plan their next steps to  self-sufficiency. Every week, the team works with residents on setting  and achieving goals, all with the aim of getting them back on their  feet... (continued)"
   //},
 
-  fetch(`https://api.alpha.ca.gov/HomelessSheltersNew/?q=${query}`)
+  fetch(`https://api.alpha.ca.gov/HomelessShelters/?q=${query}`)
     .then(response => response.json())
     .then(data => {
       
