@@ -67,11 +67,9 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-9">
-      <label for="location-query">Please select a city:</label>
+      <label for="location-query">Please enter an address:</label>
        <form method="GET">
-        <select name="city" required>
-          <option value=""></option>
-        </select>
+        <input type="text" name="q" autocomplete="address-level2">
 	       <a href=".">Clear</a>
         <p>
           <input type="submit" value="Find shelters">
@@ -85,12 +83,13 @@
   <div class="container d-none" id="div-results">
     <div class="row">
       <div class="col-lg-9">
-        <h2>Shelters in <span id="selected-city"></span></h2>
+        <h2>Closest 10 Shelters</h2>
         <div id="results"></div>
         <div id="result-template">
           <h3 class="data-name"></h3>
           <p>
             <span class="data-address"></span>
+            (<span class="data-distance"></span> miles)
             <a class="data-map-google">
               <a class="data-map-apple">
                 Open map
@@ -110,31 +109,18 @@
     </div> 
   </div> 
 
-
-<script src="citylist.js"></script>
 <script type="text/javascript">
 	
 (function() {
 
-  const selectedcity = getParameterByName("city")
+  const query = getParameterByName("q")
 
-  const citylist = document.querySelector('select')
+  const inputbox = document.querySelector('input[type="text"]')
 
-  citylistjson().forEach(x=>{
-      var option = document.createElement("option");
-      option.text = x.name
-      option.value = x.code
 
-      if(selectedcity===x.code) {
-        document.getElementById("selected-city").innerText = x.name
-        option.selected=true;
-      }
-       
-      citylist.add(option)
-    }
-  )
   
-if(selectedcity) {
+if(query) {
+  inputbox.value = query
 
   //note: woodland_hills has issues
   document.getElementById("div-results").classList.remove("d-none")
@@ -154,16 +140,16 @@ if(selectedcity) {
   //  "description": "Family Shelter The Samaritan Family Center gives families without a home a place to  begin rebuilding their lives. There, those in need will find a room for  their family, as well as the help needed to plan their next steps to  self-sufficiency. Every week, the team works with residents on setting  and achieving goals, all with the aim of getting them back on their  feet... (continued)"
   //},
 
-  fetch(`https://api.alpha.ca.gov/HomelessShelters/${selectedcity}`)
+  fetch(`https://api.alpha.ca.gov/HomelessSheltersNew/?q=${query}`)
     .then(response => response.json())
     .then(data => {
       
       for (const row of data) {
         const addresscombo = `${row.address}, ${row.city}, ${row.state} ${row.zipcode}`
 
-        document.querySelector("#result-template .data-name").innerText=row.name
-        document.querySelector("#result-template .data-address").innerText=addresscombo
-        document.querySelector("#result-template .data-description").innerText=row.description
+        document.querySelector("#result-template .data-name").innerHTML=row.name
+        document.querySelector("#result-template .data-address").innerHTML=addresscombo
+        document.querySelector("#result-template .data-description").innerHTML=row.description
 
         const phone = document.querySelector("#result-template .data-phone")
         phone.href=`tel:${row.phone}`
@@ -172,6 +158,9 @@ if(selectedcity) {
         document.querySelector("#result-template .data-more").href=row.url
         document.querySelector("#result-template .data-map-google").href = `https://maps.google.com/?q=${addresscombo}`
         document.querySelector("#result-template .data-map-apple").href = `https://maps.apple.com/?q=${addresscombo}`
+
+        document.querySelector("#result-template .data-distance").innerHTML=row.location.distance 
+
         template.classList.remove("d-none") //show template
         let newnode = template.cloneNode(true)
         newnode.id=""
@@ -181,7 +170,7 @@ if(selectedcity) {
       }
       
   })
-  .catch(() => window.location.href=".")
+  //.catch(() => window.location.href=".")
 
 }
 
