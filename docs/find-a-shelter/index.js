@@ -1,6 +1,5 @@
 import getGeo from './getgeo.js';
 import getParameterByName from './getparams.js';
-// getGeo();
 
 function displaySortedResults(query) {
   fetch(`https://api.alpha.ca.gov/HomelessShelters/?q=${query}`)
@@ -16,7 +15,6 @@ function displaySortedResults(query) {
       
       for (const row of data.results) {
         const addresscombo = `${row.address}, ${row.city}, ${row.state} ${row.zipcode}`
-
         const node = template.content.cloneNode(true)
         node.querySelector(".data-name").innerHTML=row.name
         node.querySelector(".data-address").innerHTML=addresscombo
@@ -27,6 +25,7 @@ function displaySortedResults(query) {
         node.querySelector(".data-more").href=row.url
         node.querySelector(".data-map-google").href = `https://maps.google.com/?q=${addresscombo}`
         node.querySelector(".data-map-apple").href = `https://maps.apple.com/?q=${addresscombo}`
+        node.querySelector(".data-map-apple").innerHTML = 'Directions to '+row.name;
         node.querySelector(".data-distance").innerHTML=row.location.distance 
 
         results.appendChild(node)

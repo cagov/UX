@@ -114,15 +114,11 @@
   <template id="result-template">
     <li class="card mb-20 border-0">
       <div class="card-body bg-light">
+        <p>(<span class="data-distance"></span> miles)</p>
+
         <h3 class="data-name"></h3>
         <p>
           <span class="data-address"></span>
-          (<span class="data-distance"></span> miles)
-          <a class="data-map-google">
-            <a class="data-map-apple">
-              Open map
-            </a>
-          </a>
         </p>
         <p>
           <a class="data-phone"></a>
@@ -130,6 +126,13 @@
         <p class="data-description"></p>
         <p>
           <a class="data-more">More Info</a>
+        </p>
+        <p>
+          <a class="data-map-google">
+            <a class="data-map-apple action-link">
+              Directions to
+            </a>
+          </a>
         </p>
       </div>
     </li>
