@@ -32,6 +32,18 @@
 .d-none {
 	display: none;
 }
+.form-inline label {
+  justify-content: left;
+}
+.card-set {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+@media (max-width: 720px) {
+  .card-set {
+    grid-template-columns: 100%; 
+  }
+}
 </style>
 
 <body>
@@ -66,49 +78,62 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-lg-9">
+      <div class="col-lg-12">
 	      <p class="lead">Search for temporary housing, disaster relief shelters, and homeless shelters near you.</p> 
-      <label for="location-query">Please enter an address:</label>
-       <form method="GET">
-        <input type="text" name="q" autocomplete="address-level2">
-	       <a href=".">Clear</a>
-        <p>
-          <input type="submit" value="Find shelters">
-        </p>
-        
+
+        <form class="form-inline js-lookup">
+          <div class="form-group">
+            <label for="city-input">
+              Please enter your city or zip code:
+            </label>
+            <div>
+              <input
+                type="text"
+                class="form-control city-search"
+                id="city-input"
+                data-multiple
+              />
+              <button class="btn btn-primary" type="submit">Find shelters</button>
+            </div>
+            <div class="invalid-feedback">
+              Please enter a city or zip code in California.
+            </div>
+          </div>
         </form>
-      </div> 
-    </div> 
-  </div> 
-
-  <div class="container d-none" id="div-results">
-    <div class="row">
-      <div class="col-lg-9">
-        <h2>Shelters near <span class="data-match"></span></h2>
-        <div id="results"></div>
-        <div id="result-template">
-          <h3 class="data-name"></h3>
-          <p>
-            <span class="data-address"></span>
-            (<span class="data-distance"></span> miles)
-            <a class="data-map-google">
-              <a class="data-map-apple">
-                Open map
-              </a>
-            </a>
-          </p>
-          <p>
-            <a class="data-phone"></a>
-          </p>
-          <p class="data-description"></p>
-
-          <p>
-            <a class="data-more">More Info</a>
-          </p>
+        <div class="js-location-display d-none">
+          <h2>Shelters near <span class="data-match"></span></h2>
         </div>
+        <div>
+          <ul class="pl-0 card-set js-nearest-results"></ul>
+        </div>
+        
       </div> 
     </div> 
   </div> 
+
+  <template id="result-template">
+    <li class="card mb-20 border-0">
+      <div class="card-body bg-light">
+        <h3 class="data-name"></h3>
+        <p>
+          <span class="data-address"></span>
+          (<span class="data-distance"></span> miles)
+          <a class="data-map-google">
+            <a class="data-map-apple">
+              Open map
+            </a>
+          </a>
+        </p>
+        <p>
+          <a class="data-phone"></a>
+        </p>
+        <p class="data-description"></p>
+        <p>
+          <a class="data-more">More Info</a>
+        </p>
+      </div>
+    </li>
+  </template>
 
   <div class="container d-none" id="div-fail">
     <div class="row">
@@ -119,83 +144,6 @@
     </div> 
   </div> 
 
+<script type="module" src="index.js"></script>
 
-
-
-<script type="text/javascript">
-	
-(function() {
-
-  const query = getParameterByName("q")
-
-  const inputbox = document.querySelector('input[type="text"]')
-
-
-  
-if(query) {
-  inputbox.value = query
-
-  // Result sample
-  //{
-  //  "name": "Community Action Of Napa Valley - Samaritan Family Shelter",
-  //  "address": "2521 Old Sonoma Road",
-  //  "city": "Napa",
-  //  "state": "CA",
-  //  "zipcode": "94558",
-  //  "phone": "707-253-6145",
-  //  "url": "https://www.shelterlistings.org/details/19263/",
-  //  "description": "Family Shelter The Samaritan Family Center gives families without a home a place to  begin rebuilding their lives. There, those in need will find a room for  their family, as well as the help needed to plan their next steps to  self-sufficiency. Every week, the team works with residents on setting  and achieving goals, all with the aim of getting them back on their  feet... (continued)"
-  //},
-
-  fetch(`https://api.alpha.ca.gov/HomelessShelters/?q=${query}`)
-    .then(response => response.json())
-    .then(data => {
-      document.getElementById("div-results").classList.remove("d-none")
-      const results = document.getElementById("results")
-      const template = document.getElementById("result-template")
-      template.classList.add("d-none") //hide template
-      document.querySelector(".data-match").innerHTML=data.match.match
-      
-
-      for (const row of data.results) {
-        const addresscombo = `${row.address}, ${row.city}, ${row.state} ${row.zipcode}`
-
-        document.querySelector("#result-template .data-name").innerHTML=row.name
-        document.querySelector("#result-template .data-address").innerHTML=addresscombo
-        document.querySelector("#result-template .data-description").innerHTML=row.description
-
-        const phone = document.querySelector("#result-template .data-phone")
-        phone.href=`tel:${row.phone}`
-        phone.innerText=row.phone
-
-        document.querySelector("#result-template .data-more").href=row.url
-        document.querySelector("#result-template .data-map-google").href = `https://maps.google.com/?q=${addresscombo}`
-        document.querySelector("#result-template .data-map-apple").href = `https://maps.apple.com/?q=${addresscombo}`
-
-        document.querySelector("#result-template .data-distance").innerHTML=row.location.distance 
-
-        template.classList.remove("d-none") //show template
-        let newnode = template.cloneNode(true)
-        newnode.id=""
-        template.classList.add("d-none") //hide template
-
-        results.appendChild(newnode)
-      }
-      
-  })
-  .catch(() => document.getElementById("div-fail").classList.remove("d-none"))
-
-}
-
-}())
-
-
-function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]")
-    const regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(location.search)
-    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "))
-}
-
-</script>
 </html>
