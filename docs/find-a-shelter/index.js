@@ -8,6 +8,7 @@ function displaySortedResults(query) {
     .then(data => {
       
       const results = document.querySelector(".js-nearest-results")
+      results.innerHTML = '';
       const template = document.getElementById("result-template")
 
       document.querySelector(".data-match").innerHTML=data.match.match
