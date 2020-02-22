@@ -25,7 +25,7 @@ function displaySortedResults(query) {
         node.querySelector(".data-more").href=row.url
         node.querySelector(".data-map-google").href = `https://maps.google.com/?q=${addresscombo}`
         node.querySelector(".data-map-apple").href = `https://maps.apple.com/?q=${addresscombo}`
-        node.querySelector(".data-map-apple").innerHTML = 'Directions to '+row.name;
+        node.querySelector(".data-map-apple").setAttribute('alt', 'Directions to '+row.name);
         node.querySelector(".data-distance").innerHTML=row.location.distance 
 
         results.appendChild(node)

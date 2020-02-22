@@ -29,9 +29,6 @@
 </head>
 	
 <style>
-.d-none {
-	display: none;
-}
 .form-inline label {
   justify-content: left;
 }
@@ -109,7 +106,6 @@
         <div>
           <ul class="pl-0 card-set js-nearest-results"></ul>
         </div>
-        
       </div> 
     </div> 
   </div> 
@@ -117,7 +113,7 @@
   <template id="result-template">
     <li class="card mb-20 border-0">
       <div class="card-body bg-light">
-        <p>(<span class="data-distance"></span> miles)</p>
+        <p><span class="data-distance"></span> miles away</p>
 
         <h3 class="data-name"></h3>
         <p>
@@ -133,7 +129,7 @@
         <p>
           <a class="data-map-google">
             <a class="data-map-apple action-link">
-              Directions to
+              Get directions
             </a>
           </a>
         </p>
