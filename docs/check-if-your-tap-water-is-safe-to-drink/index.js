@@ -1,3 +1,11 @@
+import analytes from './analytes.js';
+let analyteArray = new analytes();
+let analyteDetails = new Map();
+console.log(analyteArray)
+analyteArray.forEach( (an) => {
+  analyteDetails.set(an.key,an);
+})
+
 mapboxgl.accessToken =
   "pk.eyJ1IjoiYWFyb25oYW5zIiwiYSI6ImNqNGs4cms1ZzBocXkyd3FzZGs3a3VtamYifQ.HQjFfVzwwxwCmGr2nvnvSA";
 var map = new mapboxgl.Map({
@@ -40,6 +48,8 @@ window.geocoder = new MapboxGeocoder({
 
         let systemId = system.properties.pwsid;
         let website_blurb = "";
+        let website_blurb_1 = "";
+        let resultsOutput = "";
         if (
           system.properties.systemData &&
           system.properties.systemData.meta &&
@@ -141,7 +151,20 @@ window.geocoder = new MapboxGeocoder({
                   }
                 })()}
               </div>
-            </div>`;
+            </div>
+            ${(function() {
+              if (analyteDetails.get(analyte.ANALYTE_NAME)) {
+                let analyteDets = analyteDetails.get(analyte.ANALYTE_NAME);
+                return `<div class="col">
+                  <h4>Potential health effects from long term exposure to ${analyteDets.name}</h4>
+                  <p>${analyteDets.risk}</p>
+                  <h4>Common sources of ${analyteDets.name}</h4>
+                  <p>${analyteDets.source}</p>
+                </div>`;
+              } else {
+                return ``;
+              }
+              })()}`;
               });
               document.querySelector(
                 ".system-status"
