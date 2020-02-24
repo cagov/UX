@@ -58,7 +58,7 @@ export default function gotSystem(systemData) {
           });
 
           resultsOutput = `<h2>Your water quality</h2>
-            <p>As of 8/30/2019, your water does not meet <a href="https://mywaterquality.ca.gov/safe_to_drink/">California’s safety standards</a>. On [date], we found this contaminant in your water: </p>`;
+            <p>Your water does not meet <a href="https://mywaterquality.ca.gov/safe_to_drink/">California’s safety standards</a> as of 8/30/2019. On [date], we found this contaminant in your water: </p>`;
 
           analyteMap.forEach(analyte => {
             resultsOutput += `<div class="card border-dark mb-3">
@@ -157,7 +157,7 @@ function displaySafe(website_blurb, system) {
   console.log("here");
 
   let html = `<h2>Your water quality</h2>
-  <p>As of 8/30/2019, your tap water meets <a href="https://mywaterquality.ca.gov/safe_to_drink/">California safety standards</a>. </p>
+  <p>Your tap water meets <a href="https://mywaterquality.ca.gov/safe_to_drink/">California safety standards</a> as of 8/30/2019. </p>
     ${getSystemHTMLSafe(website_blurb, system)}`;
 
   document.querySelector(".system-status").innerHTML = html;
