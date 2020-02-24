@@ -6,6 +6,23 @@ analyteArray.forEach(an => {
   analyteDetails.set(an.key, an);
 });
 
+function capitalizer(name) {
+  let noCap = ['of','and','for','a'];
+  let allCap = ['mud']
+  let pieces = name.split(' ');
+  let finalString = '';
+  pieces.forEach( (piece) => {
+    if(noCap.indexOf(piece.toLowerCase()) > -1) {
+      finalString += piece.toLowerCase() + ' ';
+    } else if(allCap.indexOf(piece.toLowerCase()) > -1) {
+      finalString += piece.toUpperCase() + ' ';
+    } else {
+      finalString += piece[0].toUpperCase() + piece.substr(1,piece.length - 1).toLowerCase() + ' ';
+    }
+  })
+  return finalString.trim();
+}
+
 export default function gotSystem(systemData) {
   console.log(systemData);
   let system = systemData[0];
@@ -165,19 +182,14 @@ function displaySafe(website_blurb, system) {
 
 function getSystemHTMLSafe(website_blurb, system) {
   return `<h3 class="card-title">Where your water comes from</h3>
-    <p>Your water system 
-is <strong>${system.properties.name[0].toUpperCase()}${system.properties.name
-    .substr(1, system.properties.name.length)
-    .toLowerCase()}</strong>.
+    <p>Your water system is <strong>${capitalizer(system.properties.name)}</strong>.
     They test your water before it leaves their facilities. Your water system also has the most up-to-date and detailed information about your water. They publish a yearly report on your water quality called a <a href="https://www.epa.gov/ccr/ccr-information-consumers">Consumer Confidence Report</a>. ${website_blurb} </p>`;
 }
 
 function getSystemHTMLUnSafe(website_blurb, system) {
   return `<h3 class="card-title">Where your water comes from</h3>
     <p class="card-text">Your water system 
-is <strong>${system.properties.name[0].toUpperCase()}${system.properties.name
-    .substr(1, system.properties.name.length)
-    .toLowerCase()}</strong>.
+is <strong>${capitalizer(system.properties.name)}</strong>.
     They test your water before it leaves their facilities. Your water system also keeps the most up-to-date and detailed information about your water. They publish a yearly report on your water quality called a <a href="https://www.epa.gov/ccr/ccr-information-consumers">Consumer Confidence Report</a>. </p> 
     <p>Now that your water is not safe to drink, they will have advice about what to do. ${website_blurb}</p>`;
 }
