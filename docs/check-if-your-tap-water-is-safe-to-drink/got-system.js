@@ -124,7 +124,7 @@ export default function gotSystem(systemData) {
           if (analyteDetails.get(analyte.ANALYTE_NAME)) {
             let analyteDets = analyteDetails.get(analyte.ANALYTE_NAME);
             return `<div class="col">
-              <h4>Potential health effects from long term exposure to ${analyteDets.name}</h4>
+              <h4>Potential health effects from long-term exposure to ${analyteDets.name}</h4>
               <p>${analyteDets.risk}</p>
               <h4>Common sources of ${analyteDets.name}</h4>
               <p>${analyteDets.source}</p>
