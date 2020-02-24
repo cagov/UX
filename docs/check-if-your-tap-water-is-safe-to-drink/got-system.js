@@ -171,7 +171,7 @@ function getSystemHTMLSafe(website_blurb, system) {
 is <strong>${system.properties.name[0].toUpperCase()}${system.properties.name
     .substr(1, system.properties.name.length)
     .toLowerCase()}</strong>.
-    They test your water before it leaves their facilities. Your water system also keeps the most detailed information about your water quality. ${website_blurb} </p>`;
+    They test your water before it leaves their facilities. Your water system also has the most up-to-date and detailed information about your water. They publish a yearly report on your water quality called a <a href="https://www.epa.gov/ccr/ccr-information-consumers">Consumer Confidence Report</a>. ${website_blurb} </p>`;
 }
 
 function getSystemHTMLUnSafe(website_blurb, system) {
@@ -180,7 +180,7 @@ function getSystemHTMLUnSafe(website_blurb, system) {
 is <strong>${system.properties.name[0].toUpperCase()}${system.properties.name
     .substr(1, system.properties.name.length)
     .toLowerCase()}</strong>.
-    They test your water before it leaves their facilities. Your water system also keeps the most detailed information about your water quality. </p> 
+    They test your water before it leaves their facilities. Your water system also keeps the most up-to-date and detailed information about your water. They publish a yearly report on your water quality called a <a href="https://www.epa.gov/ccr/ccr-information-consumers">Consumer Confidence Report</a>. </p> 
     <p>Now that your water is not safe to drink, they will have advice about what to do. ${website_blurb}</p>`;
 }
 
