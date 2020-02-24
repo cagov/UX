@@ -57,7 +57,7 @@ export default function gotSystem(systemData) {
             }
           });
 
-          resultsOutput = `
+          resultsOutput = `<h2>Your water quality</h2>
             <p>Your water does not meet <a href="https://mywaterquality.ca.gov/safe_to_drink/">California’s safety standards</a>. We found these contaminants in your water: </p>`;
 
           console.log(history);
@@ -158,7 +158,7 @@ export default function gotSystem(systemData) {
 function displaySafe(website_blurb, system) {
   console.log("here");
 
-  let html = `
+  let html = `<h2>Your water quality</h2>
   <p>Your tap water meets <a href="https://mywaterquality.ca.gov/safe_to_drink/">California safety standards</a>. </p>
     ${getSystemHTMLSafe(website_blurb, system)}`;
 
