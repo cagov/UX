@@ -165,7 +165,7 @@ function displaySafe(website_blurb, system) {
 
 function getSystemHTMLSafe(website_blurb, system) {
   return `<h3 class="card-title">Where your water comes from</h3>
-    <p class="card-text">Your water system 
+    <p>Your water system 
 is <strong>${system.properties.name[0].toUpperCase()}${system.properties.name
     .substr(1, system.properties.name.length)
     .toLowerCase()}</strong>.
