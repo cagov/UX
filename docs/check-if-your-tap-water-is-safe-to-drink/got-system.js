@@ -75,7 +75,7 @@ export default function gotSystem(systemData) {
           });
 
           resultsOutput = `<h2>Your water quality</h2>
-            <p>Your water did not meet <a href="https://mywaterquality.ca.gov/safe_to_drink/">California’s safety standards</a> as of August 30, 2019. On [date], we found this contaminant in your water: </p>`;
+            <p>Your water did not meet <a href="https://mywaterquality.ca.gov/safe_to_drink/">California’s safety standards</a> as of August 30, 2019. We found these contaminants in your water: </p>`;
 
           analyteMap.forEach(analyte => {
             resultsOutput += `<div class="card border-dark mb-3">
