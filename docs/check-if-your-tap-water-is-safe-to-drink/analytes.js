@@ -19,7 +19,7 @@ export default function analytes() {
       name: "Arsenic",
       mcl: "0.010",
       risk: "Skin damage or problems with circulatory systems, and may have increased risk of getting cancer",
-      source: "Erosion of natural deposits; runoff from orchards; runoff from glass & electronics production wastes"
+      source: "Erosion of natural deposits; runoff from orchards; runoff from glass and electronics production wastes"
     },
     {
       key: "GROSS ALPHA PARTICLE ACTIVITY",
@@ -40,7 +40,7 @@ export default function analytes() {
       name: "1,2-Dibromo-3-chloropropane (DBCP)",
       mcl: "0.0002",
       risk: "Reproductive difficulties; increased risk of cancer",
-      source: "Runoff/leaching from soil fumigant used on soybeans, cotton, pineapples, and orchards"
+      source: "Runoff or leaching from soil fumigant used on soybeans, cotton, pineapples, and orchards"
     },
     {
       key: "ETHYLENE DIBROMIDE",
@@ -54,20 +54,20 @@ export default function analytes() {
       name: "Fluoride",
       mcl: "4.0",
       risk: "Bone disease (pain and tenderness of the bones); children may get mottled teeth",
-      source: "Water additive which promotes strong teeth; erosion of natural deposits; discharge from fertilizer and aluminum factories"
+      source: "Water additive that promotes strong teeth; erosion of natural deposits; discharge from fertilizer and aluminum factories"
     },
     {
       key: "NITRATE",
       name: "Nitrate",
       mcl: "10",
-      risk: "Infants below the age of six months who drink water containing nitrate in excess of the MCL could become seriously ill and, if untreated, may die. Symptoms include shortness of breath and blue-baby syndrome.",
+      risk: "Infants below the age of six months who drink water containing nitrate above the legal limit could become seriously ill and, if untreated, may die. Symptoms include shortness of breath and blue-baby syndrome.",
       source: "Runoff from fertilizer use; leaching from septic tanks, sewage; erosion of natural deposits"
     },
     {
       key: "NITRATE-NITRITE",
       name: "Nitrate-Nitrite",
       mcl: "10",
-      risk: "Infants below the age of six months who drink water containing nitrate in excess of the MCL could become seriously ill and, if untreated, may die. Symptoms include shortness of breath and blue-baby syndrome.",
+      risk: "Infants below the age of six months who drink water containing nitrate above the legal limit could become seriously ill and, if untreated, may die. Symptoms include shortness of breath and blue-baby syndrome.",
       source: "Runoff from fertilizer use; leaching from septic tanks, sewage; erosion of natural deposits"
     },
     {
@@ -108,15 +108,15 @@ export default function analytes() {
       key: "CHLORINE",
       name: "Chlorine",
       mcl: "MRDL=4.01",
-      risk: "Eye/nose irritation; stomach discomfort",
+      risk: "Eye and nose irritation; stomach discomfort",
       source: "Water additive used to control microbes"
     },
     {
       key: "PERCHLORATE",
       name: "Perchlorate",
       mcl: "",
-      risk: "Thyroid inhibition, pulmonary toxic effects",
-      source: "Originates from disinfectants, bleaching agents, herbicides, and rocket propellants"
+      risk: "Thyroid inhibition, toxic effects on the lungs",
+      source: "Disinfectants, bleaching agents, herbicides, and rocket propellants"
     },
     {
       key: "1,2,3-TRICHLOROPROPANE",
@@ -129,8 +129,8 @@ export default function analytes() {
       key: "MANGANESE",
       name: "Manganese",
       mcl: "",
-      risk: "Naturally occuring, used in steel production",
-      source: "Manganese is an essential human dietary element but excessive exposure or intake may lead to a condition known as manganism, a neurodegenerative disorder"
+      risk: "Manganese is an essential human dietary element but excessive exposure or intake may lead to a condition known as manganism, a neurodegenerative disorder",
+      source: "Naturally occuring, used in steel production"
     }
   ];
 }
