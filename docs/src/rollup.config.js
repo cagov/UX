@@ -1,7 +1,7 @@
 module.exports = {
-  input: 'rollup.source.js',
+  input: 'src/rollup.source.js',
   output: {
-    file: 'bundle.js',
-    format: 'cjs'
+    file: 'dist/bundle.js',
+    format: 'esm'
   }
 };
