@@ -27,8 +27,11 @@ window.customElements.define('cwds-accordion', CWDSAccordion);
 
 class CWDSStepList extends HTMLElement {
   connectedCallback() {
-    this.expandTargets = this.querySelectorAll('li');
+    this.expandTargets = this.querySelectorAll('.list-group-item-action');
     this.expandTargets.forEach( (item) => {
+      let detailsEl = item.querySelector('.details');
+      detailsEl.setAttribute('data-collapsed', 'true');
+      detailsEl.style.height = '0px';
       item.addEventListener('click', this.listen);
       /*let detailsEl = item.querySelector('.details');
       if(detailsEl) {
