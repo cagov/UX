@@ -23,5 +23,9 @@
   "devDependencies": {
     "express": "^4.17.1"
   },
-  "homepage": "https://github.com/cagov/UX#readme"
+  "homepage": "https://github.com/cagov/UX#readme",
+  "dependencies": {
+    "@cagov/accordion": "^1.0.6",
+    "@cagov/step-list": "^1.0.11"
+  }
 }
